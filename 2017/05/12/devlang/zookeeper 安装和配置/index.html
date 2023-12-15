@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  <meta name="description" content="一个程序员的学习、工作日志">
+  
+  <title>
+    zookeeper 安装和配置 |
+    
+    缺陷代码
+  </title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<script src="/js/pace.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="缺陷代码" type="application/atom+xml">
+</head>
+
+<body>
+  <main class="content">
+    <section class="outer">
+  <article id="post-devlang/zookeeper 安装和配置" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+
+<h1 class="article-title" itemprop="name">
+  zookeeper 安装和配置
+</h1>
+
+
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2017/05/12/devlang/zookeeper%20%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/" class="article-date">
+  <time datetime="2017-05-12T01:47:57.000Z" itemprop="datePublished">2017-05-12</time>
+</a>
+      
+    </div>
+    
+
+    
+    
+<div class="tocbot"></div>
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+      <p>zookeeper 安装和配置</p>
+<p>1.什么是zookeeper<br>　　引用官方的说法：“Zookeeper是一个高性能，分布式的，开源分布式应用协调服务。它提供了简单原始的功能，分布式应用可以基于它实现更高级的服务，比如同步，配置管理，集群管理，名空间。它被设计为易于编程，使用文件系统目录树作为数据模型。服务端跑在java上，提供java和C的客户端API”。</p>
+<p>2.设计目标<br>Zookeeper服务自身组成一个集群(2n+1个服务允许n个失效)。Zookeeper服务有两个角色，一个是leader，负责写服务和数据同步，剩下的是follower，提供读服务，leader失效后会在follower中重新选举新的leader<br>Zookeeper逻辑图如下，<br><img src="/images/zookeeper/zkservice.jpg" alt="zookeeper service"></p>
+<p>客户端可以连接到每个server，每个server的数据完全相同。<br>每个follower都和leader有连接，接受leader的数据更新操作。<br>Server记录事务日志和快照到持久存储。<br>大多数server可用，整体服务就可用</p>
+<p>3.zookeeper能做什么<br>Zookeeper的主流应用场景实现思路（除去官方示例）<br>(1)配置管理<br>集中式的配置管理在应用集群中是非常常见的，一般商业公司内部都会实现一套集中的配置管理中心，应对不同的应用集群对于共享各自配置的需求，并且在配置变更时能够通知到集群中的每一个机器。</p>
+<p>(2)集群管理<br>应用集群中，我们常常需要让每一个机器知道集群中（或依赖的其他某一个集群）哪些机器是活着的，并且在集群机器因为宕机，网络断链等原因能够不在人工介入的情况下迅速通知到每一个机器。</p>
+<p>(3)数据发布与订阅 （我的业务用到这个特性，后面会有详细介绍）<br>应用配置集中到节点上，应用启动时主动获取，并在节点上注册一个watcher，每次配置更新都会通知到应用。</p>
+<p>(4)名空间服务<br>分布式命名服务，创建一个节点后，节点的路径就是全局唯一的，可以作为全局名称使用。</p>
+<p>(5)分布式通知/协调<br>不同的系统都监听同一个节点，一旦有了更新，另一个系统能够收到通知。</p>
+<p>(6)分布式锁<br>Zookeeper能保证数据的强一致性，用户任何时候都可以相信集群中每个节点的数据都是相同的。一个用户创建一个节点作为锁，另一个用户检测该节点，如果存在，代表别的用户已经锁住，如果不存在，则可以创建一个节点，代表拥有一个锁。</p>
+<p>zookeeper 安装<br>1、首选安装java运行环境。如果不知如何按照可以参加我的JAVA环境配置这篇文章，也可百度搜索。<br>2、下载zookeeper，目前最新的稳定版本为3.4.10；<a target="_blank" rel="noopener" href="http://zookeeper.apache.org/">zookeeper</a>官网下载<br>linux下可以使用wget命令下载</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">##下载</span><br><span class="line">wget https://mirrors.tuna.tsinghua.edu.cn/apache/zookeeper/stable/zookeeper-3.4.10.tar.gz</span><br><span class="line"></span><br><span class="line">##然后解压：</span><br><span class="line">tar -xzvf zookeeper-3.4.10.tar.gz</span><br></pre></td></tr></table></figure>
+
+<p>##运行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">### 1启动zookeeper</span><br><span class="line"># bin/zkServer.sh start</span><br><span class="line">ZooKeeper JMX enabled by default</span><br><span class="line">Using config: /gzdata/zookeeper/zookeeper-3.4.10/bin/../conf/zoo.cfg</span><br><span class="line">Starting zookeeper ... STARTED</span><br><span class="line"></span><br><span class="line">### 2查看状态</span><br><span class="line"># bin/zkServer.sh status</span><br><span class="line">ZooKeeper JMX enabled by default</span><br><span class="line">Using config: /gzdata/zookeeper/zookeeper-3.4.10/bin/../conf/zoo.cfg</span><br><span class="line">Mode: standalone</span><br><span class="line"></span><br><span class="line">### 3停止zookeeper</span><br><span class="line"># bin/zkServer.sh stop</span><br><span class="line">ZooKeeper JMX enabled by default</span><br><span class="line">Using config: /gzdata/zookeeper/zookeeper-3.4.10/bin/../conf/zoo.cfg</span><br><span class="line">Stopping zookeeper ... STOPPED</span><br><span class="line"></span><br><span class="line">### 4 重启</span><br><span class="line"># bin/zkServer.sh restart</span><br><span class="line">ZooKeeper JMX enabled by default</span><br><span class="line">Using config: /gzdata/zookeeper/zookeeper-3.4.10/bin/../conf/zoo.cfg</span><br><span class="line">ZooKeeper JMX enabled by default</span><br><span class="line">Using config: /gzdata/zookeeper/zookeeper-3.4.10/bin/../conf/zoo.cfg</span><br><span class="line">Stopping zookeeper ... STOPPED</span><br><span class="line">ZooKeeper JMX enabled by default</span><br><span class="line">Using config: /gzdata/zookeeper/zookeeper-3.4.10/bin/../conf/zoo.cfg</span><br><span class="line">Starting zookeeper ... STARTED</span><br></pre></td></tr></table></figure>
+
+<h3 id="管理zookeeper存储"><a href="#管理zookeeper存储" class="headerlink" title="管理zookeeper存储"></a>管理zookeeper存储</h3><p>对于长时间运行的生产系统，必须从外部(dataDir和日志)管理ZooKeeper的存储。有关更多细节，请参阅<a target="_blank" rel="noopener" href="http://zookeeper.apache.org/doc/r3.4.10/zookeeperAdmin.html#sc_maintenance">维护部分</a>。</p>
+<h4 id="连接Zookeeper"><a href="#连接Zookeeper" class="headerlink" title="连接Zookeeper"></a>连接Zookeeper</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># ./zkCli.sh -server 127.0.0.1:2181</span><br></pre></td></tr></table></figure>
+<p>这样可以执行简单的文件操作。<br>连接后，你将看到类似下面的输出结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">Connecting to 127.0.0.1:2181</span><br><span class="line">2017-05-11 20:21:23,599 [myid:] - INFO  [main:Environment@100] - Client environment:zookeeper.version=3.4.10-39d3a4f269333c922ed3db283be479f9deacaa0f, built on 03/23/2017 10:13 GMT</span><br><span class="line">2017-05-11 20:21:23,605 [myid:] - INFO  [main:Environment@100] - Client environment:host.name=localhost</span><br><span class="line">2017-05-11 20:21:23,605 [myid:] - INFO  [main:Environment@100] - Client environment:java.version=1.8.0_91</span><br><span class="line">2017-05-11 20:21:23,608 [myid:] - INFO  [main:Environment@100] - Client environment:java.vendor=Oracle Corporation</span><br><span class="line">2017-05-11 20:21:23,608 [myid:] - INFO  [main:Environment@100] - Client environment:java.home=/usr/local/jdk/jdk1.8.0_91/jre</span><br><span class="line">2017-05-11 20:21:23,608 [myid:] - INFO  [main:Environment@100] - Client environment:java.class.path=/gzdata/zookeeper/zookeeper-3.4.10/bin/../build/classes:/gzdata/zookeeper/zookeeper-3.4.10/bin/../build/lib/*.jar:/gzdata/zookeeper/zookeeper-3.4.10/bin/../lib/slf4j-log4j12-1.6.1.jar:/gzdata/zookeeper/zookeeper-3.4.10/bin/../lib/slf4j-api-1.6.1.jar:/gzdata/zookeeper/zookeeper-3.4.10/bin/../lib/netty-3.10.5.Final.jar:/gzdata/zookeeper/zookeeper-3.4.10/bin/../lib/log4j-1.2.16.jar:/gzdata/zookeeper/zookeeper-3.4.10/bin/../lib/jline-0.9.94.jar:/gzdata/zookeeper/zookeeper-3.4.10/bin/../zookeeper-3.4.10.jar:/gzdata/zookeeper/zookeeper-3.4.10/bin/../src/java/lib/*.jar:/gzdata/zookeeper/zookeeper-3.4.10/bin/../conf:.:/usr/local/jdk/jdk1.8.0_91/lib/dt.jar:/usr/local/jdk/jdk1.8.0_91/lib/tools.jar</span><br><span class="line">2017-05-11 20:21:23,608 [myid:] - INFO  [main:Environment@100] - Client environment:java.library.path=/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib</span><br><span class="line">2017-05-11 20:21:23,608 [myid:] - INFO  [main:Environment@100] - Client environment:java.io.tmpdir=/tmp</span><br><span class="line">2017-05-11 20:21:23,608 [myid:] - INFO  [main:Environment@100] - Client environment:java.compiler=&lt;NA&gt;</span><br><span class="line">2017-05-11 20:21:23,608 [myid:] - INFO  [main:Environment@100] - Client environment:os.name=Linux</span><br><span class="line">2017-05-11 20:21:23,609 [myid:] - INFO  [main:Environment@100] - Client environment:os.arch=amd64</span><br><span class="line">2017-05-11 20:21:23,609 [myid:] - INFO  [main:Environment@100] - Client environment:os.version=3.10.0-514.2.2.el7.x86_64</span><br><span class="line">2017-05-11 20:21:23,609 [myid:] - INFO  [main:Environment@100] - Client environment:user.name=root</span><br><span class="line">2017-05-11 20:21:23,609 [myid:] - INFO  [main:Environment@100] - Client environment:user.home=/root</span><br><span class="line">2017-05-11 20:21:23,609 [myid:] - INFO  [main:Environment@100] - Client environment:user.dir=/gzdata/zookeeper/zookeeper-3.4.10/bin</span><br><span class="line">2017-05-11 20:21:23,610 [myid:] - INFO  [main:ZooKeeper@438] - Initiating client connection, connectString=127.0.0.1:2181 sessionTimeout=30000 watcher=org.apache.zookeeper.ZooKeeperMain$MyWatcher@42110406</span><br><span class="line">2017-05-11 20:21:23,641 [myid:] - INFO  [main-SendThread(127.0.0.1:2181):ClientCnxn$SendThread@1032] - Opening socket connection to server 127.0.0.1/127.0.0.1:2181. Will not attempt to authenticate using SASL (unknown error)</span><br><span class="line">Welcome to ZooKeeper!</span><br><span class="line">JLine support is enabled</span><br><span class="line">2017-05-11 20:21:23,809 [myid:] - INFO  [main-SendThread(127.0.0.1:2181):ClientCnxn$SendThread@876] - Socket connection established to 127.0.0.1/127.0.0.1:2181, initiating session</span><br><span class="line">[zk: 127.0.0.1:2181(CONNECTING) 0] 2017-05-11 20:21:23,998 [myid:] - INFO  [main-SendThread(127.0.0.1:2181):ClientCnxn$SendThread@1299] - Session establishment complete on server 127.0.0.1/127.0.0.1:2181, sessionid = 0x15bf77496660000, negotiated timeout = 30000</span><br><span class="line"></span><br><span class="line">WATCHER::</span><br><span class="line"></span><br><span class="line">WatchedEvent state:SyncConnected type:None path:null</span><br></pre></td></tr></table></figure>
+<p>shell中输入help命令，可以获取一个命令列表，如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">help</span><br><span class="line">ZooKeeper -server host:port cmd args</span><br><span class="line">        stat path [watch]</span><br><span class="line">        set path data [version]</span><br><span class="line">        ls path [watch]</span><br><span class="line">        delquota [-n|-b] path</span><br><span class="line">        ls2 path [watch]</span><br><span class="line">        setAcl path acl</span><br><span class="line">        setquota -n|-b val path</span><br><span class="line">        history</span><br><span class="line">        redo cmdno</span><br><span class="line">        printwatches on|off</span><br><span class="line">        delete path [version]</span><br><span class="line">        sync path</span><br><span class="line">        listquota path</span><br><span class="line">        rmr path</span><br><span class="line">        get path [watch]</span><br><span class="line">        create [-s] [-e] path data acl</span><br><span class="line">        addauth scheme auth</span><br><span class="line">        quit</span><br><span class="line">        getAcl path</span><br><span class="line">        close</span><br><span class="line">        connect host:port</span><br><span class="line">[zk: 127.0.0.1:2181(CONNECTED) 1]</span><br></pre></td></tr></table></figure>
+<p>在这，你可以尝试着输入一些简单的命令来体验下。首先，我们输入ls 命令，来看下结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[zk: 127.0.0.1:2181(CONNECTED) 3] ls /</span><br><span class="line">[zookeeper]</span><br></pre></td></tr></table></figure>
+<p>接下来，我们通过 create /zk_test mydata 命令创建一个新的znode。新创建的znode将于字符串“mydata”关联起来，你应看到：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[zk: 127.0.0.1:2181(CONNECTED) 4] create /zk_test mydata</span><br><span class="line">Created /zk_test</span><br></pre></td></tr></table></figure>
+<p>我们用ls /命令来查看刚创建好的znode。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[zk: 127.0.0.1:2181(CONNECTED) 5] ls /</span><br><span class="line">[zookeeper, zk_test]</span><br></pre></td></tr></table></figure>
+<p>注意：上面的zk_test目录是我们刚刚创建的。</p>
+<p>接下来，我们通过get命令验证数据是否与znode关联，如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[zk: 127.0.0.1:2181(CONNECTED) 6] get /zk_test</span><br><span class="line">mydata</span><br><span class="line">cZxid = 0x2</span><br><span class="line">ctime = Thu May 11 20:23:24 CST 2017</span><br><span class="line">mZxid = 0x2</span><br><span class="line">mtime = Thu May 11 20:23:24 CST 2017</span><br><span class="line">pZxid = 0x2</span><br><span class="line">cversion = 0</span><br><span class="line">dataVersion = 0</span><br><span class="line">aclVersion = 0</span><br><span class="line">ephemeralOwner = 0x0</span><br><span class="line">dataLength = 7</span><br><span class="line">numChildren = 0</span><br></pre></td></tr></table></figure>
+<p>我们通过set命令改变zk_test节点上关联的数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">[zk: 127.0.0.1:2181(CONNECTED) 8] set /zk_test hello,world</span><br><span class="line">cZxid = 0x2</span><br><span class="line">ctime = Thu May 11 20:23:24 CST 2017</span><br><span class="line">mZxid = 0x3</span><br><span class="line">mtime = Thu May 11 20:55:08 CST 2017</span><br><span class="line">pZxid = 0x2</span><br><span class="line">cversion = 0</span><br><span class="line">dataVersion = 1</span><br><span class="line">aclVersion = 0</span><br><span class="line">ephemeralOwner = 0x0</span><br><span class="line">dataLength = 11</span><br><span class="line">numChildren = 0</span><br><span class="line">[zk: 127.0.0.1:2181(CONNECTED) 9] get /zk_test</span><br><span class="line">hello,world</span><br><span class="line">cZxid = 0x2</span><br><span class="line">ctime = Thu May 11 20:23:24 CST 2017</span><br><span class="line">mZxid = 0x3</span><br><span class="line">mtime = Thu May 11 20:55:08 CST 2017</span><br><span class="line">pZxid = 0x2</span><br><span class="line">cversion = 0</span><br><span class="line">dataVersion = 1</span><br><span class="line">aclVersion = 0</span><br><span class="line">ephemeralOwner = 0x0</span><br><span class="line">dataLength = 11</span><br><span class="line">numChildren = 0</span><br></pre></td></tr></table></figure>
+<p>注意：修改时一定要指明相应路径 ，如： /zk_test .我们通过get命令查看到数据确实发生了变化。</p>
+<p>最后，我们来用delete删除节点。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[zk: 127.0.0.1:2181(CONNECTED) 10] delete /zk_test</span><br><span class="line">[zk: 127.0.0.1:2181(CONNECTED) 11] ls /</span><br><span class="line">[zookeeper]</span><br><span class="line">[zk: 127.0.0.1:2181(CONNECTED) 12]</span><br></pre></td></tr></table></figure>
+
+<p>###<a target="_blank" rel="noopener" href="http://zookeeper.apache.org/doc/r3.4.10/zookeeperStarted.html">复制模式</a>：</p>
+<p>在zookeeper默认是运行在单机模式下以满足评估、开发、测试的需要。但生产环境中，你必须运行在复制模式下，在同一应用内的一个复制组成为quorum，在复制模式中，quorum中的所有服务器都有相同配置文件的副本。</p>
+<p>注意：<br>For replicated mode, a minimum of three servers are required, and it is strongly recommended that you have an odd number of servers. If you only have two servers, then you are in a situation where if one of them fails, there are not enough machines to form a majority quorum. Two servers is inherently less stable than a single server, because there are two single points of failure.</p>
+<p>The required conf/zoo.cfg file for replicated mode is similar to the one used in standalone mode, but with a few differences. Here is an example:</p>
+<p>tickTime=2000<br>dataDir=/var/lib/zookeeper<br>clientPort=2181<br>initLimit=5<br>syncLimit=2<br>server.1=zoo1:2888:3888<br>server.2=zoo2:2888:3888<br>server.3=zoo3:2888:3888</p>
+<p>The new entry, initLimit is timeouts ZooKeeper uses to limit the length of time the ZooKeeper servers in quorum have to connect to a leader. The entry syncLimit limits how far out of date a server can be from a leader.</p>
+<p>With both of these timeouts, you specify the unit of time using tickTime. In this example, the timeout for initLimit is 5 ticks at 2000 milleseconds a tick, or 10 seconds.</p>
+<p>The entries of the form server.X list the servers that make up the ZooKeeper service. When the server starts up, it knows which server it is by looking for the file myid in the data directory. That file has the contains the server number, in ASCII.</p>
+<p>Finally, note the two port numbers after each server name: “ 2888” and “3888”. Peers use the former port to connect to other peers. Such a connection is necessary so that peers can communicate, for example, to agree upon the order of updates. More specifically, a ZooKeeper server uses this port to connect followers to the leader. When a new leader arises, a follower opens a TCP connection to the leader using this port. Because the default leader election also uses TCP, we currently require another port for leader election. This is the second port in the server entry.</p>
+<p>Note<br>If you want to test multiple servers on a single machine, specify the servername as localhost with unique quorum &amp; leader election ports (i.e. 2888:3888, 2889:3889, 2890:3890 in the example above) for each server.X in that server’s config file. Of course separate dataDirs and distinct clientPorts are also necessary (in the above replicated example, running on a single localhost, you would still have three config files).</p>
+<p>Please be aware that setting up multiple servers on a single machine will not create any redundancy. If something were to happen which caused the machine to die, all of the zookeeper servers would be offline. Full redundancy requires that each server have its own machine. It must be a completely separate physical server. Multiple virtual machines on the same physical host are still vulnerable to the complete failure of that host.</p>
+<p>参考：<br><a target="_blank" rel="noopener" href="http://coolxing.iteye.com/blog/1871009">http://coolxing.iteye.com/blog/1871009</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://groupfusion.github.io/2017/05/12/devlang/zookeeper%20%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/" data-id="clq6bcvnd000o2guz6rjp8xyd" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/zookeeper/" rel="tag">zookeeper</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" rel="tag">分布式</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+  
+<nav class="article-nav">
+  
+  <a href="/2017/05/17/devlang/quartz_cronexpression%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="article-nav-link">
+    <strong class="article-nav-caption">前一篇</strong>
+    <div class="article-nav-title">
+      
+      quartz CronExpression表达式
+      
+    </div>
+  </a>
+  
+  
+  <a href="/2017/05/12/tools/java%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="article-nav-link">
+    <strong class="article-nav-caption">后一篇</strong>
+    <div class="article-nav-title">java环境配置</div>
+  </a>
+  
+</nav>
+
+  
+
+  
+  
+  
+  
+
+</article>
+</section>
+    <footer class="footer">
+  <div class="outer">
+    <div class="float-right">
+      <ul class="list-inline">
+  
+  <li><i class="fe fe-smile-alt"></i> <span id="busuanzi_value_site_uv"></span></li>
+  
+  <li><i class="fe fe-bookmark"></i> <span id="busuanzi_value_page_pv"></span></li>
+  
+</ul>
+    </div>
+    <ul class="list-inline">
+      <li>缺陷代码 &copy; 2023</li>
+      
+        <li></li>
+      
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>theme  <a target="_blank" rel="noopener" href="https://github.com/zhwangart/hexo-theme-ocean">Ocean</a></li>
+    </ul>
+  </div>
+</footer>
+  </main>
+  <aside class="sidebar">
+    <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/xmon.svg" alt="缺陷代码"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/gallery">相册</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/favorites">收藏</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      <div class="totop" id="totop">
+  <i class="fe fe-rocket"></i>
+</div>
+    </li>
+    <li class="nav-item">
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="fe fe-feed"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+  </aside>
+  
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/copybtn.js"></script>
+
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+  });
+</script>
+
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+
+</html>

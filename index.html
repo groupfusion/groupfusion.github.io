@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  <meta name="description" content="一个程序员的学习、工作日志">
+  
+  <title>
+    
+    缺陷代码
+  </title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<script src="/js/pace.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="缺陷代码" type="application/atom+xml">
+</head>
+
+<body>
+  <main class="content">
+    <section class="jumbotron">
+  <div class="video">
+    
+    <div class="video-frame">
+      <img src="/images/ocean/overlay-hero.png" alt="Decorative image frame">
+    </div>
+    
+    <div class="video-media">
+      <video playsinline="" autoplay="" loop="" muted="" data-autoplay="" poster="/images/ocean/ocean.png"
+        x5-video-player-type="h5">
+        <source src="/images/ocean/ocean.mp4" type="video/mp4">
+        <source src="/images/ocean/ocean.ogv" type="video/ogg">
+        <source src="/images/ocean/ocean.webm" type="video/webm">
+        <p>Your user agent does not support the HTML5 Video element.</p>
+      </video>
+      <div class="video-overlay"></div>
+    </div>
+    <div class="video-inner text-center text-white">
+      <h1><a href="/">缺陷代码</a></h1>
+      <p>生活不止有眼前的苟且，还有诗和远方...</p>
+      <div><img src="/images/arxmk-rz6dz.svg" class="brand" alt="缺陷代码"></div>
+    </div>
+    <div class="video-learn-more">
+      <a class="anchor" href="#landingpage"><i class="fe fe-mouse"></i></a>
+    </div>
+  </div>
+</section>
+<div id="landingpage">
+  <section class="outer">
+  <article class="articles">
+    
+    <h1 class="page-type-title"></h1>
+    
+    
+    <article id="post-dev/nacos项目集中配置管理设置说明" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+
+<h2 itemprop="name">
+  <a class="article-title" href="/2023/10/14/dev/nacos%E9%A1%B9%E7%9B%AE%E9%9B%86%E4%B8%AD%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86%E8%AE%BE%E7%BD%AE%E8%AF%B4%E6%98%8E/">nacos项目集中配置管理设置说明</a>
+</h2>
+
+
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2023/10/14/dev/nacos%E9%A1%B9%E7%9B%AE%E9%9B%86%E4%B8%AD%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86%E8%AE%BE%E7%BD%AE%E8%AF%B4%E6%98%8E/" class="article-date">
+  <time datetime="2023-10-14T07:41:20.000Z" itemprop="datePublished">2023-10-14</time>
+</a>
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        
+      
+      
+      <h1 id="nacos项目集中配置管理设置说明"><a href="#nacos项目集中配置管理设置说明" class="headerlink" title="nacos项目集中配置管理设置说明"></a>nacos项目集中配置管理设置说明</h1><p>在springboot 微服项目开发中，微服数量不断增加，长期的结果就是配置文件过于分散混乱，难以管理等问题。这里我们使用nacos配置中心为例，实现统一管理项目中所有配置信息。下面让我们开始吧！</p>
+<h2 id="配置依赖引入"><a href="#配置依赖引入" class="headerlink" title="配置依赖引入"></a>配置依赖引入</h2><p>在build.gradle中增加下面依赖</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">implementation &#x27;com.alibaba.boot:nacos-config-spring-boot-starter:0.2.12&#x27;</span><br></pre></td></tr></table></figure>
+
+<h2 id="增加生产环境配置文件"><a href="#增加生产环境配置文件" class="headerlink" title="增加生产环境配置文件"></a>增加生产环境配置文件</h2><p>在application-prod.properties增加配置中心设置信息，配置如下：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">nacos.config.bootstrap.enable</span>=<span class="string">true</span></span><br><span class="line"><span class="comment"># 生产环境配置中心服务器地址，端口</span></span><br><span class="line"><span class="meta">nacos.config.server-addr</span>=<span class="string">192.168.0.18:8848</span></span><br><span class="line"><span class="meta">nacos.config.username</span>=<span class="string">nacos</span></span><br><span class="line"><span class="meta">nacos.config.password</span>=<span class="string">nacos</span></span><br><span class="line"><span class="comment">#默认为Public命名空间,不需要写，如果加上的话会导致加载不到配置文件</span></span><br><span class="line"><span class="meta">nacos.config.namespace</span>=<span class="string">dev</span></span><br><span class="line"><span class="comment">#指定分组信息</span></span><br><span class="line"><span class="meta">nacos.config.group</span>=<span class="string">ORDER_GROUP</span></span><br><span class="line"><span class="comment"># 配置文件ID data-id</span></span><br><span class="line"><span class="meta">nacos.config.data-ids</span>=<span class="string">db.properties,redis.properties,common.properties,order-xxx.properties</span></span><br><span class="line"><span class="comment"># 配置文件类型</span></span><br><span class="line"><span class="meta">nacos.config.type</span>=<span class="string">properties</span></span><br><span class="line"><span class="comment"># 是否允许动态刷新配置项，这里只是为了演示若能，无强烈要求不要开启</span></span><br><span class="line"><span class="meta">nacos.config.auto-refresh</span>=<span class="string">true</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">#logging.config=classpath:logback-spring.xml</span></span><br><span class="line"><span class="meta">logging.file.name</span>=<span class="string">/temp/logs/order_xxx.log</span></span><br></pre></td></tr></table></figure>
+<h2 id="配置文件ID-根据模块要求定义"><a href="#配置文件ID-根据模块要求定义" class="headerlink" title="配置文件ID 根据模块要求定义"></a>配置文件ID 根据模块要求定义</h2><p>1、在application-prod.properties中“nacos.config.data-ids=”指定从nacos config中要加载的配置文件；<br>2、db.properties,redis.properties 全局默认不需要修改。<br>3、common.properties 为项目通用的配置<br>4、order-xxx.properties 为业务模块独有的配置；命名规则为：模块名+子模块名(可选)</p>
+<p>注：nacos配置中心设置时，nacos.config.data-ids要与nacos配置中心的data-id一致。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://groupfusion.github.io/2023/10/14/dev/nacos%E9%A1%B9%E7%9B%AE%E9%9B%86%E4%B8%AD%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86%E8%AE%BE%E7%BD%AE%E8%AF%B4%E6%98%8E/" data-id="clq6c32cy0000pcuz69h9cj91" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nacos/" rel="tag">nacos</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+    
+    <article id="post-readbook/设计模式之策略模式应用" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+
+<h2 itemprop="name">
+  <a class="article-title" href="/2023/10/13/readbook/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F%E5%BA%94%E7%94%A8/">设计模式之策略模式应用</a>
+</h2>
+
+
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2023/10/13/readbook/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F%E5%BA%94%E7%94%A8/" class="article-date">
+  <time datetime="2023-10-13T07:41:20.000Z" itemprop="datePublished">2023-10-13</time>
+</a>
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        
+      
+      
+      <h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h2><p>本篇文章主要介绍策略模式在SpringBoot框架中如何使用。是一篇策略模式的应用实践的文章，需要对设计模式的理论又一定的了解。</p>
+<h3 id="1-1-策略模式简述"><a href="#1-1-策略模式简述" class="headerlink" title="1.1 策略模式简述"></a>1.1 策略模式简述</h3><p>策略模式包含以下3个核心角色：<br>    -  环境（Context）：定义了使用算法的环境，负责将客户端请求委派给具体的策略对象执行。环境类可以通过依赖注入、简单工厂等方式来获取具体策略对象。<br>    -  抽象策略（Abstract Strategy）：定义了策略对象的公共接口或抽象类，规定了具体策略类必须实现的方法。<br>    -  具体策略（Concrete Strategy）：实现了抽象策略定义的接口或抽象类，包含了具体的算法实现。</p>
+<h2 id="2-实现"><a href="#2-实现" class="headerlink" title="2.实现"></a>2.实现</h2><p>作为程序员，无论是在日常开发、学习中，肯定会学习了解各种的设计模式。在开发中我们如果根据需求选择合适的设计模式，使得我们写出的代码更加优雅，且具被拓展性，可读性，是需要我们时刻思考的。</p>
+<p>收到项目现场转来的一个紧急需求，需要解析一批csv格式的文件入库，每个csv文件都对应一套数据，后续跟能还会增加新的数据。看到之前的代码就是一阵无语…，一坨 “if-else” 堆砌代码。</p>
+<h3 id="2-1构建思路"><a href="#2-1构建思路" class="headerlink" title="2.1构建思路"></a>2.1构建思路</h3><p>根据上面的需求不同类型数据文件采用不同的处理方法，对于有经验的程序员，肯定第一个想到的肯定是策略模式。若对设计模式不是很熟，也可根据需求对照设计模式定义挑选。</p>
+<pre><code>- 定义可识别常量：这里根据不同的文件名标识策略类型，使用文件名调用对应的策略实例。
+- 定义策略接口：每个文件定义一种解析实现，实现对应的解析逻辑，并提取抽接口，定义为对外统一访问入口。
+- Context设计：通过Map来存储策略定义数据，调用者调用是通过策略标识来获取对应策略实例。
+在不使用springboot时，需要将策略标识与对应实例直接在代码中写死，这种方式不利于拓展，每次增加策略后都要修改Map。所以强烈建议使用springboot，通过注解方式实现策略的自动注册。新增策略后springboot启动时会扫描策略并对其进行注册，不需要修改旧代码。
+</code></pre>
+<h3 id="2-2代码实现"><a href="#2-2代码实现" class="headerlink" title="2.2代码实现"></a>2.2代码实现</h3><p>下面我们首先定义策略接口及策略实例,使用springboot框架时只需要在策略实例上增加Component注解，即可将实例注入到Map中。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 策略接口</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">CSVParser</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String cvsSplitBy = <span class="string">&quot;\\|&quot;</span>;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> br</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> fileType</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">parseCsv</span><span class="params">(BufferedReader br, String fileType)</span> <span class="keyword">throws</span> IOException</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 策略实现 city_xxxxxx.csv文件</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Component(&quot;City&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CityParser</span> <span class="keyword">implements</span> <span class="title">CSVParser</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Logger logger = LoggerFactory.getLogger(<span class="keyword">this</span>.getClass());</span><br><span class="line">   </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ParseResult <span class="title">parseCsv</span><span class="params">(BufferedReader br, String fileType)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        logger.info(<span class="string">&quot;City&quot;</span>);</span><br><span class="line">        <span class="comment">//这里实现csv格式解析以及后续处理，此处省略...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 策略实现 region_xxxxxx.csv文件</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Component(&quot;Region&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RegionParser</span> <span class="keyword">implements</span> <span class="title">CSVParser</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Logger logger = LoggerFactory.getLogger(<span class="keyword">this</span>.getClass());</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">parseCsv</span><span class="params">(BufferedReader br, String fileType)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        logger.info(<span class="string">&quot;Region&quot;</span>);</span><br><span class="line">        <span class="comment">//这里实现csv格式解析以及后续处理，此处省略...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其次，编写策略选择器</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 解析策略选择器</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ParseStrategyContext</span> </span>&#123;</span><br><span class="line">	<span class="comment">//这里springboot会扫描已定义的策略，并注册到selectParser中</span></span><br><span class="line">    <span class="meta">@Resource</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String,CSVParser&gt; selectParser=<span class="keyword">new</span> ConcurrentHashMap();</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 根据资源类型选择对应的解析策略</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> type 资源类型</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> CSVParser <span class="title">select</span><span class="params">(String type)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> selectParser.get(type);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-3拓展"><a href="#2-3拓展" class="headerlink" title="2.3拓展"></a>2.3拓展</h3><p>当需求发生变化，需要增加新类型文件时，只需要新增一个策略实例即可，如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 策略实现 room_xxxxxx.csv文件</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Component(&quot;Room&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RoomParser</span> <span class="keyword">implements</span> <span class="title">CSVParser</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Logger logger = LoggerFactory.getLogger(<span class="keyword">this</span>.getClass());</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">parseCsv</span><span class="params">(BufferedReader br, String fileType)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        logger.info(<span class="string">&quot;Room&quot;</span>);</span><br><span class="line">        <span class="comment">//这里实现csv格式解析以及后续处理，此处省略...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="2-4调用"><a href="#2-4调用" class="headerlink" title="2.4调用"></a>2.4调用</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NewCsvParseTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    String filePath = <span class="string">&quot;d://temp&quot;</span>;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">    ParseStrategySelector strategySelector;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">parseCsv</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        File file = <span class="keyword">new</span> File(filePath);</span><br><span class="line">        File[] childFiles = file.listFiles();</span><br><span class="line">        BufferedReader br;</span><br><span class="line">        <span class="keyword">for</span> (File childFile : childFiles) &#123;</span><br><span class="line">			List&lt;String&gt; fileNameList = Arrays.asList(childFile.getName().split(<span class="string">&quot;_&quot;</span>));</span><br><span class="line">			String fileType=fileNameList.get(<span class="number">0</span>);</span><br><span class="line">			br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(<span class="keyword">new</span> FileInputStream(filePath), <span class="string">&quot;UTF-8&quot;</span>));</span><br><span class="line">			<span class="comment">//根据文件类型，调用不同的策略实例</span></span><br><span class="line">			CSVParser parser = strategySelector.select(fileType);</span><br><span class="line">        	ParseResult parseResult = parser.parseCsv(br, fileType);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3.总结"></a>3.总结</h2><p>通过使用策略模式模式，大大减少了代码中的 if-else 使用，代码更加优雅，便于扩展。其次，springboot框架能够更加高效的完成开发任务。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://groupfusion.github.io/2023/10/13/readbook/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F%E5%BA%94%E7%94%A8/" data-id="clq6c3uus000ipcuzb9io9pp0" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+    
+    <article id="post-devlang/java/Java 集合stream流操作示例详解" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+
+<h2 itemprop="name">
+  <a class="article-title" href="/2023/09/15/devlang/java/Java%20%E9%9B%86%E5%90%88stream%E6%B5%81%E6%93%8D%E4%BD%9C%E7%A4%BA%E4%BE%8B%E8%AF%A6%E8%A7%A3/">Java 集合stream流操作示例详解</a>
+</h2>
+
+
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2023/09/15/devlang/java/Java%20%E9%9B%86%E5%90%88stream%E6%B5%81%E6%93%8D%E4%BD%9C%E7%A4%BA%E4%BE%8B%E8%AF%A6%E8%A7%A3/" class="article-date">
+  <time datetime="2023-09-15T07:41:20.000Z" itemprop="datePublished">2023-09-15</time>
+</a>
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        
+      
+      
+      <h1 id="Java-集合stream流操作示例详解"><a href="#Java-集合stream流操作示例详解" class="headerlink" title="Java 集合stream流操作示例详解"></a>Java 集合stream流操作示例详解</h1><p>自java 8 版本起推出集合stream流操作特性，确实非常方便的对list进行各种操作，告别使用for的时代来了。下面总结了一些常用的对List对象进行遍历、过滤、查询、去重、排序、分组、提取等操作示例，；</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> Integer id;</span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line">	<span class="keyword">private</span> String sex;</span><br><span class="line">	<span class="keyword">private</span> Integer age;</span><br><span class="line">	<span class="keyword">private</span> String department;</span><br><span class="line">	<span class="keyword">private</span> BigDecimal salary;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(Integer id,String name,String sex,Integer age,String department,BigDecimal salary)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.id=id;</span><br><span class="line">		<span class="keyword">this</span>.name=name;</span><br><span class="line">		<span class="keyword">this</span>.sex=sex;</span><br><span class="line">		<span class="keyword">this</span>.age=age;</span><br><span class="line">		<span class="keyword">this</span>.department=department;</span><br><span class="line">		<span class="keyword">this</span>.salary=salary;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ListStream</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String [] args)</span></span>&#123;</span><br><span class="line">		List&lt;User&gt; userList = getUserList();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> List&lt;User&gt; <span class="title">getUserList</span><span class="params">()</span></span>&#123;</span><br><span class="line">        List&lt;User&gt; userList = <span class="keyword">new</span> ArrayList&lt;User&gt;();</span><br><span class="line">        userList.add(<span class="keyword">new</span> User(<span class="number">1</span>, <span class="string">&quot;黄文隆&quot;</span>, <span class="string">&quot;男&quot;</span>, <span class="number">32</span>, <span class="string">&quot;研发部&quot;</span>, BigDecimal.valueOf(<span class="number">3600</span>)));</span><br><span class="line">        userList.add(<span class="keyword">new</span> User(<span class="number">2</span>, <span class="string">&quot;江奕云&quot;</span>, <span class="string">&quot;男&quot;</span>, <span class="number">30</span>, <span class="string">&quot;财务部&quot;</span>, BigDecimal.valueOf(<span class="number">3800</span>)));</span><br><span class="line">        userList.add(<span class="keyword">new</span> User(<span class="number">3</span>, <span class="string">&quot;刘姿婷&quot;</span>, <span class="string">&quot;女&quot;</span>, <span class="number">20</span>, <span class="string">&quot;人事部&quot;</span>, BigDecimal.valueOf(<span class="number">3700</span>)));</span><br><span class="line">        userList.add(<span class="keyword">new</span> User(<span class="number">4</span>, <span class="string">&quot;夏志豪&quot;</span>, <span class="string">&quot;男&quot;</span>, <span class="number">38</span>, <span class="string">&quot;研发部&quot;</span>, BigDecimal.valueOf(<span class="number">3500</span>)));</span><br><span class="line">        userList.add(<span class="keyword">new</span> User(<span class="number">5</span>, <span class="string">&quot;林雅南&quot;</span>, <span class="string">&quot;女&quot;</span>, <span class="number">25</span>, <span class="string">&quot;财务部&quot;</span>, BigDecimal.valueOf(<span class="number">3200</span>)));</span><br><span class="line">        <span class="keyword">return</span> userList;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>现在我们有一个List<User>类型的列表，可以使用Java8的stream流对它进行遍历、过滤、查询、去重、排序、分组等操作。</p>
+<h2 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">userList.forEach(System.out::println);</span><br></pre></td></tr></table></figure>
+
+<h2 id="过滤"><a href="#过滤" class="headerlink" title="过滤"></a>过滤</h2><p>通过filter()进行数据筛选过滤。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取部门为“研发部”的用户列表</span></span><br><span class="line">userList = userList.stream().filter(user -&gt; user.getDepartment() == <span class="string">&quot;研发部&quot;</span>).collect(Collectors.toList());</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取组织编号为“黄文隆”的组织信息，如果没有找到则返回null</span></span><br><span class="line">User user = userList.stream().filter(u -&gt; u.getName().equals(<span class="string">&quot;黄文隆&quot;</span>)).findAny().orElse(<span class="keyword">null</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="去重"><a href="#去重" class="headerlink" title="去重"></a>去重</h2><p>使用 distinct() 方法可以去除重复的数据。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取部门列表，并去除重复数据</span></span><br><span class="line">    List&lt;String&gt; departmentList = userList.stream().map(User::getDepartment).distinct().collect(Collectors.toList());</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><p>使用sorted()方法进行数据排序</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//根据年龄排序（升序）</span></span><br><span class="line">userList = userList.stream().sorted((u1, u2) -&gt; u1.getAge() - u2.getAge()).collect(Collectors.toList());</span><br><span class="line"><span class="comment">//推荐：userList = userList.stream().sorted(Comparator.comparingInt(User::getAge)).collect(Collectors.toList());</span></span><br><span class="line"><span class="comment">//降序：userList = userList.stream().sorted(Comparator.comparingInt(User::getAge).reversed()).collect(Collectors.toList());</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="分组"><a href="#分组" class="headerlink" title="分组"></a>分组</h2><p>使用 groupingBy() 将数据进行分组，最终返回一个 Map 类型。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//根据部门对用户列表进行分组</span></span><br><span class="line">Map&lt;String,List&lt;User&gt;&gt; userMap = userList.stream().collect(Collectors.groupingBy(User::getDepartment));</span><br><span class="line"></span><br><span class="line"><span class="comment">//根据部门和性别对用户列表进行分组</span></span><br><span class="line">Map&lt;String,Map&lt;String,List&lt;User&gt;&gt;&gt; userMap = userList.stream().collect(Collectors.groupingBy(User::getDepartment,Collectors.groupingBy(User::getSex)));</span><br><span class="line"></span><br><span class="line"><span class="comment">//根据部门进行分组，汇总各个部门用户的平均年龄</span></span><br><span class="line">Map&lt;String, Double&gt; userMap = userList.stream().collect(Collectors.groupingBy(User::getDepartment, Collectors.averagingInt(User::getAge)));</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="提取"><a href="#提取" class="headerlink" title="提取"></a>提取</h2><p>使用 map() 方法获取用户列表中的名称列。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取用户名称列表</span></span><br><span class="line">List&lt;String&gt; nameList = userList.stream().map(User::getName).collect(Collectors.toList());</span><br><span class="line"><span class="comment">//或者：List&lt;String&gt; nameList = userList.stream().map(user -&gt; user.getName()).collect(Collectors.toList());</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="判断-查找"><a href="#判断-查找" class="headerlink" title="判断(查找)"></a>判断(查找)</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//判断用户列表中是否存在名称为“黄文隆”的数据</span></span><br><span class="line"><span class="keyword">boolean</span> result1 = userList.stream().anyMatch(user -&gt; user.getName().equals(<span class="string">&quot;name_01&quot;</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">//判断用户名称是否都包含“黄”字段</span></span><br><span class="line"><span class="keyword">boolean</span> result2 = userList.stream().allMatch(user -&gt; user.getName().contains(<span class="string">&quot;黄&quot;</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">//判断用户名称是否存在不包含“黄”字段</span></span><br><span class="line"><span class="keyword">boolean</span> result3 = userList.stream().noneMatch(user -&gt; user.getName().contains(<span class="string">&quot;黄&quot;</span>));</span><br></pre></td></tr></table></figure>
+
+<h2 id="统计"><a href="#统计" class="headerlink" title="统计"></a>统计</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用户列表中年龄的最大值、最小值、总和</span></span><br><span class="line"><span class="keyword">int</span> maxVal = userList.stream().map(User::getAge).reduce(Integer::max).get();</span><br><span class="line"><span class="keyword">int</span> minVal = userList.stream().map(User::getAge).reduce(Integer::min).get();</span><br><span class="line"><span class="keyword">int</span> sumVal = userList.stream().map(User::getAge).reduce(<span class="number">0</span>,Integer::sum);</span><br><span class="line"></span><br><span class="line"><span class="comment">//用户列表中年龄的最大值、最小值、总和、平均值</span></span><br><span class="line"><span class="keyword">int</span> maxVal = userList.stream().mapToInt(User::getAge).max().getAsInt();</span><br><span class="line"><span class="keyword">int</span> minVal = userList.stream().mapToInt(User::getAge).min().getAsInt();</span><br><span class="line"><span class="keyword">int</span> sumVal = userList.stream().mapToInt(User::getAge).sum();</span><br><span class="line"><span class="keyword">double</span> aveVal =  userList.stream().mapToInt(User::getAge).average().getAsDouble();</span><br><span class="line"></span><br><span class="line"><span class="comment">//统计研发部的人数，使用 counting()方法进行统计</span></span><br><span class="line">Long departCount = userList.stream().filter(user -&gt; user.getDepartment() == <span class="string">&quot;研发部&quot;</span>).collect(Collectors.counting());</span><br><span class="line"></span><br><span class="line"><span class="comment">//统计30岁以上的人数，使用 count()方法进行统计（推荐）</span></span><br><span class="line">Long ageCount = userList.stream().filter(user -&gt; user.getAge() &gt;= <span class="number">30</span>).count();</span><br><span class="line"></span><br><span class="line"><span class="comment">//统计薪资大于1500元的人数</span></span><br><span class="line">Long salaryCount = userList.stream().filter(user -&gt; user.getSalary().compareTo(BigDecimal.valueOf(<span class="number">1500</span>)) == <span class="number">1</span>).count();</span><br><span class="line"></span><br><span class="line"><span class="comment">//计算年龄总和</span></span><br><span class="line"><span class="keyword">int</span> sumAge = userList.stream().collect(Collectors.summingInt(User::getAge));</span><br><span class="line"></span><br><span class="line"><span class="comment">//计算平均年龄</span></span><br><span class="line"><span class="keyword">double</span> aveAge = userList.stream().collect(Collectors.averagingDouble(User::getAge));</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取IntSummaryStatistics对象</span></span><br><span class="line">IntSummaryStatistics ageStatistics = userList.stream().collect(Collectors.summarizingInt(User::getAge));</span><br><span class="line"></span><br><span class="line"><span class="comment">//统计：最大值、最小值、总和、平均值、总数</span></span><br><span class="line">System.out.println(<span class="string">&quot;最大年龄：&quot;</span> + ageStatistics.getMax());</span><br><span class="line">System.out.println(<span class="string">&quot;最小年龄：&quot;</span> + ageStatistics.getMin());</span><br><span class="line">System.out.println(<span class="string">&quot;年龄总和：&quot;</span> + ageStatistics.getSum());</span><br><span class="line">System.out.println(<span class="string">&quot;平均年龄：&quot;</span> + ageStatistics.getAverage());</span><br><span class="line">System.out.println(<span class="string">&quot;员工总数：&quot;</span> + ageStatistics.getCount());</span><br><span class="line"></span><br><span class="line"><span class="comment">//最高薪资</span></span><br><span class="line">BigDecimal maxSalary = userList.stream().map(User::getSalary).max((x1, x2) -&gt; x1.compareTo(x2)).get();</span><br><span class="line"></span><br><span class="line"><span class="comment">//最低薪资</span></span><br><span class="line">BigDecimal minSalary = userList.stream().map(User::getSalary).min((x1, x2) -&gt; x1.compareTo(x2)).get();</span><br><span class="line"></span><br><span class="line"><span class="comment">//薪资总和</span></span><br><span class="line">BigDecimal sumSalary = userList.stream().map(User::getSalary).reduce(BigDecimal.ZERO, BigDecimal::add);</span><br><span class="line"></span><br><span class="line"><span class="comment">//平均薪资</span></span><br><span class="line">BigDecimal avgSalary = userList.stream().map(User::getSalary).reduce(BigDecimal.ZERO, BigDecimal::add).divide(BigDecimal.valueOf(userList.size()), <span class="number">2</span>, BigDecimal.ROUND_HALF_UP);</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://groupfusion.github.io/2023/09/15/devlang/java/Java%20%E9%9B%86%E5%90%88stream%E6%B5%81%E6%93%8D%E4%BD%9C%E7%A4%BA%E4%BE%8B%E8%AF%A6%E8%A7%A3/" data-id="clq6c3hm2000fpcuzbm1f5n0d" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java-stream/" rel="tag">java stream</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+    
+    <article id="post-linux/linuxswap" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+
+<h2 itemprop="name">
+  <a class="article-title" href="/2023/09/14/linux/linuxswap/">linux swap分区调整</a>
+</h2>
+
+
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2023/09/14/linux/linuxswap/" class="article-date">
+  <time datetime="2023-09-14T07:41:20.000Z" itemprop="datePublished">2023-09-14</time>
+</a>
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        
+      
+      
+      <h1 id="linux-swap分区调整"><a href="#linux-swap分区调整" class="headerlink" title="linux swap分区调整"></a>linux swap分区调整</h1><p>近期安装了一套ubantu系统，因为物理机内存有限，想调整swap分区，顾边学边整理的此篇内容。</p>
+<h2 id="swap分区多大合适"><a href="#swap分区多大合适" class="headerlink" title="swap分区多大合适"></a>swap分区多大合适</h2><p>我们在安装系统的时候已经建立了 swap 分区。swap 分区通常被称为交换分区，这是一块特殊的硬盘空间，即当实际内存不够用的时候，操作系统会从内存中取出一部分暂时不用的数据，放在交换分区中，从而为当前运行的程序腾出足够的内存空间。<br>那么swap分区到底设置成多大才最优？</p>
+<p>以前几乎所有Linux 系统管理的书上都推荐设置交换分区大小为内存的2倍。这些建议到了现在就是也适用，具体情况还是要根据实际情况作出调整。</p>
+<p>首先看下Redhat官方的文档中关于swap分区大小设置的建议：</p>
+<table>
+<thead>
+<tr>
+<th>物理内存</th>
+<th align="center">建议的交换空间大小</th>
+<th align="center">如果开启休眠功能建议的教会空间大小</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&lt;= 2GB</td>
+<td align="center">内存的2倍</td>
+<td align="center">内存的3倍</td>
+</tr>
+<tr>
+<td>&gt;2GB-8GB</td>
+<td align="center">等于内存大小</td>
+<td align="center">内存的2倍</td>
+</tr>
+<tr>
+<td>&gt;8GB-64GB</td>
+<td align="center">至少4G</td>
+<td align="center">内存的1.5倍</td>
+</tr>
+<tr>
+<td>&gt;64GB</td>
+<td align="center">至少4G</td>
+<td align="center">不建议使用休眠</td>
+</tr>
+</tbody></table>
+<p>实际上，系统中交换分区的大小并不取决于物理内存的量，而是取决于系统中内存的负荷，所以在安装系统时要根据具体的业务来设置SWAP的值。</p>
+<p>一般都需要配置一点swap分区，桌面配置多一点，服务器配置少一点。而对于swap分区的具体使用细节，由一个叫swappiness参数来控制。</p>
+<h2 id="Swappiness"><a href="#Swappiness" class="headerlink" title="Swappiness"></a>Swappiness</h2><p>实际上，并不是等所有的物理内存都消耗完毕之后，才去使用swap的空间，什么时候使用是由swappiness 参数值控制。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat procsysvmswappiness</span><br></pre></td></tr></table></figure>
+<p>在ubuntu上默认是60,一般大部分都有应该是这个值，也有一些linux版本作出了优化调整。<br>swappiness=0的时候表示最大限度使用物理内存，然后才是 swap空间，<br>swappiness＝100的时候表示积极的使用swap分区，并且把内存上的数据及时的搬运到swap空间里面</p>
+<h2 id="swap分区调整步骤"><a href="#swap分区调整步骤" class="headerlink" title="swap分区调整步骤"></a>swap分区调整步骤</h2><p>1、我们使用free -m 查看交换空间的大小</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ubtu:~$ free -m</span><br><span class="line">               total        used        free      shared  buffcache   available</span><br><span class="line">内存：       7904        4423         120         371        3360        2817</span><br><span class="line">交换：       2047          55        1992</span><br></pre></td></tr></table></figure>
+<p>2、使用swapon -s 查看交换空间文件挂载的对应的文件<br>如下swapfile既是挂载的文件。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ubtu:~$ swapon -s</span><br><span class="line">Filename				Type		Size		Used		Priority</span><br><span class="line">swapfile                               file		2097148		57144		-2</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>3、停掉挂载的交换空间的文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo swapoff swapfile</span><br></pre></td></tr></table></figure>
+
+<p>4、删除交换空间文件 </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo rm swapfile</span><br></pre></td></tr></table></figure>
+<p>5、创建新的挂载文件以及设置大小,可参考上面进行设置，因为我的是8G内存，这里交换空间设置8G。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo fallocate -l 8G swapfile</span><br></pre></td></tr></table></figure>
+<p>设置完成，可以使用ls -l swapfile 查看创建的swapfile有没有权限。<br>授权如果不为 -rw——- ，请执行 sudo chmod 600 swapfile 给文件赋权。<br>若漏掉则在挂载时会有提示：mkswap: swapfile: insecure permissions 0644, fix with: chmod 0600 swapfile</p>
+<p>6、将文件挂载到交换空间</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mkswap swapfile</span><br></pre></td></tr></table></figure>
+<p>挂载成功提示：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">正在设置交换空间版本 1，大小 = 8 GiB (8589930496  个字节)</span><br><span class="line">无标签， UUID=08420c82-ecbd-4628-96c5-78270950edf8</span><br></pre></td></tr></table></figure>
+
+<p>7、启动交换空间</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo swapon  swapfile</span><br></pre></td></tr></table></figure>
+<p>可以free -m 或sudo swapon –show 查看是否设置成功。</p>
+<p>8、若要长久生效，还要使用sudo vi etcfstab 将默认的swapfile 那行注释掉，在最后面增加下面内容</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">swapfile	swap	swap	default	0	0</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://groupfusion.github.io/2023/09/14/linux/linuxswap/" data-id="clq6c3uuu000lpcuzd0ko1s8t" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+    
+    <article id="post-dev/reids 学习笔记" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+
+<h2 itemprop="name">
+  <a class="article-title" href="/2022/11/14/dev/reids%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">reids 数据类型学习笔记</a>
+</h2>
+
+
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2022/11/14/dev/reids%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time datetime="2022-11-14T07:41:20.000Z" itemprop="datePublished">2022-11-14</time>
+</a>
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        
+      
+      
+      <h1 id="reids-数据类型学习笔记"><a href="#reids-数据类型学习笔记" class="headerlink" title="reids 数据类型学习笔记"></a>reids 数据类型学习笔记</h1><h2 id="redis-基本数据类型"><a href="#redis-基本数据类型" class="headerlink" title="redis 基本数据类型"></a>redis 基本数据类型</h2><p><img src="/images/redis/a7c36999e90a41038134360ace7da42a.png#pic_center" alt="在这里插入图片描述"></p>
+<h3 id="字符串string类型"><a href="#字符串string类型" class="headerlink" title="字符串string类型"></a>字符串string类型</h3><p><strong>常用指令：</strong> set、mset、setnx、get、mget、del、expire。<br><strong>原子加减：</strong> incr、decr、incrby、decrby、</p>
+<p><strong>使用场景：</strong></p>
+<ul>
+<li>单值缓存</li>
+<li>对象缓存</li>
+<li>分布式锁</li>
+<li>计数器</li>
+<li>分布式系统序列号</li>
+</ul>
+<h3 id="哈希hash类型"><a href="#哈希hash类型" class="headerlink" title="哈希hash类型"></a>哈希hash类型</h3><p><strong>常用指令：</strong>hset、hsetnx、hmset、hget、hmget、hdel、hlen、hgetall、hincrby<br><strong>使用场景：</strong></p>
+<ul>
+<li>对象缓存</li>
+<li>购物车（添加商品、增加数量、商品总数、删除商品、获取购物车商品）</li>
+</ul>
+<h3 id="列表list类型"><a href="#列表list类型" class="headerlink" title="列表list类型"></a>列表list类型</h3><p><strong>常用指令：</strong>lpush、rpush、lpop、rpop、lrange、blpop、brpop。<br><strong>使用场景：</strong></p>
+<ul>
+<li>可实现常用分布式数据结构，stack(栈)、Queue（队列）、Blocking MQ（阻塞队列）</li>
+<li>微博、微信消息流，时间线功能。</li>
+</ul>
+<p>注：读扩散、写扩散，千万、亿万粉丝大V发消息，如何推给粉丝？<br>小V写扩散、对用户进行标签，将消息写到活跃用户收件箱</p>
+<h3 id="集合set类型"><a href="#集合set类型" class="headerlink" title="集合set类型"></a>集合set类型</h3><p><strong>常用指令：</strong> sadd、srem、smembers、scard、sismember、srandmember、spop<br><strong>运算操作：</strong> sinter、sinterstore、sunion、sunionstore、sdiff、sdiffstore<br><strong>使用场景：</strong></p>
+<ul>
+<li>抽奖、点赞、收藏、标签</li>
+<li>集合交集、并集、差集</li>
+</ul>
+<h3 id="有序集合ZSet类型"><a href="#有序集合ZSet类型" class="headerlink" title="有序集合ZSet类型"></a>有序集合ZSet类型</h3><p><strong>常用指令：</strong> zadd zrem zscore zincrby zcard、zrange zrevrange、<br><strong>运算操作：</strong>zunionstore、zinterstore<br><strong>使用场景：</strong></p>
+<h2 id="redis底层数据结构"><a href="#redis底层数据结构" class="headerlink" title="redis底层数据结构"></a>redis底层数据结构</h2><ul>
+<li>数组: 根据序号随机查找很快，但是插入与删除很慢，需要挪动很多元素链表:插入与删除很快，只需要修改相邻元素指针，但是查找很慢，需要从第一个元素逐个遍历查找</li>
+</ul>
+<p>有序数组支持折半查找，链表不支持折半查找<br>有序数组的折半查找操作速度很快，但是插入、删除操作很慢</p>
+<ul>
+<li>跳表: 将有序链表改造为支持“折半查找”算法，可以进行快速的插入、删除、查找操作</li>
+</ul>
+<p>跳表与压缩列表优缺点，如何选择。</p>
+<h2 id="Redis经典问题"><a href="#Redis经典问题" class="headerlink" title="Redis经典问题"></a>Redis经典问题</h2><h2 id="3-3-缓存穿透（缓存，数据库都没有数据）"><a href="#3-3-缓存穿透（缓存，数据库都没有数据）" class="headerlink" title="3.3 缓存穿透（缓存，数据库都没有数据）"></a>3.3 缓存穿透（缓存，数据库都没有数据）</h2><p>描述：是指查询一个根本不存在的数据(key)，缓存层和存储层都不会命中。通常出于容错的考虑，如果从存储层查不到数据则不写入缓存层.<br>导致这个请求每次都会请求到数据库，失去了缓存保护后端存储的意义造成缓存穿透的基本原因有两个:<br>第一，自身业务代码或者数据出现问题<br>第二，一些恶意攻击、爬虫等造成大量空命中。<br>3、 突发性热点缓存，<br>解决方案：<br>1、将空数据也设置为缓存，并设置过期时间（几分钟）。<br>2、布隆过滤器。</p>
+<h2 id="3-4-缓存雪崩"><a href="#3-4-缓存雪崩" class="headerlink" title="3.4 缓存雪崩"></a>3.4 缓存雪崩</h2><p>描述：缓存失效（缓存层宕机）后，导致大量请求都会打到存储层，存储层的调用量暴增，造成存储层也会级联宕机的情况。</p>
+<p>解决方案：<br>1、保证缓存层服务的高可用性。<br>2、以来隔离组件为后端限流熔断降级，核心业务访问达数据库，非核心业务返回预定义的信息。<br>3、提前演练。在项目上线前，演练缓存层宕机后，应用及后端的负载情况以及可能出现的问题，在此基础上指定一些预案。</p>
+<h2 id="3-5-缓存击穿"><a href="#3-5-缓存击穿" class="headerlink" title="3.5 缓存击穿"></a>3.5 缓存击穿</h2><p>描述：缓存击穿是指当大量缓存在同一时间失效可能导致大量请求，同时穿透缓存直接访问到数据库。造成数据库压力瞬间骤增，大量请求阻塞，甚至挂掉。</p>
+<p>解决方案：<br>1、针对这些缓存设置不同的过期时间（差异化设置过期时间），如：在24小时基础上增加一个随机数（增加几分钟）。<br>2、使用分布式锁，保证同一时刻只能有一个查询请求重新加载热点数据到缓存中，这样，其他的线程只需等待该线程运行完毕，即可重新从Redis中获取数据。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://groupfusion.github.io/2022/11/14/dev/reids%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-id="clq6c32d50006pcuz0ohu8dam" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+    
+    <article id="post-dev/Redis持久化学习笔记" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+
+<h2 itemprop="name">
+  <a class="article-title" href="/2022/11/14/dev/Redis%E6%8C%81%E4%B9%85%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">reids 持久化学习笔记</a>
+</h2>
+
+
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2022/11/14/dev/Redis%E6%8C%81%E4%B9%85%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time datetime="2022-11-14T07:41:20.000Z" itemprop="datePublished">2022-11-14</time>
+</a>
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        
+      
+      
+      <h1 id="reids-持久化学习笔记"><a href="#reids-持久化学习笔记" class="headerlink" title="reids 持久化学习笔记"></a>reids 持久化学习笔记</h1><h2 id="RDB快照-snapshot"><a href="#RDB快照-snapshot" class="headerlink" title="RDB快照 (snapshot)"></a>RDB快照 (snapshot)</h2><p>在默认情况下，Redis将内存数据库快照保存在名字为dump.rdb 的二进制文件中。你可以对 Redis进行设置，让它在“N秒内数据集至少有M个改动”这一条件被满足时，自动保存一次数据集.<br>比如说，以下设置会让 Redis 在满足“60 秒内有至少有1000 个键被改动”这一条件时，自动保存一次数据集</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#save 60 1000 /关闭RDB只需要将所有的save保存策略注释掉即可</span><br></pre></td></tr></table></figure>
+
+<p>还可以手动执行命令生成RDB快照，进入redis客户端执行命令<strong>save</strong>或<strong>bgsave</strong>可以生成dump.rdb文件，每次命令执行都会将所有redis内存快照到一个新的rdb文件里，并覆盖原有rdb快照文件。</p>
+<h3 id="bgsave的写时复制-COW-机制"><a href="#bgsave的写时复制-COW-机制" class="headerlink" title="bgsave的写时复制(COW)机制"></a>bgsave的写时复制(COW)机制</h3><p>Redis 借助操作系统提供的写时复制技术(Copy-0n-Write,COW)，在生成快照的同时，依然可以正常处理写命令。简单来说，bgsave 子讲程是由主线程 fork 生成的，可以共享主线程的所有内存数据。bgsave 子进程运行后，开始读取主线程的内存数据，并把它们写入 RDB 文件。此时，如果主线程对这些数据也都是读操作，那么，主线程和 bgsave 子进程相与不影响。但是，如果主线程要修改块数据，那么，这块数据就会被复制一份，生成该数据的副本。然后，bgsave 子进程会把这个副本数据写入 RDB 文件，而在这个过程中，主线程仍然可以直接修改原来的数据。</p>
+<p><strong>save与bqsave对比:</strong></p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>save</th>
+<th>bgsave</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>IO类型</td>
+<td>同步</td>
+<td>异步</td>
+</tr>
+<tr>
+<td>是否阻塞redis其它命令</td>
+<td>是</td>
+<td>否（在生成子进程执行调用fork函数时会有短暂阻塞）</td>
+</tr>
+<tr>
+<td>复杂度</td>
+<td>O(n)</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>优点</td>
+<td>不会消耗额外内存</td>
+<td>不阻塞客户端命令</td>
+</tr>
+<tr>
+<td>缺点</td>
+<td>阻塞客户端命令</td>
+<td>需要fork子进程，消耗内存</td>
+</tr>
+</tbody></table>
+<p><strong>配置自动生成rdb文件后台使用的是bgsave方式</strong></p>
+<h2 id="AOF-append-only-file"><a href="#AOF-append-only-file" class="headerlink" title="AOF (append-only file)"></a>AOF (append-only file)</h2><p>快照功能并不是非常耐久 (durable): 如果 Redis 因为某些原因而造成故障停机，那么服务器将丢失最近写入、且仍未保存到快照中的那些数据。从1.1 版本开始，Redis 增加了一种完全耐久的持久化方式:AOF 持久化，将修改的每一条指令记录进文件appendonly.aof中(先写入os cache，每隔一段时间fsync到磁盘)你可以通过修改配置文件来打开AOF功能:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#appendonly yes</span><br></pre></td></tr></table></figure>
+
+<p>从现在开始，每当Redis 执行一个改变数据集的命令时(比如 SET)，这个命令就会被加到AOF 文件的末尾这样的话，当Redis 重新启动时，程序就可以通过重新执行AOF文件中的命令来达到重建数据集的目的你可以配置Redis多久才将数据fsync到磁盘一次。<br>有三个选项:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">appendfsync always: 每次有新命令退到 AOF 文件时就执行次 fsync ，非常慢，也非常安全</span><br><span class="line">appendfsync everysec: 每秒 fsync 一次，足够快，并且在故障时只会丢失 1 秒钟的数据.</span><br><span class="line">appendfsync no:从不 fsync ，将数据交给操作系统来处理。更快，也更不安全的选择。</span><br></pre></td></tr></table></figure>
+<p>推荐(并且也是默认)的措施为每秒fsync一次，这种fsync 策略可以兼顾速度和安全性.</p>
+<h3 id="AOF重写"><a href="#AOF重写" class="headerlink" title="AOF重写"></a>AOF重写</h3><p>AOF文件里可能有太多没用指令，所以AOF会定期根据内存的最新数据生成aof文件.例如，执行了如下几条命令:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; incr readcount</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; incr readcount</span><br><span class="line">(integer) 2</span><br><span class="line">127.0.0.1:6379&gt; incr readcount</span><br><span class="line">(integer) 3</span><br></pre></td></tr></table></figure>
+
+<p>重写后AOF文件里变成</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">*3</span><br><span class="line">$3</span><br><span class="line">SET</span><br><span class="line">$9</span><br><span class="line">readcount</span><br><span class="line">$l</span><br><span class="line">3</span><br></pre></td></tr></table></figure>
+
+
+<p>如下两个配置可以控制AOF自动重写频率</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># auto-aof-rewrite-min-size 64mb //aof文件至少要达到64M才会自动重写，文件太小恢复速度本来就很快，重写的意义不.</span><br><span class="line"># auto-aof-rewrite-percentage 100 //aof文件自上一次重写后文件大小增长了10%则再次触发重写</span><br></pre></td></tr></table></figure>
+<p>当然AOF还可以手动重写，进入redis客户端执行命令 <strong>bgrewriteaof</strong> 重写AOF.</p>
+<p>注意，<strong>AOF重写redis会fork出一个子进程去做(与bgsave命令类似)，不会对redis正常命令处理有太多影响</strong></p>
+<h3 id="RDB和AOF，我应该用哪一个"><a href="#RDB和AOF，我应该用哪一个" class="headerlink" title="RDB和AOF，我应该用哪一个?"></a>RDB和AOF，我应该用哪一个?</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>RDB</th>
+<th>AOF</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>启动优先级</td>
+<td>低</td>
+<td>高</td>
+</tr>
+<tr>
+<td>体积</td>
+<td>小</td>
+<td>大</td>
+</tr>
+<tr>
+<td>恢复速度</td>
+<td>快</td>
+<td>慢</td>
+</tr>
+<tr>
+<td>数据安全性</td>
+<td>容易丢数据</td>
+<td>根据策略决定</td>
+</tr>
+</tbody></table>
+<p>生产环境可以都启用，redis启动时如果既有rdb文件又有aof文件则优先选择aof文件恢复数据，因为aof一般来说数据更全一点.</p>
+<h2 id="Redis-4-0-混合持久化"><a href="#Redis-4-0-混合持久化" class="headerlink" title="Redis 4.0 混合持久化"></a>Redis 4.0 混合持久化</h2><p>重启 Redis 时，我们很少使用 RDB来恢复内存状态，因为会丢失大量数据。我们通常使用 AOF 日志重放，但是重放 AOF 日志性能术对RDB来说要慢很多，这样在 Redis实例很大的情况下，启动需要花费很长的时间。Redis 4.0 为了解决这个问题，带来了一个新的久化选项 — 混合持久化。<br>通讨如下配置可以开启混合持久化(必须先开启aof)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># aof-use-rdb-preamble yes</span><br></pre></td></tr></table></figure>
+
+<p>如果开启混合持久化，<strong>AOF在重写时</strong>，不再是单纯将内存数据转换为RESP命令写入AOF文件，而是将重写<strong>这一刻之前</strong>的内存做RDB快照处理，并且将RDB、内容和增量的AOF修改内存数据的命令存在一起，都写入新的AOF文件，新的文件一开始不叫 apendonly.aof ，等到重写完新的AOF文件才会进行改名，覆盖原有的AOF文件，完成新旧两个AOF文件的替换。于是在 Redis 重启的时候，可以先加载 RDB 的内容，然后再重放增量 AOF 日志就可以完全替代之前的 AOF 全量文件重放，因此重启效率大幅得到提升。</p>
+<p>混合持久化AOF文件结构如下：<br>|appendonly.aof |<br>|:–:|<br>|RDB格式 |<br>|  AOF格式 |</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://groupfusion.github.io/2022/11/14/dev/Redis%E6%8C%81%E4%B9%85%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-id="clq6c32d50007pcuz4685h8os" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+    
+    <article id="post-dev/Java对象进入老年代的条件" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+
+<h2 itemprop="name">
+  <a class="article-title" href="/2022/09/15/dev/Java%E5%AF%B9%E8%B1%A1%E8%BF%9B%E5%85%A5%E8%80%81%E5%B9%B4%E4%BB%A3%E7%9A%84%E6%9D%A1%E4%BB%B6/">Java对象进入老年代的条件</a>
+</h2>
+
+
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2022/09/15/dev/Java%E5%AF%B9%E8%B1%A1%E8%BF%9B%E5%85%A5%E8%80%81%E5%B9%B4%E4%BB%A3%E7%9A%84%E6%9D%A1%E4%BB%B6/" class="article-date">
+  <time datetime="2022-09-15T07:41:20.000Z" itemprop="datePublished">2022-09-15</time>
+</a>
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        
+      
+      
+      <h1 id="Java对象进入老年代的条件"><a href="#Java对象进入老年代的条件" class="headerlink" title="Java对象进入老年代的条件"></a>Java对象进入老年代的条件</h1><h2 id="大对象直接进入老年代"><a href="#大对象直接进入老年代" class="headerlink" title="大对象直接进入老年代"></a>大对象直接进入老年代</h2><p>大对象就是需要大量连续内存空间的对象。JVM参数 -XX:PretenureSizeThreshold 可以设置大对象的大小，如果对象超过设置大小会直接进入老年代，不会进入年轻代，这个参数只在 Serial 和ParNew两个收集器下有效。</p>
+<p>比如设置JVM参数：-XX:PretenureSizeThreshold=1000000 (单位是字节) -XX:+UseSerialGC ，再执行下上面的第一个程序会发现大对象直接进了老年代。</p>
+<h2 id="长期存活的对象将进入老年代"><a href="#长期存活的对象将进入老年代" class="headerlink" title="长期存活的对象将进入老年代"></a>长期存活的对象将进入老年代</h2><p>既然虚拟机采用了分代收集的思想来管理内存，那么内存回收时就必须能识别哪些对象应放在新生代，哪些对象应放在老年代中。为了做到这一点，虚拟机给每个对象一个对象年龄计数器。</p>
+<p>如果对象在 Eden 出生并经过第一次 Minor GC 后仍然能够存活，并且能被 Survivor 容纳的话，将被移动到 Survivor空间中，并将对象年龄设为1。对象在 Survivor 中每熬过一次 MinorGC，年龄就增加1岁，当它的年龄增加到一定程度（默认为15岁，CMS收集器默认6岁，不同的垃圾收集器会略微有点不同），就会被晋升到老年代中。对象晋升到老年代的年龄阈值，可以通过参数 -XX:MaxTenuringThreshold 来设置。</p>
+<h2 id="对象动态年龄判断"><a href="#对象动态年龄判断" class="headerlink" title="对象动态年龄判断"></a>对象动态年龄判断</h2><p>当前放对象的Survivor区域里（其中一块区域，放对象的那块s区），一批对象的总大小大于这块Survivor区域内存大小的50%（-XX:TargetSurvivorRatio可以指定），那么此时大于等于这批对象年龄最大值的对象，就可以直接进入老年代了，例如Survivor区域里现在有一批对象，年龄1+年龄2+年龄n的多个年龄对象总和超过了Survivor区域的50%，此时就会把年龄n(含)以上的对象都放入老年代。这个规则其实是希望那些可能是长期存活的对象，尽早进入老年代。对象动态年龄判断机制一般是在minor gc之后触发的。</p>
+<h2 id="老年代空间分配担保机制"><a href="#老年代空间分配担保机制" class="headerlink" title="老年代空间分配担保机制"></a>老年代空间分配担保机制</h2><p>年轻代每次minor gc之前JVM都会计算下老年代剩余可用空间。如果这个可用空间小于年轻代里现有的所有对象大小之和。</p>
+<p>就会看一个“-XX:-HandlePromotionFailure”(jdk1.8默认就设置了)的参数是否设置了。如果有这个参数，就会看看老年代的可用内存大小，是否大于之前每一次minor gc后进入老年代的对象的平均大小。如果上一步结果是小于或者之前说的参数没有设置，那么就会触发一次Full gc，对老年代和年轻代一起回收一次垃圾，如果回收完还是没有足够空间存放新的对象就会发生”OOM”。</p>
+<p>当然，如果minor gc之后剩余存活的需要挪动到老年代的对象大小还是大于老年代可用空间，那么也会触发full gc，full gc完之后如果还是没有空间放minor gc之后的存活对象，则也会发生“OOM”。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://groupfusion.github.io/2022/09/15/dev/Java%E5%AF%B9%E8%B1%A1%E8%BF%9B%E5%85%A5%E8%80%81%E5%B9%B4%E4%BB%A3%E7%9A%84%E6%9D%A1%E4%BB%B6/" data-id="clq6c32d20003pcuz5qoe700y" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jvm/" rel="tag">jvm</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+    
+    <article id="post-dev/jvm 垃圾回收机制理解" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+
+<h2 itemprop="name">
+  <a class="article-title" href="/2022/08/15/dev/jvm%20%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6%E7%90%86%E8%A7%A3/">jvm垃圾回收机制理解</a>
+</h2>
+
+
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2022/08/15/dev/jvm%20%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6%E7%90%86%E8%A7%A3/" class="article-date">
+  <time datetime="2022-08-15T07:41:20.000Z" itemprop="datePublished">2022-08-15</time>
+</a>
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        
+      
+      
+      <h1 id="jvm-垃圾回收机制理解"><a href="#jvm-垃圾回收机制理解" class="headerlink" title="jvm 垃圾回收机制理解"></a>jvm 垃圾回收机制理解</h1><h1 id="jvm-垃圾回收机制理解-1"><a href="#jvm-垃圾回收机制理解-1" class="headerlink" title="jvm 垃圾回收机制理解"></a>jvm 垃圾回收机制理解</h1><h2 id="堆内存区域划分"><a href="#堆内存区域划分" class="headerlink" title="堆内存区域划分"></a>堆内存区域划分</h2><p>堆内存被划分为年轻代和老年代两个区域，而年轻代又分为一个伊甸园区（Eden）和两个幸存区（from_Survivor和to_Survivor），年轻代分配比例8：1：1。</p>
+<p>##了解垃圾回收机制前我们要先了解下，如何判断对象可用被回收？</p>
+<p>将“GC roots”对象作为根节点，从根节点开始向下查找引用对象，直到最后一个节点，找到的对象都标记为<strong>非垃圾对象</strong>，其余未标记的都是垃圾对象。<br>线程栈中的本地变量，静态变量，本地方法中的变量都可用作为GC roots根节点， 这就是可达性分析算法。</p>
+<p>标记为非垃圾的对象会被复制空的survivor区，对象的分代年龄加1，剩余伊甸园区的垃圾对象会被清除。当伊甸园区域再次满了后会再次触发minor gc。<br>再次根据可达性分析算法标记非垃圾对象，重复上面的操作。<br>当长期存活对象（分代年龄达到15）和大对象，将会放到老年区。</p>
+<h2 id="对象动态年龄判断"><a href="#对象动态年龄判断" class="headerlink" title="对象动态年龄判断"></a>对象动态年龄判断</h2><p>还有当前放对象的Survivor区域里（其中一块区域，放对象的那块s区），一批对象的总大小大于这块Survivor区域内存大小的50%（-XX:TargetSurvivorRatio可以指定），那么此时大于等于这批对象年龄最大值的对象，就可以直接进入老年代了，例如Survivor区域里现在有一批对象，年龄1+年龄2+年龄n的多个年龄对象总和超过了Survivor区域的50%，此时就会把年龄n(含)以上的对象都放入老年代。这个规则其实是希望那些可能是长期存活的对象，尽早进入老年代。对象动态年龄判断机制一般是在minor gc之后触发的。</p>
+<h2 id="full-gc"><a href="#full-gc" class="headerlink" title="full gc"></a>full gc</h2><p>当老年代满了后，进行一次full gc，老年代依然满着，这时会出OOM内存溢出。<br>我们调优的目的主要就是减少full gc 次数，以减少STW（Stop the World），STW是指full gc时，会暂停当前执行线程，等待full gc结束，即在full gc期间，JVM虚拟机是暂停的。</p>
+<p><strong>注：一般老年代占对内存的2/3.</strong></p>
+<h2 id="频繁full-gc-如何解决？"><a href="#频繁full-gc-如何解决？" class="headerlink" title="频繁full gc 如何解决？"></a><strong>频繁full gc 如何解决？</strong></h2><p>能否对jvm调优，让虚拟机几乎不发生full gc，<br>当系统一次性加载过多数据进内存，导致频繁有大对象进入老年代，触发Full GC。我们可调整伊甸园区（Eden)大小 通过-Xmn 参数调整。具体如何调优还要根据实际情况。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://groupfusion.github.io/2022/08/15/dev/jvm%20%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6%E7%90%86%E8%A7%A3/" data-id="clq6c32d30004pcuzdf05241z" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jvm/" rel="tag">jvm</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+    
+    <article id="post-devlang/工作中技术积累" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/12/26/devlang/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/">工作学习中技术积累</a>
+</h2>
+
+
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2021/12/26/devlang/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/" class="article-date">
+  <time datetime="2021-12-26T08:29:57.000Z" itemprop="datePublished">2021-12-26</time>
+</a>
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        
+      
+      
+      <h2 id="使用技术纪录"><a href="#使用技术纪录" class="headerlink" title="使用技术纪录"></a>使用技术纪录</h2><h3 id="百度指定网站搜索"><a href="#百度指定网站搜索" class="headerlink" title="百度指定网站搜索"></a>百度指定网站搜索</h3><p>site:(jianshu.com) WKT</p>
+<h3 id="在线工具站点"><a href="#在线工具站点" class="headerlink" title="在线工具站点"></a>在线工具站点</h3><p><a target="_blank" rel="noopener" href="https://tooltt.com/yaml2properties/">yaml转properties</a><br><a target="_blank" rel="noopener" href="https://www.box3.cn/tools/lbs.html">经纬度距离计算</a></p>
+<h3 id="mysql-install"><a href="#mysql-install" class="headerlink" title="mysql install"></a>mysql install</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">yum install mysql57-community-release-el6-10.noarch.rpm</span><br><span class="line">报错</span><br><span class="line">No package matched to upgrade: mysql57-community-release</span><br><span class="line">--&gt; Finished Dependency Resolution</span><br><span class="line">Error: mysql57-community-release conflicts with mysql-community-release-el6-5.noarch</span><br><span class="line">You could try using --skip-broken to work around the problem</span><br><span class="line">You could try running: rpm -Va --nofiles --nodigest</span><br><span class="line"></span><br><span class="line">rpm -qa |grep mysql 查看有如下内容</span><br><span class="line">mysql-community-release-el6-5.noarch</span><br><span class="line">mysql-community-common-5.6.44-2.el6.x86_64</span><br><span class="line"></span><br><span class="line">操作一下 卸载了</span><br><span class="line">rpm -e --nodeps mysql-community-release-el6-5.noarch</span><br><span class="line">rpm -e --nodeps mysql-community-common-5.6.44-2.el6.x86_64</span><br><span class="line"></span><br><span class="line">重新升级</span><br><span class="line"></span><br><span class="line">rpm -Uvh mysql57-community-release-el7-10.noarch.rpm</span><br></pre></td></tr></table></figure>
+
+<h4 id="centos6-mysql5-6-升级"><a href="#centos6-mysql5-6-升级" class="headerlink" title="centos6 mysql5.6 升级"></a>centos6 mysql5.6 升级</h4><p><a target="_blank" rel="noopener" href="http://www.zsythink.net/archives/2345">http://www.zsythink.net/archives/2345</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/h330531987/article/details/94452368">https://blog.csdn.net/h330531987/article/details/94452368</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/daixh/p/11129768.html">https://www.cnblogs.com/daixh/p/11129768.html</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/shione/p/10161021.html">https://www.cnblogs.com/shione/p/10161021.html</a></p>
+<h3 id="CSS书写规范、顺序"><a href="#CSS书写规范、顺序" class="headerlink" title="CSS书写规范、顺序"></a>CSS书写规范、顺序</h3><p><a href=".css%E4%B9%A6%E5%86%99%E8%A7%84%E8%8C%83%E9%A1%BA%E5%BA%8F.md">css书写规范顺序</a></p>
+<h3 id="flowable-工作流与springboot集成"><a href="#flowable-工作流与springboot集成" class="headerlink" title="flowable 工作流与springboot集成"></a>flowable 工作流与springboot集成</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/yangjiming/p/10944120.html">springboot和flowable modeler整合</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/d9ae64fac55c">Springboot集成flowable modeler 免登录</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/799b1ebf5dc4?tdsourcetag=s_pctim_aiomsg">Flowable 学习笔记</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/puhaiyang/article/details/79845248">采用springboot+flowable快速实现工作流</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_40816738/article/details/103112704">SpringBoot集成flowable-modeler(6.4.1) 实现免登</a><br><a target="_blank" rel="noopener" href="https://tkjohn.github.io/flowable-userguide/#_advanced">Flowable BPMN 用户手册 (v 6.3.0)</a><br><a target="_blank" rel="noopener" href="https://www.dazhuanlan.com/2020/01/06/5e128b27059e9/">SpringBoot集成Flowable UI</a><br><a target="_blank" rel="noopener" href="http://www.fhadmin.org/webnewsdetail16.html">Flowable 工作流 Springboot vue.js 前后分离 跨域 有代码生成器</a></p>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/blackzs/flowable-designer">flowable-designer</a></p>
+<h3 id="openlayers-gis开发"><a href="#openlayers-gis开发" class="headerlink" title="openlayers gis开发"></a>openlayers gis开发</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">var mapUrl = &#123;</span><br><span class="line">    /****</span><br><span class="line">     * 高德地图</span><br><span class="line">     * lang可以通过zh_cn设置中文，en设置英文，size基本无作用，scl设置标注还是底图，scl=1代表注记，</span><br><span class="line">     * scl=2代表底图（矢量或者影像），style设置影像和路网，style=6为影像图，</span><br><span class="line">     * vec——街道底图</span><br><span class="line">     * img——影像底图</span><br><span class="line">     * roadLabel---路网+标注</span><br><span class="line">     */</span><br><span class="line">    &quot;aMap-img&quot;: &quot;http://webst0&#123;1-4&#125;.is.autonavi.com/appmaptile?style=6&amp;x=&#123;x&#125;&amp;y=&#123;y&#125;&amp;z=&#123;z&#125;&quot;,</span><br><span class="line">    &quot;aMap-vec&quot;: &quot;http://webrd0&#123;1-4&#125;.is.autonavi.com/appmaptile?lang=zh_cn&amp;size=1&amp;scale=1&amp;style=8&amp;x=&#123;x&#125;&amp;y=&#123;y&#125;&amp;z=&#123;z&#125;&quot;,</span><br><span class="line">    &quot;aMap-roadLabel&quot;: &quot;http://webst0&#123;1-4&#125;.is.autonavi.com/appmaptile?style=8&amp;x=&#123;x&#125;&amp;y=&#123;y&#125;&amp;z=&#123;z&#125;&quot;,</span><br><span class="line">    /***</span><br><span class="line">    *高德新版地图*</span><br><span class="line">    */</span><br><span class="line">    &quot;aMap-vec-a&quot;: &quot;http://wprd0&#123;1-4&#125;.is.autonavi.com/appmaptile?x=&#123;x&#125;&amp;y=&#123;y&#125;&amp;z=&#123;z&#125;&amp;lang=zh_cn&amp;size=1&amp;scl=1&amp;style=7&quot;, //为矢量图（含路网、含注记）</span><br><span class="line"></span><br><span class="line">    &quot;aMap-img-n&quot;: &quot;http://wprd0&#123;1-4&#125;.is.autonavi.com/appmaptile?x=&#123;x&#125;&amp;y=&#123;y&#125;&amp;z=&#123;z&#125;&amp;lang=zh_cn&amp;size=1&amp;scl=1&amp;style=6&quot;, //为影像底图（不含路网，不含注记）</span><br><span class="line"></span><br><span class="line">    &quot;aMap-img-a&quot;: &quot;http://wprd0&#123;1-4&#125;.is.autonavi.com/appmaptile?x=&#123;x&#125;&amp;y=&#123;y&#125;&amp;z=&#123;z&#125;&amp;lang=zh_cn&amp;size=1&amp;scl=1&amp;style=8&quot;, //为影像路图（含路网，含注记）</span><br><span class="line"></span><br><span class="line">    /***</span><br><span class="line">     * 天地图 要key的</span><br><span class="line">     * vec——街道底图</span><br><span class="line">     * img——影像底图</span><br><span class="line">     * ter——地形底图</span><br><span class="line">     * cva——中文注记</span><br><span class="line">     * cta/cia——道路+中文注记 ---roadLabel</span><br><span class="line">     */</span><br><span class="line">    &quot;tian-img&quot;: &quot;http://t&#123;0-7&#125;.tianditu.gov.cn/DataServer?T=img_w&amp;x=&#123;x&#125;&amp;y=&#123;y&#125;&amp;l=&#123;z&#125;&amp;tk=你的密钥&quot;,</span><br><span class="line">    &quot;tian-roadLabel&quot;: &quot;http://t&#123;0-7&#125;.tianditu.gov.cn/DataServer?T=cta_w&amp;x=&#123;x&#125;&amp;y=&#123;y&#125;&amp;l=&#123;z&#125;&amp;tk=你的密钥&quot;,</span><br><span class="line">    &quot;tian-label&quot;: &quot;http://t&#123;0-7&#125;.tianditu.gov.cn/DataServer?T=cva_w&amp;x=&#123;x&#125;&amp;y=&#123;y&#125;&amp;l=&#123;z&#125;&amp;tk=你的密钥&quot;,</span><br><span class="line">    &quot;tian-vec&quot;: &quot;http://t&#123;0-7&#125;.tianditu.gov.cn/DataServer?T=vec_w&amp;x=&#123;x&#125;&amp;y=&#123;y&#125;&amp;l=&#123;z&#125;&amp;tk=你的密钥&quot;,</span><br><span class="line">    &quot;tian-ter&quot;: &quot;http://t&#123;0-7&#125;.tianditu.gov.cn/DataServer?T=ter_w&amp;x=&#123;x&#125;&amp;y=&#123;y&#125;&amp;l=&#123;z&#125;&amp;tk=你的密钥&quot;,</span><br><span class="line">    /***</span><br><span class="line">     *geoq地图</span><br><span class="line">     * http://cache1.arcgisonline.cn</span><br><span class="line">     * http://map.geoq.cn</span><br><span class="line">     * vec：标准彩色地图</span><br><span class="line">     * gray、blue、warm</span><br><span class="line">     * line 中国轮廓图</span><br><span class="line">     * china 中国轮廓图+标注</span><br><span class="line">     * Hydro 水系</span><br><span class="line">     * green 植被</span><br><span class="line">     */</span><br><span class="line">    &quot;geoq-vec&quot;: &quot;http://cache1.arcgisonline.cn/arcgis/rest/services/ChinaOnlineCommunity/MapServer/tile/&#123;z&#125;/&#123;y&#125;/&#123;x&#125;&quot;,</span><br><span class="line">    &quot;geoq-gray&quot;: &quot;http://cache1.arcgisonline.cn/arcgis/rest/services/ChinaOnlineStreetGray/MapServer/tile/&#123;z&#125;/&#123;y&#125;/&#123;x&#125;&quot;,</span><br><span class="line">    &quot;geoq-blue&quot;: &quot;http://cache1.arcgisonline.cn/arcgis/rest/services/ChinaOnlineStreetPurplishBlue/MapServer/tile/&#123;z&#125;/&#123;y&#125;/&#123;x&#125;&quot;,</span><br><span class="line">    &quot;geoq-warm&quot;: &quot;http://cache1.arcgisonline.cn/arcgis/rest/services/ChinaOnlineStreetWarm/MapServer/tile/&#123;z&#125;/&#123;y&#125;/&#123;x&#125;&quot;,</span><br><span class="line">    &quot;geoq-line&quot;: &quot;http://cache1.arcgisonline.cn/arcgis/rest/services/SimpleFeature/ChinaBoundaryLine/MapServer/tile/&#123;z&#125;/&#123;y&#125;/&#123;x&#125;&quot;,//不稳定</span><br><span class="line">    &quot;geoq-china&quot;: &quot;http://thematic.geoq.cn/arcgis/rest/services/ThematicMaps/administrative_division_boundaryandlabel/MapServer/tile/&#123;z&#125;/&#123;y&#125;/&#123;x&#125;&quot;,//不稳定</span><br><span class="line">    &quot;geoq-Hydro&quot;: &quot;http://thematic.geoq.cn/arcgis/rest/services/ThematicMaps/WorldHydroMap/MapServer/tile/&#123;z&#125;/&#123;y&#125;/&#123;x&#125;&quot;,//不稳定</span><br><span class="line">    &quot;geoq-green&quot;: &quot;http://thematic.geoq.cn/arcgis/rest/services/ThematicMaps/vegetation/MapServer/tile/&#123;z&#125;/&#123;y&#125;/&#123;x&#125;&quot;,//不稳定</span><br><span class="line">    /***</span><br><span class="line">     * Google</span><br><span class="line">     * m 街道</span><br><span class="line">     * s 影像</span><br><span class="line">     */</span><br><span class="line">    &quot;google-vec&quot;: &quot;http://www.google.cn/maps/vt?lyrs=m@189&amp;gl=cn&amp;x=&#123;x&#125;&amp;y=&#123;y&#125;&amp;z=&#123;z&#125;&quot;,</span><br><span class="line">    &quot;google-img&quot;: &quot;http://www.google.cn/maps/vt?lyrs=s@189&amp;gl=cn&amp;x=&#123;x&#125;&amp;y=&#123;y&#125;&amp;z=&#123;z&#125;&quot;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="GIS底图－－-天地图"><a href="#GIS底图－－-天地图" class="headerlink" title="GIS底图－－ 天地图"></a>GIS底图－－ 天地图</h4><p>// //<a target="_blank" rel="noopener" href="http://www.arcgisonline.cn/arcgis/home/webmap/viewer.html">http://www.arcgisonline.cn/arcgis/home/webmap/viewer.html</a> 地图可参考这个链接<br>// 影像地图（球面墨卡托投影）<br>// 天地图-影像注记（球面墨卡托投影）<br>// <a target="_blank" rel="noopener" href="https://t{0-7}.tianditu.gov.cn/cia_w/wmts?SERVICE=WMTS&amp;VERSION=1.0.0&amp;REQUEST=GetTile&amp;LAYER=cia&amp;STYLE=default&amp;FORMAT=tiles&amp;TILEMATRIXSET=w&amp;TILEMATRIX=%7Bz%7D&amp;TILEROW=%7By%7D&amp;TILECOL=%7Bx%7D&amp;tk=4267820f43926eaf808d61dc07269beb">https://t{0-7}.tianditu.gov.cn/cia_w/wmts?SERVICE=WMTS&amp;VERSION=1.0.0&amp;REQUEST=GetTile&amp;LAYER=cia&amp;STYLE=default&amp;FORMAT=tiles&amp;TILEMATRIXSET=w&amp;TILEMATRIX={z}&amp;TILEROW={y}&amp;TILECOL={x}&amp;tk=4267820f43926eaf808d61dc07269beb</a><br>// 天地图-影像地图（球面墨卡托投影）<br>// <a target="_blank" rel="noopener" href="https://t{0-7}.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&amp;VERSION=1.0.0&amp;REQUEST=GetTile&amp;LAYER=img&amp;STYLE=default&amp;FORMAT=tiles&amp;TILEMATRIXSET=w&amp;TILEMATRIX=%7Bz%7D&amp;TILEROW=%7By%7D&amp;TILECOL=%7Bx%7D&amp;tk=4267820f43926eaf808d61dc07269beb">https://t{0-7}.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&amp;VERSION=1.0.0&amp;REQUEST=GetTile&amp;LAYER=img&amp;STYLE=default&amp;FORMAT=tiles&amp;TILEMATRIXSET=w&amp;TILEMATRIX={z}&amp;TILEROW={y}&amp;TILECOL={x}&amp;tk=4267820f43926eaf808d61dc07269beb</a><br>//<br>// 矢量地图（球面墨卡托投影）<br>// 天地图-矢量注记（球面墨卡托投影）<br>// <a target="_blank" rel="noopener" href="https://t{0-7}.tianditu.gov.cn/cva_w/wmts?SERVICE=WMTS&amp;VERSION=1.0.0&amp;REQUEST=GetTile&amp;LAYER=cva&amp;STYLE=default&amp;FORMAT=tiles&amp;TILEMATRIXSET=w&amp;TILEMATRIX=%7Bz%7D&amp;TILEROW=%7By%7D&amp;TILECOL=%7Bx%7D&amp;tk=4267820f43926eaf808d61dc07269beb">https://t{0-7}.tianditu.gov.cn/cva_w/wmts?SERVICE=WMTS&amp;VERSION=1.0.0&amp;REQUEST=GetTile&amp;LAYER=cva&amp;STYLE=default&amp;FORMAT=tiles&amp;TILEMATRIXSET=w&amp;TILEMATRIX={z}&amp;TILEROW={y}&amp;TILECOL={x}&amp;tk=4267820f43926eaf808d61dc07269beb</a><br>// 天地图-矢量地图（球面墨卡托投影）<br>// <a target="_blank" rel="noopener" href="https://t{0-7}.tianditu.gov.cn/vec_w/wmts?SERVICE=WMTS&amp;VERSION=1.0.0&amp;REQUEST=GetTile&amp;LAYER=vec&amp;STYLE=default&amp;FORMAT=tiles&amp;TILEMATRIXSET=w&amp;TILEMATRIX=%7Bz%7D&amp;TILEROW=%7By%7D&amp;TILECOL=%7Bx%7D&amp;tk=4267820f43926eaf808d61dc07269beb">https://t{0-7}.tianditu.gov.cn/vec_w/wmts?SERVICE=WMTS&amp;VERSION=1.0.0&amp;REQUEST=GetTile&amp;LAYER=vec&amp;STYLE=default&amp;FORMAT=tiles&amp;TILEMATRIXSET=w&amp;TILEMATRIX={z}&amp;TILEROW={y}&amp;TILECOL={x}&amp;tk=4267820f43926eaf808d61dc07269beb</a><br>//<br>// 天地图-矢量（含注记）（球面墨卡托投影）<br>// 天地图-矢量地图（球面墨卡托投影）<br>// <a target="_blank" rel="noopener" href="http://t{0-7}.tianditu.com/vec_w/wmts?SERVICE=WMTS&amp;VERSION=1.0.0&amp;REQUEST=GetTile&amp;LAYER=vec&amp;STYLE=default&amp;FORMAT=tiles&amp;TILEMATRIXSET=w&amp;TILEMATRIX=12&amp;TILEROW=1550&amp;TILECOL=3372&amp;tk=4267820f43926eaf808d61dc07269beb">http://t{0-7}.tianditu.com/vec_w/wmts?SERVICE=WMTS&amp;VERSION=1.0.0&amp;REQUEST=GetTile&amp;LAYER=vec&amp;STYLE=default&amp;FORMAT=tiles&amp;TILEMATRIXSET=w&amp;TILEMATRIX=12&amp;TILEROW=1550&amp;TILECOL=3372&amp;tk=4267820f43926eaf808d61dc07269beb</a><br>// 天地图-矢量注记（球面墨卡托投影）<br>// <a target="_blank" rel="noopener" href="http://t{0-7}.tianditu.com/cva_w/wmts?SERVICE=WMTS&amp;VERSION=1.0.0&amp;REQUEST=GetTile&amp;LAYER=cva&amp;STYLE=default&amp;FORMAT=tiles&amp;TILEMATRIXSET=w&amp;TILEMATRIX=12&amp;TILEROW=1551&amp;TILECOL=3372&amp;tk=4267820f43926eaf808d61dc07269beb">http://t{0-7}.tianditu.com/cva_w/wmts?SERVICE=WMTS&amp;VERSION=1.0.0&amp;REQUEST=GetTile&amp;LAYER=cva&amp;STYLE=default&amp;FORMAT=tiles&amp;TILEMATRIXSET=w&amp;TILEMATRIX=12&amp;TILEROW=1551&amp;TILECOL=3372&amp;tk=4267820f43926eaf808d61dc07269beb</a><br>// </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">//天地图［可用］［无需纠偏］</span><br><span class="line">var tian_di_tuMapLayer = new ol.layer.Tile(&#123;</span><br><span class="line">    title:&#x27;天地图卫星影像&#x27;,</span><br><span class="line">    source: new ol.source.XYZ(&#123;</span><br><span class="line">        url:&#x27;http://t&#123;1-7&#125;.tianditu.com/DataServer?T=img_w&amp;x=&#123;x&#125;&amp;y=&#123;y&#125;&amp;l=&#123;z&#125;&amp;tk=49ea1deec0ffd88ef13a3f69987e9a63&#x27;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;);</span><br><span class="line">//天地图路网 (和注记一起使用)［可用］［无需纠偏］</span><br><span class="line">var tian_di_tu_road_layer = new ol.layer.Tile(&#123;</span><br><span class="line">    title: &quot;天地图路网&quot;,</span><br><span class="line">    source: new ol.source.XYZ(&#123;</span><br><span class="line">        url: &quot;http://t&#123;1-7&#125;.tianditu.com/DataServer?T=vec_w&amp;x=&#123;x&#125;&amp;y=&#123;y&#125;&amp;l=&#123;z&#125;&amp;tk=49ea1deec0ffd88ef13a3f69987e9a63&quot;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;);</span><br><span class="line">//天地图注记</span><br><span class="line">var tian_di_tu_annotation = new ol.layer.Tile(&#123;</span><br><span class="line">    title: &quot;天地图文字标注&quot;,</span><br><span class="line">    source: new ol.source.XYZ(&#123;</span><br><span class="line">        url: &#x27;http://t&#123;1-7&#125;.tianditu.com/DataServer?T=cva_w&amp;x=&#123;x&#125;&amp;y=&#123;y&#125;&amp;l=&#123;z&#125;&amp;tk=49ea1deec0ffd88ef13a3f69987e9a63&#x27;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;);</span><br><span class="line">//天地图 ［无需纠偏］</span><br><span class="line">var arcgisLayer = new ol.layer.Tile(&#123;</span><br><span class="line">  title:&#x27;天地图卫星影像&#x27;,</span><br><span class="line">  source: new ol.source.XYZ(&#123;</span><br><span class="line">    crossOrigin: &#x27;anonymous&#x27;,</span><br><span class="line">    url:&#x27;https://t&#123;1-7&#125;.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&amp;VERSION=1.0.0&amp;REQUEST=GetTile&amp;LAYER=img&amp;STYLE=default&amp;FORMAT=tiles&amp;TILEMATRIXSET=w&amp;TILEMATRIX=&#123;z&#125;&amp;TILEROW=&#123;y&#125;&amp;TILECOL=&#123;x&#125;&amp;tk=4267820f43926eaf808d61dc07269beb&#x27;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;);</span><br><span class="line">var arcgis2Layer = new ol.layer.Tile(&#123;</span><br><span class="line">  title: &quot;天地图矢量地图&quot;,</span><br><span class="line">  source: new ol.source.XYZ(&#123;</span><br><span class="line">    crossOrigin: &#x27;anonymous&#x27;,</span><br><span class="line">    url:&#x27;https://t&#123;0-7&#125;.tianditu.gov.cn/vec_w/wmts?SERVICE=WMTS&amp;VERSION=1.0.0&amp;REQUEST=GetTile&amp;LAYER=vec&amp;STYLE=default&amp;FORMAT=tiles&amp;TILEMATRIXSET=w&amp;TILEMATRIX=&#123;z&#125;&amp;TILEROW=&#123;y&#125;&amp;TILECOL=&#123;x&#125;&amp;tk=4267820f43926eaf808d61dc07269beb&#x27;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;);</span><br><span class="line">var arcgis3Layer = new ol.layer.Tile(&#123;</span><br><span class="line">  title:&#x27;天地图-矢量地图&#x27;,</span><br><span class="line">  source: new ol.source.XYZ(&#123;</span><br><span class="line">    crossOrigin: &#x27;anonymous&#x27;,</span><br><span class="line">    url:&#x27;https://t&#123;0-7&#125;.tianditu.gov.cn/cva_w/wmts?SERVICE=WMTS&amp;VERSION=1.0.0&amp;REQUEST=GetTile&amp;LAYER=cva&amp;STYLE=default&amp;FORMAT=tiles&amp;TILEMATRIXSET=w&amp;TILEMATRIX=&#123;z&#125;&amp;TILEROW=&#123;y&#125;&amp;TILECOL=&#123;x&#125;&amp;tk=4267820f43926eaf808d61dc07269beb&#x27;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="GIS底图－－-高德地图"><a href="#GIS底图－－-高德地图" class="headerlink" title="GIS底图－－ 高德地图"></a>GIS底图－－ 高德地图</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//高德矢量图［可用］ 需要纠偏</span><br><span class="line">var gaodeMapLayer = new ol.layer.Tile(&#123;</span><br><span class="line">    source: new ol.source.XYZ(&#123;</span><br><span class="line">        url:&#x27;https://wprd0&#123;1-4&#125;.is.autonavi.com/appmaptile?lang=zh_cn&amp;size=1&amp;style=7&amp;x=&#123;x&#125;&amp;y=&#123;y&#125;&amp;z=&#123;z&#125;&#x27;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="GIS底图－－-捷泰地图"><a href="#GIS底图－－-捷泰地图" class="headerlink" title="GIS底图－－ 捷泰地图"></a>GIS底图－－ 捷泰地图</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">//arcgis 矢量图［可用］ 需要纠偏</span><br><span class="line">var backLayer = new ol.layer.Tile(&#123;</span><br><span class="line">  source: new ol.source.XYZ(&#123;</span><br><span class="line">    crossOrigin: &#x27;anonymous&#x27;,</span><br><span class="line">    url:&#x27;http://cache1.arcgisonline.cn/arcgis/rest/services/ChinaOnlineCommunity/MapServer/tile/&#123;z&#125;/&#123;y&#125;/&#123;x&#125;&#x27;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">//捷泰地图(灰) ［需要纠偏］</span><br><span class="line">var geoq2Layer = new ol.layer.Tile(&#123;</span><br><span class="line">  source: new ol.source.XYZ(&#123;</span><br><span class="line">    crossOrigin: &#x27;anonymous&#x27;,</span><br><span class="line">    url:&#x27;http://cache1.arcgisonline.cn/ArcGIS/rest/services/ChinaOnlineStreetGray/MapServer/tile/&#123;z&#125;/&#123;y&#125;/&#123;x&#125;&#x27;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;);</span><br><span class="line">//捷泰地图（深蓝） ［需要纠偏］</span><br><span class="line">var geoqLayer = new ol.layer.Tile(&#123;</span><br><span class="line">  source: new ol.source.XYZ(&#123;</span><br><span class="line">    crossOrigin: &#x27;anonymous&#x27;,</span><br><span class="line">    url:&#x27;http://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineStreetPurplishBlue/MapServer/tile/&#123;z&#125;/&#123;y&#125;/&#123;x&#125;&#x27;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="地理空间数据格式"><a href="#地理空间数据格式" class="headerlink" title="地理空间数据格式"></a>地理空间数据格式</h3><p><a target="_blank" rel="noopener" href="http://www.voidcn.com/article/p-spkzwblm-bpe.html">OGC简单要素标准（WKT/WKB）</a><br><a target="_blank" rel="noopener" href="https://www.osgeo.cn/pygis/others-geojson.html">Python下面其他开源GIS库的使用(GeoJson)</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/852d7ad081b3">GEOJSON标准格式学习</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/d78fff321005">GeoJSON与WKT、WKB字符串</a></p>
+<p>数据格式类型：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">POINT(6 10)</span><br><span class="line">LINESTRING(3 4,10 50,20 25)</span><br><span class="line">POLYGON((1 1,5 1,5 5,1 5,1 1),(2 2,2 3,3 3,3 2,2 2))</span><br><span class="line">MULTIPOINT(3.5 5.6, 4.8 10.5)</span><br><span class="line">MULTILINESTRING((3 4,10 50,20 25),(-5 -8,-10 -8,-15 -4))</span><br><span class="line">MULTIPOLYGON(((1 1,5 1,5 5,1 5,1 1),(2 2,2 3,3 3,3 2,2 2)),((6 3,9 2,9 4,6 3)))</span><br><span class="line">GEOMETRYCOLLECTION(POINT(4 6),LINESTRING(4 6,7 10))</span><br><span class="line">POINT ZM (1 1 5 60)</span><br><span class="line">POINT M (1 1 80)</span><br><span class="line">POINT EMPTY</span><br><span class="line">MULTIPOLYGON EMPTY</span><br></pre></td></tr></table></figure>
+
+<p>关于坐标系</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">坐标系：</span><br><span class="line"> 3857 google</span><br><span class="line"> 4326 WGS-84：是国际标准，GPS坐标（Google Earth使用、或者GPS模块）</span><br><span class="line"> 2437 GCJ-02：中国坐标偏移标准，Google Map、高德、腾讯使用</span><br><span class="line"> BD-09：百度坐标偏移标准，Baidu Map使用</span><br><span class="line">坐标系转换</span><br><span class="line"> &#x27;EPSG:4326&#x27; - 经纬度坐标-WGS84</span><br><span class="line"> &#x27;EPSG:3857&#x27; - xy坐标-web墨卡托</span><br><span class="line">openlayers 默认的坐标系为 EPSG:3857</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/wangweigang689/article/details/105778722">https://blog.csdn.net/wangweigang689/article/details/105778722</a></p>
+<p>行政区划代码，地区 <a target="_blank" rel="noopener" href="https://www.likecs.com/show-246916.html">https://www.likecs.com/show-246916.html</a></p>
+<h3 id="GeoTools-amp-openlayers"><a href="#GeoTools-amp-openlayers" class="headerlink" title="GeoTools &amp; openlayers"></a>GeoTools &amp; openlayers</h3><p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000020297846">Openlayers API整理</a><br><a target="_blank" rel="noopener" href="https://openlayers.org/">openlayer</a><br><a target="_blank" rel="noopener" href="http://docs.geotools.org/latest/userguide/library/jts/index.html">GeoTools</a><br><a target="_blank" rel="noopener" href="http://docs.geotools.org/stable/userguide/">Geotools user guide</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/qingtian-jlj/p/12988219.html">WKT(Well-known text)是开放地理空间联盟OGC（Open GIS Consortium ）制定的一种文本标记语言，用于表示矢量几何对象、空间参照系统及空间参照系统之间的转换</a></p>
+<h3 id="分布式架构优化"><a href="#分布式架构优化" class="headerlink" title="分布式架构优化"></a>分布式架构优化</h3><p>分布式框架<br>    Dubbo<br>    shardingsphere<br>    Netty<br>分布式消息中间间<br>    Rabbitmq<br>    RocketMq<br>    kafka<br>分布式存储中间件<br>    Redis<br>    MongoDB<br>    FastDFS<br>    Elasticserch</p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1cL411b77R">B站最全面分布式面试100道（涵盖所有分布式核心面试知识点）</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1aJ411Y73e">分布式架构学习视频全集|图灵周瑜 </a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Hy4y117op">分布式架构全套教程（700分钟干货精讲）</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1tq4y1D7Kb">超全面深入讲解Java虚拟机 </a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1gh411z7kJ">分布式文件系统FastDFS入门到实战 </a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1nb4y1974r">Tomcat与Nginx负载均衡底层原理分析 </a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/FlyAway2013/p/11201250.html">Nacos 集群部署 </a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/yuuje/p/11005992.html">nginx如何配置负载均衡</a></p>
+<h3 id="大数据分布式架构"><a href="#大数据分布式架构" class="headerlink" title="大数据分布式架构"></a>大数据分布式架构</h3><p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1881291">软件架构设计分层模型和构图思考</a><br><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1049174">中国联通大数据能力开放平台容器化实践</a><br><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1540779">运维产品的能力闭环体系</a><br><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1897347">研发平台演进：从工具链到开放平台</a><br><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1702031">业务系统组件化开发概述和技术架构设计</a></p>
+<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1832221">产品高阶能力：架构图的设计与画法</a><br><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1518589">怎样成为一个优秀的架构师？</a><br><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1533354">直击架构本质：优秀架构师必须掌握的几种架构思维</a><br><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1561345">系统化服务构建-软件工程分层</a></p>
+<h3 id="贷款材料"><a href="#贷款材料" class="headerlink" title="贷款材料"></a>贷款材料</h3><p>贷款额度计算材料（预审材料）：<br>夫妻双方身份证<br>征信证明<br>户口本<br>异地缴存证明</p>
+<p>公积金贷款需要材料：<br>夫妻双方身份证 原件、复印件一份<br>户口本  原件、复印件一份<br>结婚证 原件及复印件一份<br>夫妻双方（一个月内）征信报告<br>售房单位网签备案的商品房买卖合同<br>售房单位出具的首付款的发票 原件及复印件一份<br>银行卡（开发商要求的汇款银行的） 原件及复印件一份<br>异地贷款缴存使用证明</p>
+<h3 id="CSS-书写规范"><a href="#CSS-书写规范" class="headerlink" title="CSS 书写规范"></a>CSS 书写规范</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xuepei/p/8961809.html">CSS书写规范、顺序</a></p>
+<h3 id="javaList进行求和、分组、提取对象单个属性列表"><a href="#javaList进行求和、分组、提取对象单个属性列表" class="headerlink" title="javaList进行求和、分组、提取对象单个属性列表"></a>javaList进行求和、分组、提取对象单个属性列表</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> 分组</span><br><span class="line"></span><br><span class="line">Map&lt;String, List&lt;User&gt;&gt; collect = details.stream().collect(Collectors.groupingBy(User::getCustomerId));</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> 单列求和</span><br><span class="line"><span class="keyword">int</span> totalValue = details.stream().mapToInt(User::getSmsFee).sum();</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span> 提取单列数据集合</span><br><span class="line">List&lt;Integer&gt; ids = details.stream().map(User::getId).collect(Collectors.toList());</span><br><span class="line">Set&lt;String&gt; accounts = details.stream().map(User::getAccount).collect(Collectors.toSet());</span><br><span class="line"></span><br><span class="line"><span class="number">4.</span> 按条件过滤</span><br><span class="line"><span class="comment">//按照条件过滤</span></span><br><span class="line">List&lt;User&gt; collect = list.stream().filter(u -&gt; <span class="string">&quot;北京&quot;</span>.equals(u.getAddr())).collect(Collectors.toList())</span><br><span class="line"></span><br><span class="line"><span class="number">5.</span>两个集合比较</span><br><span class="line"></span><br><span class="line"><span class="comment">//过滤符合某个集合的数据（为了比对效率，accounts不能是list，需要使用set集合）</span></span><br><span class="line">List&lt;ExamData&gt; existList = uniqueList.stream().filter(t-&gt;accounts.contains(t.getAccount())).collect(Collectors.toList());</span><br><span class="line"></span><br><span class="line"><span class="number">6.</span> 去重</span><br><span class="line"><span class="comment">//按单个属性去重</span></span><br><span class="line">List&lt;InstallOrder&gt; unique = installOrderList.stream().collect(</span><br><span class="line">                    Collectors.collectingAndThen(Collectors.toCollection(()-&gt;<span class="keyword">new</span> TreeSet&lt;&gt;(Comparator.comparing(InstallOrder::getOrderCode))),ArrayList::<span class="keyword">new</span>));</span><br><span class="line">List&lt;ExamData&gt; uniqueList = data.stream().distinct().collect(Collectors.toList()); <span class="comment">//这种写法需要重写ExamData中的hasCode和equals方法</span></span><br><span class="line"><span class="comment">//ExamData hasCode和equals重写</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(<span class="keyword">final</span> Object obj)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (obj == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">final</span> ExamData detail = (ExamData) obj;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span> == detail) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">this</span>.account.equals(detail.account));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> hashno = <span class="number">7</span>;</span><br><span class="line">    hashno = <span class="number">13</span> * hashno + (account == <span class="keyword">null</span> ? <span class="number">0</span> : account.hashCode());</span><br><span class="line">    <span class="keyword">return</span> hashno;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="mybatis-使用hikari-驱动读取全量数据"><a href="#mybatis-使用hikari-驱动读取全量数据" class="headerlink" title="mybatis 使用hikari 驱动读取全量数据"></a>mybatis 使用hikari 驱动读取全量数据</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//@Transactional Cursor mybatis游标方式必须设置事务否则执行报错。</span></span><br><span class="line"><span class="comment">//2，druid 连接池不支持 mybatis 游标方式。</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> List&lt;ExamData&gt; <span class="title">getExamData</span><span class="params">(String cityName, String opMonth)</span> </span>&#123;</span><br><span class="line">    List&lt;ExamData&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="keyword">try</span> (Cursor&lt;ExamData&gt; cursor = deatilMapper.findByCity4Cursor(cityName, opMonth)) &#123;</span><br><span class="line">        cursor.forEach(foo -&gt; &#123;list.add(foo); &#125;);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> list;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@Select(&quot;&lt;script&gt;&quot; +</span></span><br><span class="line"><span class="meta">        &quot;select &quot; +</span></span><br><span class="line"><span class="meta">        &quot;   id id,\n&quot; +</span></span><br><span class="line"><span class="meta">        &quot;   op_month opMonth,\n&quot; +</span></span><br><span class="line"><span class="meta">        &quot;   city_name cityName,\n&quot; +</span></span><br><span class="line"><span class="meta">        &quot;   ... \n&quot; +</span></span><br><span class="line"><span class="meta">        &quot; from ZS_EXAM_DETAIL &quot; +</span></span><br><span class="line"><span class="meta">        &quot;&lt;where&gt; &quot; +</span></span><br><span class="line"><span class="meta">        &quot;   OP_MONTH=#&#123;opMonth&#125; and city_name=#&#123;cityName&#125;&quot; +</span></span><br><span class="line"><span class="meta">        &quot;&lt;/where&gt;&quot; +</span></span><br><span class="line"><span class="meta">        &quot;&lt;/script&gt;&quot;)</span></span><br><span class="line"><span class="meta">@Options(fetchSize = 1000)</span></span><br><span class="line"><span class="function">Cursor&lt;ExamData&gt; <span class="title">findByCity4Cursor</span><span class="params">(<span class="meta">@Param(&quot;cityName&quot;)</span> String cityName,<span class="meta">@Param(&quot;opMonth&quot;)</span> String opMonth)</span></span>;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="Arduino资料"><a href="#Arduino资料" class="headerlink" title="Arduino资料"></a>Arduino资料</h3><p><a target="_blank" rel="noopener" href="https://www.arduino.cn/thread-1066-1-1.html">https://www.arduino.cn/thread-1066-1-1.html</a></p>
+<h3 id="在线文档"><a href="#在线文档" class="headerlink" title="在线文档"></a>在线文档</h3><p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/">java11文档</a><br><a target="_blank" rel="noopener" href="https://www.mklab.cn/api/jdk/11/cn">java11中文</a><br><a target="_blank" rel="noopener" href="https://www.apiref.com/java11-zh/index.html">java11中文-备份</a><br><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/">java11英文</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.mklab.cn/api/jdk/8/cn">java8中文</a><br><a target="_blank" rel="noopener" href="https://www.matools.com/api/java8">java8中文2</a><br><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/8/docs/api/">java8英文</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.redis.cn/documentation.html">Redis中文1</a><br><a target="_blank" rel="noopener" href="https://www.redis.net.cn/tutorial/3501.html">Redis中文2</a></p>
+<p><a target="_blank" rel="noopener" href="https://docs.spring.io/spring-boot/docs/2.3.12.RELEASE/reference/htmlsingle">spring-boot</a><br><a target="_blank" rel="noopener" href="https://www.apiref.com/spring-boot-zh/">spring-boot中文</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.springcloud.cc/spring-cloud-brixton.html">Spring Cloud中文</a><br><a target="_blank" rel="noopener" href="https://docs.spring.io/spring-cloud/docs/Hoxton.SR12/reference/html/">Spring Cloud Hoxton.SR12(springboot 2.3.12.RELEASE)</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.apiref.com/kubernetes-zh/index.html">Kubernetes(K8S)中文文档_Kubernetes中文社区</a><br><a target="_blank" rel="noopener" href="https://www.docker.org.cn/book/docker/what-is-docker-16.html">docker入门教程</a><br><a target="_blank" rel="noopener" href="https://www.runoob.com/docker/docker-tutorial.html">docker教程</a><br><a target="_blank" rel="noopener" href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/index.html">Elasticsearch: 权威指南</a></p>
+<p><a target="_blank" rel="noopener" href="https://openlayers.org/en/latest/apidoc/">openlayers文档</a><br><a target="_blank" rel="noopener" href="http://docs.geotools.org/stable/userguide/index.html">geotools文档</a><br><a target="_blank" rel="noopener" href="https://docs.geotools.org/stable/javadocs/">geotools api</a><br><a target="_blank" rel="noopener" href="http://locationtech.github.io/jts/javadoc/index.html">JTS api</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xiaxiaolu/p/13514915.html">聊聊常见的服务(接口)认证授权</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/joy99/p/10941543.html">Spring AOP——Spring 中面向切面编程</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38496561/article/details/105945386">Spring Boot Admin+Nacos从入门到上线</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/05ee63c5b932">Nacos整合Spring Boot Admin</a><br><a target="_blank" rel="noopener" href="http://www.uml.org.cn/wfw/2020041312.asp">微服务环境搭建</a></p>
+<h3 id="RSIC-V"><a href="#RSIC-V" class="headerlink" title="RSIC-V"></a>RSIC-V</h3><p><a target="_blank" rel="noopener" href="https://gitee.com/liangkangnan/tinyriscv#https://liangkangnan.gitee.io/2020/04/29/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%86%99RISC-V%E5%A4%84%E7%90%86%E5%99%A8/">从零开始写RISC-V处理器</a><br><a href="">Verilog HDL</a></p>
+<h3 id="springboot-cloud-示例"><a href="#springboot-cloud-示例" class="headerlink" title="springboot cloud 示例"></a>springboot cloud 示例</h3><p><a target="_blank" rel="noopener" href="https://gitee.com/matevip">MateCloud微服</a></p>
+<h3 id="计算机类书目"><a href="#计算机类书目" class="headerlink" title="计算机类书目"></a>计算机类书目</h3><p>1.计算机科学概论</p>
+<p>计算机科学概论<br>计算机系统概论(2016/11/27)<br>计算机系统要素(2016/11/27)</p>
+<p>2.计算机数学基础</p>
+<p>高等数学线性代数<br>概率论与数理统计<br>离散数学及其应用<br>离散数学教程(北大版)<br>什么是数学<br>具体数学：计算机科学基础</p>
+<p>3.C语言</p>
+<p>C primer plusThe C programming language<br>C和指针<br>C专家教程<br>C陷阱与缺陷<br>c语言解惑<br>C标准库<br>你必须知道的495个C语言问题</p>
+<p>4.算法与数据结构</p>
+<p>数据结构(清华版)数据结构与算法分析—C语言描述<br>C算法(第一卷:基础、数据结构、排序和搜索)<br>C算法(第二卷 图算法)<br>编程珠玑<br>编程珠玑II(More programming Pearls)<br>算法概论 2014-2-8</p>
+<p>算法第4版红皮书(2016/11/27)</p>
+<p>算法导论计算机程序设计艺术卷1<br>计算机程序设计艺术卷2<br>计算机程序设计艺术卷3</p>
+<p>5.电子技术基础</p>
+<p>模拟电子技术(童诗白版)<br>数字逻辑与数字集成电路(清华版)</p>
+<p>6.汇编语言</p>
+<p>汇编语言(王爽版)80X86汇编语言程序设计教程<br>Intel汇编语言程序设计<br>IBM PC汇编语言程序设计(国外版)<br>高级汇编语言程序设计<br>保护方式下的80386及其编程<br>黑客反汇编揭秘<br>Windows.环境下32位汇编语言程序设计(第2版)<br>汇编语言程序设计+基于ARM体系结构</p>
+<p>7.计算机硬件原理</p>
+<p>计算机组成-结构化方法微机原理与接口技术(陈光军版)<br>计算机体系结构(张晨曦版)<br>计算机组成与设计硬件/软件接口<br>Intel微处理器结构、编程与接口<br>计算机体系结构(量化研究方法)<br>编程卓越之道卷1<br>编程卓越之道卷2<br>深入理解计算机系统<br>编码的奥秘</p>
+<p>8.数据库系统原理</p>
+<p>数据库系统概念数据库系统导论<br>数据库系统实现</p>
+<p>9.编译原理</p>
+<p>编译原理(清华第2版)编译原理及实践<br>编译原理:原则,技术和工具<br>现代编译原理-C语言描述<br>高级编译器设计与实现</p>
+<p>10.操作系统原理</p>
+<p>操作系统概念现代操作系统<br>链接器和加载器<br>程序员的自我修养:链接、装载与库<br>自己动手写操作系统<br>操作系统设计与实现</p>
+<p>11.计算机网络</p>
+<p>计算机网络(Computer Networks)TCP-IP详解卷1<br>TCP-IP详解卷2<br>TCP-IP详解卷3<br>用TCP/IP进行网际互联(第一卷):原理、协议与结构<br>用TCP/IP进行网际互联第二卷：设计、实现与内核(第三版)<br>用TCP/IP 进行网际互联第三卷:客户-服务器编程与应用</p>
+<p>12.软件工程和面向对象程序设计</p>
+<p>C++编程思想卷<br>java编程思想<br>软件工程(Software.Engineering)<br>软件工程：实践者的研究方法<br>深入浅出面向对象分析与设计<br>head first设计模式<br>道法自然:面向对象实践指南<br>面向对象分析与设计<br>敏捷软件开发：原则、模式与实践<br>设计模式:可复用面向对象软件的基础<br>测试驱动开发<br>重构—改善既有代码的设计<br>代码大全<br>程序设计实践<br>程序员修炼之道：从小工到专家<br>卓有成效的程序员<br>代码之美<br>人月神话<br>计算机程序的构造和解释<br>观止-微软创建NT和未来的夺命狂奔<br>代码优化：有效使用内存[美]克里斯·卡巴斯基<br>编程高手箴言(梁肇新)<br>游戏之旅-我的编程感悟(云风)<br>企业应用架构模式</p>
+<p>修改代码的艺术</p>
+<p>xUnit.Test.Patterns.Refactoring.Test.Code</p>
+<p>13.windows编程基础</p>
+<p>Windows操作系统原理Inside Windows 2000<br>深入解析Windows操作系统<br>天书夜读：从汇编语言到Windows内核编程<br>windows程序设计<br>WINDOWS核心编程</p>
+<p>14.linux/unix编程基础</p>
+<p>鸟哥的Linux私房菜:基础学习篇鸟哥的Linux私房菜:服务器架设篇<br>linux程序设计<br>UNIX环境高级编程<br>Unix网络编程卷1<br>UNIX网络编程卷2<br>UNIX编程艺术<br>UNIX Shell范例精解<br>The Linux Programming Interface - A Linux and UNIX System Programming Handbook</p>
+<p>15.Linux/unix内核源代码和驱动程序</p>
+<p>Linux内核设计与实现LINUX内核源代码情景分析<br>深入理解LINUX内核<br>Linux内核完全注释<br>Linux设备驱动程序<br>深入Linux设备驱动程序内核机制<br>深入Linux内核架构<br>精通Linux设备驱动程序开发<br>Linux设备驱动开发详解</p>
+<p>16.C++语言</p>
+<p>C++编程思想2Essential C++<br>C++ primer<br>C++程序设计语言<br>C++语言的设计和演化<br>Accelerated C++<br>Effective C++<br>More Effective C++<br>Exceptional C++<br>More Exceptional C++<br>C++设计新思维<br>深度探索C++对象模型<br>C++沉思录<br>C++ Templates: The Complete Guide<br>C++ FAQs</p>
+<p>17.标准库STL使用<br>C++标准程序库Effective STL<br>泛型编程与STL<br>18.STL源代码<br>STL源码剖析</p>
+<p>19.java语言<br>java编程思想Java编程规范(The Java Language Specification)<br>Beginning Java(C#) Objects从概念到代码<br>effective java<br>Java解惑<br>Java性能优化权威指南<br>深入理解Java虚拟机<br>Java并发编程实践</p>
+<p>20.图形学/分布式/机器学习<br>计算机图形学(第三版)<br>大数据时代<br>多处理器编程的艺术<br>冈萨雷斯数字图像处理(</p>
+<p>（1）深入理解计算机系统(原书第3版).pdf<br>（2）计算机科学导论(第2版).pdf<br>（3）计算机科学概论(原书第5版).pdf</p>
+<p>（4）C程序设计语言(第2版 新版).pdf<br>（9）C陷阱与缺陷(第2版)-人民邮电出版社.pdf<br>（13）More Effective C++.pdf<br>（14）C++编程思想(两卷合订本).pdf<br>（15）C++标准程序库(中文版).pdf<br>（16）Exceptional C++ Style中文版.pdf<br>（17）More Exceptional C++中文版.pdf</p>
+<p>（18）Head First Java(第2版)中文版.pdf<br>（19）Java编程思想(第4版).pdf<br>（20）Java核心技术 卷1 基础知识(第10版).pdf<br>（21）Effective Java中文版(原书第3版).pdf</p>
+<p>（22）Python学习手册(第4版).pdf<br>（23）笨办法 学Python(第4版).pdf<br>（24）Python核心编程(第3版)中文版.pdf<br>（26）流畅的Python.pdf</p>
+<p>（27）算法导论(原书第3版).pdf<br>（28）计算机程序设计艺术 卷1：基本算法.pdf<br>（28）计算机程序设计艺术 卷2：半数值算法.pdf<br>（29）计算机程序设计艺术 卷3：排序与查找.pdf<br>（30）算法(第4版)中文版.pdf<br>（31）数据结构与算法分析 C语言描述(原书第2版).pdf<br>（32）算法竞赛入门经典(第2版).pdf</p>
+<p>（33）编译原理(龙书)中文版.pdf<br>（34）现代编译原理 C语言描述.pdf<br>（35）高级编译器设计与实现(鲸书)中文版.pdf</p>
+<p>（36）计算机网络 Andrew S.Tanenbaum(第四版).pdf<br>（37）计算机网络 自顶向下方法(英文第6版).pdf<br>（37）计算机网络 自顶向下方法(原书第6版).pdf<br>（37）计算机网络 自顶向下方法(中文第4版).pdf<br>（38）TCP IP详解 卷1：协议(原书第2版).pdf<br>（39）TCP IP详解 卷2：实现.pdf</p>
+<p>（41）现代操作系统(第三版).pdf<br>（42）鸟哥的Linux私房菜(第四版).pdf<br>（44）UNIX环境高级编程(第二版).pdf<br>（44）UNIX环境高级编程(第三版).pdf<br>（45）深入理解Linux内核(第三版)中文版.pdf</p>
+<p>（46）Pattern Recognition and Machine Learning.pdf<br>（47）Machine Learning A Probabilistic Perspective.pdf<br>（48）机器学习 Tom M.Mitchell.pdf<br>（49）机器学习 周志华.pdf<br>（50）统计自然语言处理基础(中文版).pdf<br>（51）DEEP LEARNING 深度学习 花书.pdf</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://groupfusion.github.io/2021/12/26/devlang/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/" data-id="clq6bcvnf000v2guz9i47dfgz" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/" rel="tag">技术积累</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+    
+    <article id="post-db/mysql访问权限设置" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+
+<h2 itemprop="name">
+  <a class="article-title" href="/2017/06/23/db/mysql%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90%E8%AE%BE%E7%BD%AE/">Host &#39;192.168.＊.＊&#39; is not allowed to connect to this MariaDB server</a>
+</h2>
+
+
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2017/06/23/db/mysql%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90%E8%AE%BE%E7%BD%AE/" class="article-date">
+  <time datetime="2017-06-23T01:47:57.000Z" itemprop="datePublished">2017-06-23</time>
+</a>
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        
+      
+      
+      <p>＃报错:”Host ‘192.168.＊.＊’ is not allowed to connect to this MariaDB server”</p>
+<p>两种解决方法：</p>
+<ol>
+<li>改表法。</li>
+</ol>
+<p>可能是你的帐号不允许从远程登陆，只能在localhost。这个时候只要在localhost的那台电脑，登入mysql后，更改 “mysql” 数据库里的 “user” 表里的 “host” 项，从”localhost”改称”%”, 使得可以在远程访问到mysql。</p>
+<p>mysql -u root -pvmwaremysql&gt;use mysql;</p>
+<p>mysql&gt;update user set host = ‘%’ where user = ‘root’;</p>
+<p>mysql&gt;select host, user from user;</p>
+<p>mysql&gt;FLUSH RIVILEGES</p>
+<ol start="2">
+<li>授权法。</li>
+</ol>
+<p>例如，你想myuser使用mypassword从 <code>任何主机</code> 连接到mysql服务器的话。</p>
+<p>GRANT ALL PRIVILEGES ON <em>.</em> TO ‘myuser‘@’%’ IDENTIFIED BY ‘mypassword’ WITH GRANT OPTION;</p>
+<p>FLUSH   PRIVILEGES;</p>
+<p>如果你想允许用户myuser从ip为<code>192.168.1.3</code>的主机连接到mysql服务器，并使用mypassword作为密码</p>
+<p>GRANT ALL PRIVILEGES ON <em>.</em> TO ‘myuser‘@’192.168.1.3’ IDENTIFIED BY ‘mypassword’ WITH GRANT OPTION;</p>
+<p>FLUSH   PRIVILEGES;</p>
+<p>如果你想允许用户myuser从ip为<code>192.168.1.3</code>的主机连接到mysql服务器的dk数据库，并使用mypassword作为密码</p>
+<p>GRANT ALL PRIVILEGES ON dk.* TO ‘myuser‘@’192.168.1.3’ IDENTIFIED BY ‘mypassword’ WITH GRANT OPTION;</p>
+<p>FLUSH   PRIVILEGES;</p>
+<p>如果你想允许用户myuser从<code>局域网中某个ip</code>的主机连接到mysql服务器的数据库，并使用mypassword作为密码；你要使用%通配符比如你有192.168.0.* 和 192.168.1.* 两个网段,要两个网段都可以访问你要’192.168.%’， 只要一个可以访问可以向下面例子这样。</p>
+<p>GRANT ALL PRIVILEGES ON <em>.</em> TO ‘myuser‘@’192.168.1.%’ IDENTIFIED BY ‘mypassword’ WITH GRANT OPTION;<br>FLUSH   PRIVILEGES;</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://groupfusion.github.io/2017/06/23/db/mysql%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90%E8%AE%BE%E7%BD%AE/" data-id="clq6bcvn500072guz9d2lbn1m" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+    
+  </article>
+  
+
+  
+  <nav class="page-nav">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+  </nav>
+  
+</section>
+</div>
+    <footer class="footer">
+  <div class="outer">
+    <div class="float-right">
+      <ul class="list-inline">
+  
+  <li><i class="fe fe-bar-chart"></i> <span id="busuanzi_value_site_pv"></span></li>
+  
+  <li><i class="fe fe-smile-alt"></i> <span id="busuanzi_value_site_uv"></span></li>
+  
+</ul>
+    </div>
+    <ul class="list-inline">
+      <li>缺陷代码 &copy; 2023</li>
+      
+        <li></li>
+      
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>theme  <a target="_blank" rel="noopener" href="https://github.com/zhwangart/hexo-theme-ocean">Ocean</a></li>
+    </ul>
+  </div>
+</footer>
+  </main>
+  <aside class="sidebar">
+    <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/xmon.svg" alt="缺陷代码"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/gallery">相册</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/favorites">收藏</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      <div class="totop" id="totop">
+  <i class="fe fe-rocket"></i>
+</div>
+    </li>
+    <li class="nav-item">
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="fe fe-feed"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+  </aside>
+  
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/copybtn.js"></script>
+
+
+
+
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+
+</html>

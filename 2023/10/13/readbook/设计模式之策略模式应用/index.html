@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  <meta name="description" content="一个程序员的学习、工作日志">
+  
+  <title>
+    设计模式之策略模式应用 |
+    
+    缺陷代码
+  </title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<script src="/js/pace.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="缺陷代码" type="application/atom+xml">
+</head>
+
+<body>
+  <main class="content">
+    <section class="outer">
+  <article id="post-readbook/设计模式之策略模式应用" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+
+<h1 class="article-title" itemprop="name">
+  设计模式之策略模式应用
+</h1>
+
+
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2023/10/13/readbook/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F%E5%BA%94%E7%94%A8/" class="article-date">
+  <time datetime="2023-10-13T07:41:20.000Z" itemprop="datePublished">2023-10-13</time>
+</a>
+      
+    </div>
+    
+
+    
+    
+<div class="tocbot"></div>
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+      <h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h2><p>本篇文章主要介绍策略模式在SpringBoot框架中如何使用。是一篇策略模式的应用实践的文章，需要对设计模式的理论又一定的了解。</p>
+<h3 id="1-1-策略模式简述"><a href="#1-1-策略模式简述" class="headerlink" title="1.1 策略模式简述"></a>1.1 策略模式简述</h3><p>策略模式包含以下3个核心角色：<br>    -  环境（Context）：定义了使用算法的环境，负责将客户端请求委派给具体的策略对象执行。环境类可以通过依赖注入、简单工厂等方式来获取具体策略对象。<br>    -  抽象策略（Abstract Strategy）：定义了策略对象的公共接口或抽象类，规定了具体策略类必须实现的方法。<br>    -  具体策略（Concrete Strategy）：实现了抽象策略定义的接口或抽象类，包含了具体的算法实现。</p>
+<h2 id="2-实现"><a href="#2-实现" class="headerlink" title="2.实现"></a>2.实现</h2><p>作为程序员，无论是在日常开发、学习中，肯定会学习了解各种的设计模式。在开发中我们如果根据需求选择合适的设计模式，使得我们写出的代码更加优雅，且具被拓展性，可读性，是需要我们时刻思考的。</p>
+<p>收到项目现场转来的一个紧急需求，需要解析一批csv格式的文件入库，每个csv文件都对应一套数据，后续跟能还会增加新的数据。看到之前的代码就是一阵无语…，一坨 “if-else” 堆砌代码。</p>
+<h3 id="2-1构建思路"><a href="#2-1构建思路" class="headerlink" title="2.1构建思路"></a>2.1构建思路</h3><p>根据上面的需求不同类型数据文件采用不同的处理方法，对于有经验的程序员，肯定第一个想到的肯定是策略模式。若对设计模式不是很熟，也可根据需求对照设计模式定义挑选。</p>
+<pre><code>- 定义可识别常量：这里根据不同的文件名标识策略类型，使用文件名调用对应的策略实例。
+- 定义策略接口：每个文件定义一种解析实现，实现对应的解析逻辑，并提取抽接口，定义为对外统一访问入口。
+- Context设计：通过Map来存储策略定义数据，调用者调用是通过策略标识来获取对应策略实例。
+在不使用springboot时，需要将策略标识与对应实例直接在代码中写死，这种方式不利于拓展，每次增加策略后都要修改Map。所以强烈建议使用springboot，通过注解方式实现策略的自动注册。新增策略后springboot启动时会扫描策略并对其进行注册，不需要修改旧代码。
+</code></pre>
+<h3 id="2-2代码实现"><a href="#2-2代码实现" class="headerlink" title="2.2代码实现"></a>2.2代码实现</h3><p>下面我们首先定义策略接口及策略实例,使用springboot框架时只需要在策略实例上增加Component注解，即可将实例注入到Map中。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 策略接口</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">CSVParser</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String cvsSplitBy = <span class="string">&quot;\\|&quot;</span>;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> br</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> fileType</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">parseCsv</span><span class="params">(BufferedReader br, String fileType)</span> <span class="keyword">throws</span> IOException</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 策略实现 city_xxxxxx.csv文件</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Component(&quot;City&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CityParser</span> <span class="keyword">implements</span> <span class="title">CSVParser</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Logger logger = LoggerFactory.getLogger(<span class="keyword">this</span>.getClass());</span><br><span class="line">   </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ParseResult <span class="title">parseCsv</span><span class="params">(BufferedReader br, String fileType)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        logger.info(<span class="string">&quot;City&quot;</span>);</span><br><span class="line">        <span class="comment">//这里实现csv格式解析以及后续处理，此处省略...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 策略实现 region_xxxxxx.csv文件</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Component(&quot;Region&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RegionParser</span> <span class="keyword">implements</span> <span class="title">CSVParser</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Logger logger = LoggerFactory.getLogger(<span class="keyword">this</span>.getClass());</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">parseCsv</span><span class="params">(BufferedReader br, String fileType)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        logger.info(<span class="string">&quot;Region&quot;</span>);</span><br><span class="line">        <span class="comment">//这里实现csv格式解析以及后续处理，此处省略...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其次，编写策略选择器</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 解析策略选择器</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ParseStrategyContext</span> </span>&#123;</span><br><span class="line">	<span class="comment">//这里springboot会扫描已定义的策略，并注册到selectParser中</span></span><br><span class="line">    <span class="meta">@Resource</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String,CSVParser&gt; selectParser=<span class="keyword">new</span> ConcurrentHashMap();</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 根据资源类型选择对应的解析策略</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> type 资源类型</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> CSVParser <span class="title">select</span><span class="params">(String type)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> selectParser.get(type);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-3拓展"><a href="#2-3拓展" class="headerlink" title="2.3拓展"></a>2.3拓展</h3><p>当需求发生变化，需要增加新类型文件时，只需要新增一个策略实例即可，如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 策略实现 room_xxxxxx.csv文件</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Component(&quot;Room&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RoomParser</span> <span class="keyword">implements</span> <span class="title">CSVParser</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Logger logger = LoggerFactory.getLogger(<span class="keyword">this</span>.getClass());</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">parseCsv</span><span class="params">(BufferedReader br, String fileType)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        logger.info(<span class="string">&quot;Room&quot;</span>);</span><br><span class="line">        <span class="comment">//这里实现csv格式解析以及后续处理，此处省略...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="2-4调用"><a href="#2-4调用" class="headerlink" title="2.4调用"></a>2.4调用</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NewCsvParseTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    String filePath = <span class="string">&quot;d://temp&quot;</span>;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">    ParseStrategySelector strategySelector;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">parseCsv</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        File file = <span class="keyword">new</span> File(filePath);</span><br><span class="line">        File[] childFiles = file.listFiles();</span><br><span class="line">        BufferedReader br;</span><br><span class="line">        <span class="keyword">for</span> (File childFile : childFiles) &#123;</span><br><span class="line">			List&lt;String&gt; fileNameList = Arrays.asList(childFile.getName().split(<span class="string">&quot;_&quot;</span>));</span><br><span class="line">			String fileType=fileNameList.get(<span class="number">0</span>);</span><br><span class="line">			br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(<span class="keyword">new</span> FileInputStream(filePath), <span class="string">&quot;UTF-8&quot;</span>));</span><br><span class="line">			<span class="comment">//根据文件类型，调用不同的策略实例</span></span><br><span class="line">			CSVParser parser = strategySelector.select(fileType);</span><br><span class="line">        	ParseResult parseResult = parser.parseCsv(br, fileType);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3.总结"></a>3.总结</h2><p>通过使用策略模式模式，大大减少了代码中的 if-else 使用，代码更加优雅，便于扩展。其次，springboot框架能够更加高效的完成开发任务。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://groupfusion.github.io/2023/10/13/readbook/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F%E5%BA%94%E7%94%A8/" data-id="clq6c3uus000ipcuzb9io9pp0" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+  
+<nav class="article-nav">
+  
+  <a href="/2023/10/14/dev/nacos%E9%A1%B9%E7%9B%AE%E9%9B%86%E4%B8%AD%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86%E8%AE%BE%E7%BD%AE%E8%AF%B4%E6%98%8E/" class="article-nav-link">
+    <strong class="article-nav-caption">前一篇</strong>
+    <div class="article-nav-title">
+      
+      nacos项目集中配置管理设置说明
+      
+    </div>
+  </a>
+  
+  
+  <a href="/2023/09/15/devlang/java/Java%20%E9%9B%86%E5%90%88stream%E6%B5%81%E6%93%8D%E4%BD%9C%E7%A4%BA%E4%BE%8B%E8%AF%A6%E8%A7%A3/" class="article-nav-link">
+    <strong class="article-nav-caption">后一篇</strong>
+    <div class="article-nav-title">Java 集合stream流操作示例详解</div>
+  </a>
+  
+</nav>
+
+  
+
+  
+  
+  
+  
+
+</article>
+</section>
+    <footer class="footer">
+  <div class="outer">
+    <div class="float-right">
+      <ul class="list-inline">
+  
+  <li><i class="fe fe-smile-alt"></i> <span id="busuanzi_value_site_uv"></span></li>
+  
+  <li><i class="fe fe-bookmark"></i> <span id="busuanzi_value_page_pv"></span></li>
+  
+</ul>
+    </div>
+    <ul class="list-inline">
+      <li>缺陷代码 &copy; 2023</li>
+      
+        <li></li>
+      
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>theme  <a target="_blank" rel="noopener" href="https://github.com/zhwangart/hexo-theme-ocean">Ocean</a></li>
+    </ul>
+  </div>
+</footer>
+  </main>
+  <aside class="sidebar">
+    <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/xmon.svg" alt="缺陷代码"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/gallery">相册</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/favorites">收藏</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      <div class="totop" id="totop">
+  <i class="fe fe-rocket"></i>
+</div>
+    </li>
+    <li class="nav-item">
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="fe fe-feed"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+  </aside>
+  
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/copybtn.js"></script>
+
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+  });
+</script>
+
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+
+</html>

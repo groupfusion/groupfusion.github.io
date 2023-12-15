@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  <meta name="description" content="一个程序员的学习、工作日志">
+  
+  <title>
+    Host &#39;192.168.＊.＊&#39; is not allowed to connect to this MariaDB server |
+    
+    缺陷代码
+  </title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<script src="/js/pace.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="缺陷代码" type="application/atom+xml">
+</head>
+
+<body>
+  <main class="content">
+    <section class="outer">
+  <article id="post-db/mysql访问权限设置" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+
+<h1 class="article-title" itemprop="name">
+  Host &#39;192.168.＊.＊&#39; is not allowed to connect to this MariaDB server
+</h1>
+
+
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2017/06/23/db/mysql%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90%E8%AE%BE%E7%BD%AE/" class="article-date">
+  <time datetime="2017-06-23T01:47:57.000Z" itemprop="datePublished">2017-06-23</time>
+</a>
+      
+    </div>
+    
+
+    
+    
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+      <p>＃报错:”Host ‘192.168.＊.＊’ is not allowed to connect to this MariaDB server”</p>
+<p>两种解决方法：</p>
+<ol>
+<li>改表法。</li>
+</ol>
+<p>可能是你的帐号不允许从远程登陆，只能在localhost。这个时候只要在localhost的那台电脑，登入mysql后，更改 “mysql” 数据库里的 “user” 表里的 “host” 项，从”localhost”改称”%”, 使得可以在远程访问到mysql。</p>
+<p>mysql -u root -pvmwaremysql&gt;use mysql;</p>
+<p>mysql&gt;update user set host = ‘%’ where user = ‘root’;</p>
+<p>mysql&gt;select host, user from user;</p>
+<p>mysql&gt;FLUSH RIVILEGES</p>
+<ol start="2">
+<li>授权法。</li>
+</ol>
+<p>例如，你想myuser使用mypassword从 <code>任何主机</code> 连接到mysql服务器的话。</p>
+<p>GRANT ALL PRIVILEGES ON <em>.</em> TO ‘myuser‘@’%’ IDENTIFIED BY ‘mypassword’ WITH GRANT OPTION;</p>
+<p>FLUSH   PRIVILEGES;</p>
+<p>如果你想允许用户myuser从ip为<code>192.168.1.3</code>的主机连接到mysql服务器，并使用mypassword作为密码</p>
+<p>GRANT ALL PRIVILEGES ON <em>.</em> TO ‘myuser‘@’192.168.1.3’ IDENTIFIED BY ‘mypassword’ WITH GRANT OPTION;</p>
+<p>FLUSH   PRIVILEGES;</p>
+<p>如果你想允许用户myuser从ip为<code>192.168.1.3</code>的主机连接到mysql服务器的dk数据库，并使用mypassword作为密码</p>
+<p>GRANT ALL PRIVILEGES ON dk.* TO ‘myuser‘@’192.168.1.3’ IDENTIFIED BY ‘mypassword’ WITH GRANT OPTION;</p>
+<p>FLUSH   PRIVILEGES;</p>
+<p>如果你想允许用户myuser从<code>局域网中某个ip</code>的主机连接到mysql服务器的数据库，并使用mypassword作为密码；你要使用%通配符比如你有192.168.0.* 和 192.168.1.* 两个网段,要两个网段都可以访问你要’192.168.%’， 只要一个可以访问可以向下面例子这样。</p>
+<p>GRANT ALL PRIVILEGES ON <em>.</em> TO ‘myuser‘@’192.168.1.%’ IDENTIFIED BY ‘mypassword’ WITH GRANT OPTION;<br>FLUSH   PRIVILEGES;</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://groupfusion.github.io/2017/06/23/db/mysql%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90%E8%AE%BE%E7%BD%AE/" data-id="clq6bcvn500072guz9d2lbn1m" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+  
+<nav class="article-nav">
+  
+  <a href="/2021/12/26/devlang/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/" class="article-nav-link">
+    <strong class="article-nav-caption">前一篇</strong>
+    <div class="article-nav-title">
+      
+      工作学习中技术积累
+      
+    </div>
+  </a>
+  
+  
+  <a href="/2017/06/23/tools/sublime_text3_%E5%BF%AB%E6%8D%B7%E9%94%AE/" class="article-nav-link">
+    <strong class="article-nav-caption">后一篇</strong>
+    <div class="article-nav-title">sublime text3 快捷键</div>
+  </a>
+  
+</nav>
+
+  
+
+  
+  
+  
+  
+
+</article>
+</section>
+    <footer class="footer">
+  <div class="outer">
+    <div class="float-right">
+      <ul class="list-inline">
+  
+  <li><i class="fe fe-smile-alt"></i> <span id="busuanzi_value_site_uv"></span></li>
+  
+  <li><i class="fe fe-bookmark"></i> <span id="busuanzi_value_page_pv"></span></li>
+  
+</ul>
+    </div>
+    <ul class="list-inline">
+      <li>缺陷代码 &copy; 2023</li>
+      
+        <li></li>
+      
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>theme  <a target="_blank" rel="noopener" href="https://github.com/zhwangart/hexo-theme-ocean">Ocean</a></li>
+    </ul>
+  </div>
+</footer>
+  </main>
+  <aside class="sidebar">
+    <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/xmon.svg" alt="缺陷代码"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/gallery">相册</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/favorites">收藏</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      <div class="totop" id="totop">
+  <i class="fe fe-rocket"></i>
+</div>
+    </li>
+    <li class="nav-item">
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="fe fe-feed"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+  </aside>
+  
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/copybtn.js"></script>
+
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+  });
+</script>
+
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+
+</html>

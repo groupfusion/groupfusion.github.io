@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  <meta name="description" content="一个程序员的学习、工作日志">
+  
+  <title>
+    工作学习中技术积累 |
+    
+    缺陷代码
+  </title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<script src="/js/pace.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="缺陷代码" type="application/atom+xml">
+</head>
+
+<body>
+  <main class="content">
+    <section class="outer">
+  <article id="post-devlang/工作中技术积累" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+
+<h1 class="article-title" itemprop="name">
+  工作学习中技术积累
+</h1>
+
+
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2021/12/26/devlang/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/" class="article-date">
+  <time datetime="2021-12-26T08:29:57.000Z" itemprop="datePublished">2021-12-26</time>
+</a>
+      
+    </div>
+    
+
+    
+    
+<div class="tocbot"></div>
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+      <h2 id="使用技术纪录"><a href="#使用技术纪录" class="headerlink" title="使用技术纪录"></a>使用技术纪录</h2><h3 id="百度指定网站搜索"><a href="#百度指定网站搜索" class="headerlink" title="百度指定网站搜索"></a>百度指定网站搜索</h3><p>site:(jianshu.com) WKT</p>
+<h3 id="在线工具站点"><a href="#在线工具站点" class="headerlink" title="在线工具站点"></a>在线工具站点</h3><p><a target="_blank" rel="noopener" href="https://tooltt.com/yaml2properties/">yaml转properties</a><br><a target="_blank" rel="noopener" href="https://www.box3.cn/tools/lbs.html">经纬度距离计算</a></p>
+<h3 id="mysql-install"><a href="#mysql-install" class="headerlink" title="mysql install"></a>mysql install</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">yum install mysql57-community-release-el6-10.noarch.rpm</span><br><span class="line">报错</span><br><span class="line">No package matched to upgrade: mysql57-community-release</span><br><span class="line">--&gt; Finished Dependency Resolution</span><br><span class="line">Error: mysql57-community-release conflicts with mysql-community-release-el6-5.noarch</span><br><span class="line">You could try using --skip-broken to work around the problem</span><br><span class="line">You could try running: rpm -Va --nofiles --nodigest</span><br><span class="line"></span><br><span class="line">rpm -qa |grep mysql 查看有如下内容</span><br><span class="line">mysql-community-release-el6-5.noarch</span><br><span class="line">mysql-community-common-5.6.44-2.el6.x86_64</span><br><span class="line"></span><br><span class="line">操作一下 卸载了</span><br><span class="line">rpm -e --nodeps mysql-community-release-el6-5.noarch</span><br><span class="line">rpm -e --nodeps mysql-community-common-5.6.44-2.el6.x86_64</span><br><span class="line"></span><br><span class="line">重新升级</span><br><span class="line"></span><br><span class="line">rpm -Uvh mysql57-community-release-el7-10.noarch.rpm</span><br></pre></td></tr></table></figure>
+
+<h4 id="centos6-mysql5-6-升级"><a href="#centos6-mysql5-6-升级" class="headerlink" title="centos6 mysql5.6 升级"></a>centos6 mysql5.6 升级</h4><p><a target="_blank" rel="noopener" href="http://www.zsythink.net/archives/2345">http://www.zsythink.net/archives/2345</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/h330531987/article/details/94452368">https://blog.csdn.net/h330531987/article/details/94452368</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/daixh/p/11129768.html">https://www.cnblogs.com/daixh/p/11129768.html</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/shione/p/10161021.html">https://www.cnblogs.com/shione/p/10161021.html</a></p>
+<h3 id="CSS书写规范、顺序"><a href="#CSS书写规范、顺序" class="headerlink" title="CSS书写规范、顺序"></a>CSS书写规范、顺序</h3><p><a href=".css%E4%B9%A6%E5%86%99%E8%A7%84%E8%8C%83%E9%A1%BA%E5%BA%8F.md">css书写规范顺序</a></p>
+<h3 id="flowable-工作流与springboot集成"><a href="#flowable-工作流与springboot集成" class="headerlink" title="flowable 工作流与springboot集成"></a>flowable 工作流与springboot集成</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/yangjiming/p/10944120.html">springboot和flowable modeler整合</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/d9ae64fac55c">Springboot集成flowable modeler 免登录</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/799b1ebf5dc4?tdsourcetag=s_pctim_aiomsg">Flowable 学习笔记</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/puhaiyang/article/details/79845248">采用springboot+flowable快速实现工作流</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_40816738/article/details/103112704">SpringBoot集成flowable-modeler(6.4.1) 实现免登</a><br><a target="_blank" rel="noopener" href="https://tkjohn.github.io/flowable-userguide/#_advanced">Flowable BPMN 用户手册 (v 6.3.0)</a><br><a target="_blank" rel="noopener" href="https://www.dazhuanlan.com/2020/01/06/5e128b27059e9/">SpringBoot集成Flowable UI</a><br><a target="_blank" rel="noopener" href="http://www.fhadmin.org/webnewsdetail16.html">Flowable 工作流 Springboot vue.js 前后分离 跨域 有代码生成器</a></p>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/blackzs/flowable-designer">flowable-designer</a></p>
+<h3 id="openlayers-gis开发"><a href="#openlayers-gis开发" class="headerlink" title="openlayers gis开发"></a>openlayers gis开发</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">var mapUrl = &#123;</span><br><span class="line">    /****</span><br><span class="line">     * 高德地图</span><br><span class="line">     * lang可以通过zh_cn设置中文，en设置英文，size基本无作用，scl设置标注还是底图，scl=1代表注记，</span><br><span class="line">     * scl=2代表底图（矢量或者影像），style设置影像和路网，style=6为影像图，</span><br><span class="line">     * vec——街道底图</span><br><span class="line">     * img——影像底图</span><br><span class="line">     * roadLabel---路网+标注</span><br><span class="line">     */</span><br><span class="line">    &quot;aMap-img&quot;: &quot;http://webst0&#123;1-4&#125;.is.autonavi.com/appmaptile?style=6&amp;x=&#123;x&#125;&amp;y=&#123;y&#125;&amp;z=&#123;z&#125;&quot;,</span><br><span class="line">    &quot;aMap-vec&quot;: &quot;http://webrd0&#123;1-4&#125;.is.autonavi.com/appmaptile?lang=zh_cn&amp;size=1&amp;scale=1&amp;style=8&amp;x=&#123;x&#125;&amp;y=&#123;y&#125;&amp;z=&#123;z&#125;&quot;,</span><br><span class="line">    &quot;aMap-roadLabel&quot;: &quot;http://webst0&#123;1-4&#125;.is.autonavi.com/appmaptile?style=8&amp;x=&#123;x&#125;&amp;y=&#123;y&#125;&amp;z=&#123;z&#125;&quot;,</span><br><span class="line">    /***</span><br><span class="line">    *高德新版地图*</span><br><span class="line">    */</span><br><span class="line">    &quot;aMap-vec-a&quot;: &quot;http://wprd0&#123;1-4&#125;.is.autonavi.com/appmaptile?x=&#123;x&#125;&amp;y=&#123;y&#125;&amp;z=&#123;z&#125;&amp;lang=zh_cn&amp;size=1&amp;scl=1&amp;style=7&quot;, //为矢量图（含路网、含注记）</span><br><span class="line"></span><br><span class="line">    &quot;aMap-img-n&quot;: &quot;http://wprd0&#123;1-4&#125;.is.autonavi.com/appmaptile?x=&#123;x&#125;&amp;y=&#123;y&#125;&amp;z=&#123;z&#125;&amp;lang=zh_cn&amp;size=1&amp;scl=1&amp;style=6&quot;, //为影像底图（不含路网，不含注记）</span><br><span class="line"></span><br><span class="line">    &quot;aMap-img-a&quot;: &quot;http://wprd0&#123;1-4&#125;.is.autonavi.com/appmaptile?x=&#123;x&#125;&amp;y=&#123;y&#125;&amp;z=&#123;z&#125;&amp;lang=zh_cn&amp;size=1&amp;scl=1&amp;style=8&quot;, //为影像路图（含路网，含注记）</span><br><span class="line"></span><br><span class="line">    /***</span><br><span class="line">     * 天地图 要key的</span><br><span class="line">     * vec——街道底图</span><br><span class="line">     * img——影像底图</span><br><span class="line">     * ter——地形底图</span><br><span class="line">     * cva——中文注记</span><br><span class="line">     * cta/cia——道路+中文注记 ---roadLabel</span><br><span class="line">     */</span><br><span class="line">    &quot;tian-img&quot;: &quot;http://t&#123;0-7&#125;.tianditu.gov.cn/DataServer?T=img_w&amp;x=&#123;x&#125;&amp;y=&#123;y&#125;&amp;l=&#123;z&#125;&amp;tk=你的密钥&quot;,</span><br><span class="line">    &quot;tian-roadLabel&quot;: &quot;http://t&#123;0-7&#125;.tianditu.gov.cn/DataServer?T=cta_w&amp;x=&#123;x&#125;&amp;y=&#123;y&#125;&amp;l=&#123;z&#125;&amp;tk=你的密钥&quot;,</span><br><span class="line">    &quot;tian-label&quot;: &quot;http://t&#123;0-7&#125;.tianditu.gov.cn/DataServer?T=cva_w&amp;x=&#123;x&#125;&amp;y=&#123;y&#125;&amp;l=&#123;z&#125;&amp;tk=你的密钥&quot;,</span><br><span class="line">    &quot;tian-vec&quot;: &quot;http://t&#123;0-7&#125;.tianditu.gov.cn/DataServer?T=vec_w&amp;x=&#123;x&#125;&amp;y=&#123;y&#125;&amp;l=&#123;z&#125;&amp;tk=你的密钥&quot;,</span><br><span class="line">    &quot;tian-ter&quot;: &quot;http://t&#123;0-7&#125;.tianditu.gov.cn/DataServer?T=ter_w&amp;x=&#123;x&#125;&amp;y=&#123;y&#125;&amp;l=&#123;z&#125;&amp;tk=你的密钥&quot;,</span><br><span class="line">    /***</span><br><span class="line">     *geoq地图</span><br><span class="line">     * http://cache1.arcgisonline.cn</span><br><span class="line">     * http://map.geoq.cn</span><br><span class="line">     * vec：标准彩色地图</span><br><span class="line">     * gray、blue、warm</span><br><span class="line">     * line 中国轮廓图</span><br><span class="line">     * china 中国轮廓图+标注</span><br><span class="line">     * Hydro 水系</span><br><span class="line">     * green 植被</span><br><span class="line">     */</span><br><span class="line">    &quot;geoq-vec&quot;: &quot;http://cache1.arcgisonline.cn/arcgis/rest/services/ChinaOnlineCommunity/MapServer/tile/&#123;z&#125;/&#123;y&#125;/&#123;x&#125;&quot;,</span><br><span class="line">    &quot;geoq-gray&quot;: &quot;http://cache1.arcgisonline.cn/arcgis/rest/services/ChinaOnlineStreetGray/MapServer/tile/&#123;z&#125;/&#123;y&#125;/&#123;x&#125;&quot;,</span><br><span class="line">    &quot;geoq-blue&quot;: &quot;http://cache1.arcgisonline.cn/arcgis/rest/services/ChinaOnlineStreetPurplishBlue/MapServer/tile/&#123;z&#125;/&#123;y&#125;/&#123;x&#125;&quot;,</span><br><span class="line">    &quot;geoq-warm&quot;: &quot;http://cache1.arcgisonline.cn/arcgis/rest/services/ChinaOnlineStreetWarm/MapServer/tile/&#123;z&#125;/&#123;y&#125;/&#123;x&#125;&quot;,</span><br><span class="line">    &quot;geoq-line&quot;: &quot;http://cache1.arcgisonline.cn/arcgis/rest/services/SimpleFeature/ChinaBoundaryLine/MapServer/tile/&#123;z&#125;/&#123;y&#125;/&#123;x&#125;&quot;,//不稳定</span><br><span class="line">    &quot;geoq-china&quot;: &quot;http://thematic.geoq.cn/arcgis/rest/services/ThematicMaps/administrative_division_boundaryandlabel/MapServer/tile/&#123;z&#125;/&#123;y&#125;/&#123;x&#125;&quot;,//不稳定</span><br><span class="line">    &quot;geoq-Hydro&quot;: &quot;http://thematic.geoq.cn/arcgis/rest/services/ThematicMaps/WorldHydroMap/MapServer/tile/&#123;z&#125;/&#123;y&#125;/&#123;x&#125;&quot;,//不稳定</span><br><span class="line">    &quot;geoq-green&quot;: &quot;http://thematic.geoq.cn/arcgis/rest/services/ThematicMaps/vegetation/MapServer/tile/&#123;z&#125;/&#123;y&#125;/&#123;x&#125;&quot;,//不稳定</span><br><span class="line">    /***</span><br><span class="line">     * Google</span><br><span class="line">     * m 街道</span><br><span class="line">     * s 影像</span><br><span class="line">     */</span><br><span class="line">    &quot;google-vec&quot;: &quot;http://www.google.cn/maps/vt?lyrs=m@189&amp;gl=cn&amp;x=&#123;x&#125;&amp;y=&#123;y&#125;&amp;z=&#123;z&#125;&quot;,</span><br><span class="line">    &quot;google-img&quot;: &quot;http://www.google.cn/maps/vt?lyrs=s@189&amp;gl=cn&amp;x=&#123;x&#125;&amp;y=&#123;y&#125;&amp;z=&#123;z&#125;&quot;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="GIS底图－－-天地图"><a href="#GIS底图－－-天地图" class="headerlink" title="GIS底图－－ 天地图"></a>GIS底图－－ 天地图</h4><p>// //<a target="_blank" rel="noopener" href="http://www.arcgisonline.cn/arcgis/home/webmap/viewer.html">http://www.arcgisonline.cn/arcgis/home/webmap/viewer.html</a> 地图可参考这个链接<br>// 影像地图（球面墨卡托投影）<br>// 天地图-影像注记（球面墨卡托投影）<br>// <a target="_blank" rel="noopener" href="https://t{0-7}.tianditu.gov.cn/cia_w/wmts?SERVICE=WMTS&amp;VERSION=1.0.0&amp;REQUEST=GetTile&amp;LAYER=cia&amp;STYLE=default&amp;FORMAT=tiles&amp;TILEMATRIXSET=w&amp;TILEMATRIX=%7Bz%7D&amp;TILEROW=%7By%7D&amp;TILECOL=%7Bx%7D&amp;tk=4267820f43926eaf808d61dc07269beb">https://t{0-7}.tianditu.gov.cn/cia_w/wmts?SERVICE=WMTS&amp;VERSION=1.0.0&amp;REQUEST=GetTile&amp;LAYER=cia&amp;STYLE=default&amp;FORMAT=tiles&amp;TILEMATRIXSET=w&amp;TILEMATRIX={z}&amp;TILEROW={y}&amp;TILECOL={x}&amp;tk=4267820f43926eaf808d61dc07269beb</a><br>// 天地图-影像地图（球面墨卡托投影）<br>// <a target="_blank" rel="noopener" href="https://t{0-7}.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&amp;VERSION=1.0.0&amp;REQUEST=GetTile&amp;LAYER=img&amp;STYLE=default&amp;FORMAT=tiles&amp;TILEMATRIXSET=w&amp;TILEMATRIX=%7Bz%7D&amp;TILEROW=%7By%7D&amp;TILECOL=%7Bx%7D&amp;tk=4267820f43926eaf808d61dc07269beb">https://t{0-7}.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&amp;VERSION=1.0.0&amp;REQUEST=GetTile&amp;LAYER=img&amp;STYLE=default&amp;FORMAT=tiles&amp;TILEMATRIXSET=w&amp;TILEMATRIX={z}&amp;TILEROW={y}&amp;TILECOL={x}&amp;tk=4267820f43926eaf808d61dc07269beb</a><br>//<br>// 矢量地图（球面墨卡托投影）<br>// 天地图-矢量注记（球面墨卡托投影）<br>// <a target="_blank" rel="noopener" href="https://t{0-7}.tianditu.gov.cn/cva_w/wmts?SERVICE=WMTS&amp;VERSION=1.0.0&amp;REQUEST=GetTile&amp;LAYER=cva&amp;STYLE=default&amp;FORMAT=tiles&amp;TILEMATRIXSET=w&amp;TILEMATRIX=%7Bz%7D&amp;TILEROW=%7By%7D&amp;TILECOL=%7Bx%7D&amp;tk=4267820f43926eaf808d61dc07269beb">https://t{0-7}.tianditu.gov.cn/cva_w/wmts?SERVICE=WMTS&amp;VERSION=1.0.0&amp;REQUEST=GetTile&amp;LAYER=cva&amp;STYLE=default&amp;FORMAT=tiles&amp;TILEMATRIXSET=w&amp;TILEMATRIX={z}&amp;TILEROW={y}&amp;TILECOL={x}&amp;tk=4267820f43926eaf808d61dc07269beb</a><br>// 天地图-矢量地图（球面墨卡托投影）<br>// <a target="_blank" rel="noopener" href="https://t{0-7}.tianditu.gov.cn/vec_w/wmts?SERVICE=WMTS&amp;VERSION=1.0.0&amp;REQUEST=GetTile&amp;LAYER=vec&amp;STYLE=default&amp;FORMAT=tiles&amp;TILEMATRIXSET=w&amp;TILEMATRIX=%7Bz%7D&amp;TILEROW=%7By%7D&amp;TILECOL=%7Bx%7D&amp;tk=4267820f43926eaf808d61dc07269beb">https://t{0-7}.tianditu.gov.cn/vec_w/wmts?SERVICE=WMTS&amp;VERSION=1.0.0&amp;REQUEST=GetTile&amp;LAYER=vec&amp;STYLE=default&amp;FORMAT=tiles&amp;TILEMATRIXSET=w&amp;TILEMATRIX={z}&amp;TILEROW={y}&amp;TILECOL={x}&amp;tk=4267820f43926eaf808d61dc07269beb</a><br>//<br>// 天地图-矢量（含注记）（球面墨卡托投影）<br>// 天地图-矢量地图（球面墨卡托投影）<br>// <a target="_blank" rel="noopener" href="http://t{0-7}.tianditu.com/vec_w/wmts?SERVICE=WMTS&amp;VERSION=1.0.0&amp;REQUEST=GetTile&amp;LAYER=vec&amp;STYLE=default&amp;FORMAT=tiles&amp;TILEMATRIXSET=w&amp;TILEMATRIX=12&amp;TILEROW=1550&amp;TILECOL=3372&amp;tk=4267820f43926eaf808d61dc07269beb">http://t{0-7}.tianditu.com/vec_w/wmts?SERVICE=WMTS&amp;VERSION=1.0.0&amp;REQUEST=GetTile&amp;LAYER=vec&amp;STYLE=default&amp;FORMAT=tiles&amp;TILEMATRIXSET=w&amp;TILEMATRIX=12&amp;TILEROW=1550&amp;TILECOL=3372&amp;tk=4267820f43926eaf808d61dc07269beb</a><br>// 天地图-矢量注记（球面墨卡托投影）<br>// <a target="_blank" rel="noopener" href="http://t{0-7}.tianditu.com/cva_w/wmts?SERVICE=WMTS&amp;VERSION=1.0.0&amp;REQUEST=GetTile&amp;LAYER=cva&amp;STYLE=default&amp;FORMAT=tiles&amp;TILEMATRIXSET=w&amp;TILEMATRIX=12&amp;TILEROW=1551&amp;TILECOL=3372&amp;tk=4267820f43926eaf808d61dc07269beb">http://t{0-7}.tianditu.com/cva_w/wmts?SERVICE=WMTS&amp;VERSION=1.0.0&amp;REQUEST=GetTile&amp;LAYER=cva&amp;STYLE=default&amp;FORMAT=tiles&amp;TILEMATRIXSET=w&amp;TILEMATRIX=12&amp;TILEROW=1551&amp;TILECOL=3372&amp;tk=4267820f43926eaf808d61dc07269beb</a><br>// </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">//天地图［可用］［无需纠偏］</span><br><span class="line">var tian_di_tuMapLayer = new ol.layer.Tile(&#123;</span><br><span class="line">    title:&#x27;天地图卫星影像&#x27;,</span><br><span class="line">    source: new ol.source.XYZ(&#123;</span><br><span class="line">        url:&#x27;http://t&#123;1-7&#125;.tianditu.com/DataServer?T=img_w&amp;x=&#123;x&#125;&amp;y=&#123;y&#125;&amp;l=&#123;z&#125;&amp;tk=49ea1deec0ffd88ef13a3f69987e9a63&#x27;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;);</span><br><span class="line">//天地图路网 (和注记一起使用)［可用］［无需纠偏］</span><br><span class="line">var tian_di_tu_road_layer = new ol.layer.Tile(&#123;</span><br><span class="line">    title: &quot;天地图路网&quot;,</span><br><span class="line">    source: new ol.source.XYZ(&#123;</span><br><span class="line">        url: &quot;http://t&#123;1-7&#125;.tianditu.com/DataServer?T=vec_w&amp;x=&#123;x&#125;&amp;y=&#123;y&#125;&amp;l=&#123;z&#125;&amp;tk=49ea1deec0ffd88ef13a3f69987e9a63&quot;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;);</span><br><span class="line">//天地图注记</span><br><span class="line">var tian_di_tu_annotation = new ol.layer.Tile(&#123;</span><br><span class="line">    title: &quot;天地图文字标注&quot;,</span><br><span class="line">    source: new ol.source.XYZ(&#123;</span><br><span class="line">        url: &#x27;http://t&#123;1-7&#125;.tianditu.com/DataServer?T=cva_w&amp;x=&#123;x&#125;&amp;y=&#123;y&#125;&amp;l=&#123;z&#125;&amp;tk=49ea1deec0ffd88ef13a3f69987e9a63&#x27;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;);</span><br><span class="line">//天地图 ［无需纠偏］</span><br><span class="line">var arcgisLayer = new ol.layer.Tile(&#123;</span><br><span class="line">  title:&#x27;天地图卫星影像&#x27;,</span><br><span class="line">  source: new ol.source.XYZ(&#123;</span><br><span class="line">    crossOrigin: &#x27;anonymous&#x27;,</span><br><span class="line">    url:&#x27;https://t&#123;1-7&#125;.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&amp;VERSION=1.0.0&amp;REQUEST=GetTile&amp;LAYER=img&amp;STYLE=default&amp;FORMAT=tiles&amp;TILEMATRIXSET=w&amp;TILEMATRIX=&#123;z&#125;&amp;TILEROW=&#123;y&#125;&amp;TILECOL=&#123;x&#125;&amp;tk=4267820f43926eaf808d61dc07269beb&#x27;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;);</span><br><span class="line">var arcgis2Layer = new ol.layer.Tile(&#123;</span><br><span class="line">  title: &quot;天地图矢量地图&quot;,</span><br><span class="line">  source: new ol.source.XYZ(&#123;</span><br><span class="line">    crossOrigin: &#x27;anonymous&#x27;,</span><br><span class="line">    url:&#x27;https://t&#123;0-7&#125;.tianditu.gov.cn/vec_w/wmts?SERVICE=WMTS&amp;VERSION=1.0.0&amp;REQUEST=GetTile&amp;LAYER=vec&amp;STYLE=default&amp;FORMAT=tiles&amp;TILEMATRIXSET=w&amp;TILEMATRIX=&#123;z&#125;&amp;TILEROW=&#123;y&#125;&amp;TILECOL=&#123;x&#125;&amp;tk=4267820f43926eaf808d61dc07269beb&#x27;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;);</span><br><span class="line">var arcgis3Layer = new ol.layer.Tile(&#123;</span><br><span class="line">  title:&#x27;天地图-矢量地图&#x27;,</span><br><span class="line">  source: new ol.source.XYZ(&#123;</span><br><span class="line">    crossOrigin: &#x27;anonymous&#x27;,</span><br><span class="line">    url:&#x27;https://t&#123;0-7&#125;.tianditu.gov.cn/cva_w/wmts?SERVICE=WMTS&amp;VERSION=1.0.0&amp;REQUEST=GetTile&amp;LAYER=cva&amp;STYLE=default&amp;FORMAT=tiles&amp;TILEMATRIXSET=w&amp;TILEMATRIX=&#123;z&#125;&amp;TILEROW=&#123;y&#125;&amp;TILECOL=&#123;x&#125;&amp;tk=4267820f43926eaf808d61dc07269beb&#x27;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="GIS底图－－-高德地图"><a href="#GIS底图－－-高德地图" class="headerlink" title="GIS底图－－ 高德地图"></a>GIS底图－－ 高德地图</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//高德矢量图［可用］ 需要纠偏</span><br><span class="line">var gaodeMapLayer = new ol.layer.Tile(&#123;</span><br><span class="line">    source: new ol.source.XYZ(&#123;</span><br><span class="line">        url:&#x27;https://wprd0&#123;1-4&#125;.is.autonavi.com/appmaptile?lang=zh_cn&amp;size=1&amp;style=7&amp;x=&#123;x&#125;&amp;y=&#123;y&#125;&amp;z=&#123;z&#125;&#x27;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="GIS底图－－-捷泰地图"><a href="#GIS底图－－-捷泰地图" class="headerlink" title="GIS底图－－ 捷泰地图"></a>GIS底图－－ 捷泰地图</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">//arcgis 矢量图［可用］ 需要纠偏</span><br><span class="line">var backLayer = new ol.layer.Tile(&#123;</span><br><span class="line">  source: new ol.source.XYZ(&#123;</span><br><span class="line">    crossOrigin: &#x27;anonymous&#x27;,</span><br><span class="line">    url:&#x27;http://cache1.arcgisonline.cn/arcgis/rest/services/ChinaOnlineCommunity/MapServer/tile/&#123;z&#125;/&#123;y&#125;/&#123;x&#125;&#x27;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">//捷泰地图(灰) ［需要纠偏］</span><br><span class="line">var geoq2Layer = new ol.layer.Tile(&#123;</span><br><span class="line">  source: new ol.source.XYZ(&#123;</span><br><span class="line">    crossOrigin: &#x27;anonymous&#x27;,</span><br><span class="line">    url:&#x27;http://cache1.arcgisonline.cn/ArcGIS/rest/services/ChinaOnlineStreetGray/MapServer/tile/&#123;z&#125;/&#123;y&#125;/&#123;x&#125;&#x27;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;);</span><br><span class="line">//捷泰地图（深蓝） ［需要纠偏］</span><br><span class="line">var geoqLayer = new ol.layer.Tile(&#123;</span><br><span class="line">  source: new ol.source.XYZ(&#123;</span><br><span class="line">    crossOrigin: &#x27;anonymous&#x27;,</span><br><span class="line">    url:&#x27;http://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineStreetPurplishBlue/MapServer/tile/&#123;z&#125;/&#123;y&#125;/&#123;x&#125;&#x27;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="地理空间数据格式"><a href="#地理空间数据格式" class="headerlink" title="地理空间数据格式"></a>地理空间数据格式</h3><p><a target="_blank" rel="noopener" href="http://www.voidcn.com/article/p-spkzwblm-bpe.html">OGC简单要素标准（WKT/WKB）</a><br><a target="_blank" rel="noopener" href="https://www.osgeo.cn/pygis/others-geojson.html">Python下面其他开源GIS库的使用(GeoJson)</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/852d7ad081b3">GEOJSON标准格式学习</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/d78fff321005">GeoJSON与WKT、WKB字符串</a></p>
+<p>数据格式类型：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">POINT(6 10)</span><br><span class="line">LINESTRING(3 4,10 50,20 25)</span><br><span class="line">POLYGON((1 1,5 1,5 5,1 5,1 1),(2 2,2 3,3 3,3 2,2 2))</span><br><span class="line">MULTIPOINT(3.5 5.6, 4.8 10.5)</span><br><span class="line">MULTILINESTRING((3 4,10 50,20 25),(-5 -8,-10 -8,-15 -4))</span><br><span class="line">MULTIPOLYGON(((1 1,5 1,5 5,1 5,1 1),(2 2,2 3,3 3,3 2,2 2)),((6 3,9 2,9 4,6 3)))</span><br><span class="line">GEOMETRYCOLLECTION(POINT(4 6),LINESTRING(4 6,7 10))</span><br><span class="line">POINT ZM (1 1 5 60)</span><br><span class="line">POINT M (1 1 80)</span><br><span class="line">POINT EMPTY</span><br><span class="line">MULTIPOLYGON EMPTY</span><br></pre></td></tr></table></figure>
+
+<p>关于坐标系</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">坐标系：</span><br><span class="line"> 3857 google</span><br><span class="line"> 4326 WGS-84：是国际标准，GPS坐标（Google Earth使用、或者GPS模块）</span><br><span class="line"> 2437 GCJ-02：中国坐标偏移标准，Google Map、高德、腾讯使用</span><br><span class="line"> BD-09：百度坐标偏移标准，Baidu Map使用</span><br><span class="line">坐标系转换</span><br><span class="line"> &#x27;EPSG:4326&#x27; - 经纬度坐标-WGS84</span><br><span class="line"> &#x27;EPSG:3857&#x27; - xy坐标-web墨卡托</span><br><span class="line">openlayers 默认的坐标系为 EPSG:3857</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/wangweigang689/article/details/105778722">https://blog.csdn.net/wangweigang689/article/details/105778722</a></p>
+<p>行政区划代码，地区 <a target="_blank" rel="noopener" href="https://www.likecs.com/show-246916.html">https://www.likecs.com/show-246916.html</a></p>
+<h3 id="GeoTools-amp-openlayers"><a href="#GeoTools-amp-openlayers" class="headerlink" title="GeoTools &amp; openlayers"></a>GeoTools &amp; openlayers</h3><p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000020297846">Openlayers API整理</a><br><a target="_blank" rel="noopener" href="https://openlayers.org/">openlayer</a><br><a target="_blank" rel="noopener" href="http://docs.geotools.org/latest/userguide/library/jts/index.html">GeoTools</a><br><a target="_blank" rel="noopener" href="http://docs.geotools.org/stable/userguide/">Geotools user guide</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/qingtian-jlj/p/12988219.html">WKT(Well-known text)是开放地理空间联盟OGC（Open GIS Consortium ）制定的一种文本标记语言，用于表示矢量几何对象、空间参照系统及空间参照系统之间的转换</a></p>
+<h3 id="分布式架构优化"><a href="#分布式架构优化" class="headerlink" title="分布式架构优化"></a>分布式架构优化</h3><p>分布式框架<br>    Dubbo<br>    shardingsphere<br>    Netty<br>分布式消息中间间<br>    Rabbitmq<br>    RocketMq<br>    kafka<br>分布式存储中间件<br>    Redis<br>    MongoDB<br>    FastDFS<br>    Elasticserch</p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1cL411b77R">B站最全面分布式面试100道（涵盖所有分布式核心面试知识点）</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1aJ411Y73e">分布式架构学习视频全集|图灵周瑜 </a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Hy4y117op">分布式架构全套教程（700分钟干货精讲）</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1tq4y1D7Kb">超全面深入讲解Java虚拟机 </a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1gh411z7kJ">分布式文件系统FastDFS入门到实战 </a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1nb4y1974r">Tomcat与Nginx负载均衡底层原理分析 </a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/FlyAway2013/p/11201250.html">Nacos 集群部署 </a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/yuuje/p/11005992.html">nginx如何配置负载均衡</a></p>
+<h3 id="大数据分布式架构"><a href="#大数据分布式架构" class="headerlink" title="大数据分布式架构"></a>大数据分布式架构</h3><p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1881291">软件架构设计分层模型和构图思考</a><br><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1049174">中国联通大数据能力开放平台容器化实践</a><br><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1540779">运维产品的能力闭环体系</a><br><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1897347">研发平台演进：从工具链到开放平台</a><br><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1702031">业务系统组件化开发概述和技术架构设计</a></p>
+<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1832221">产品高阶能力：架构图的设计与画法</a><br><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1518589">怎样成为一个优秀的架构师？</a><br><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1533354">直击架构本质：优秀架构师必须掌握的几种架构思维</a><br><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1561345">系统化服务构建-软件工程分层</a></p>
+<h3 id="贷款材料"><a href="#贷款材料" class="headerlink" title="贷款材料"></a>贷款材料</h3><p>贷款额度计算材料（预审材料）：<br>夫妻双方身份证<br>征信证明<br>户口本<br>异地缴存证明</p>
+<p>公积金贷款需要材料：<br>夫妻双方身份证 原件、复印件一份<br>户口本  原件、复印件一份<br>结婚证 原件及复印件一份<br>夫妻双方（一个月内）征信报告<br>售房单位网签备案的商品房买卖合同<br>售房单位出具的首付款的发票 原件及复印件一份<br>银行卡（开发商要求的汇款银行的） 原件及复印件一份<br>异地贷款缴存使用证明</p>
+<h3 id="CSS-书写规范"><a href="#CSS-书写规范" class="headerlink" title="CSS 书写规范"></a>CSS 书写规范</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xuepei/p/8961809.html">CSS书写规范、顺序</a></p>
+<h3 id="javaList进行求和、分组、提取对象单个属性列表"><a href="#javaList进行求和、分组、提取对象单个属性列表" class="headerlink" title="javaList进行求和、分组、提取对象单个属性列表"></a>javaList进行求和、分组、提取对象单个属性列表</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> 分组</span><br><span class="line"></span><br><span class="line">Map&lt;String, List&lt;User&gt;&gt; collect = details.stream().collect(Collectors.groupingBy(User::getCustomerId));</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> 单列求和</span><br><span class="line"><span class="keyword">int</span> totalValue = details.stream().mapToInt(User::getSmsFee).sum();</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span> 提取单列数据集合</span><br><span class="line">List&lt;Integer&gt; ids = details.stream().map(User::getId).collect(Collectors.toList());</span><br><span class="line">Set&lt;String&gt; accounts = details.stream().map(User::getAccount).collect(Collectors.toSet());</span><br><span class="line"></span><br><span class="line"><span class="number">4.</span> 按条件过滤</span><br><span class="line"><span class="comment">//按照条件过滤</span></span><br><span class="line">List&lt;User&gt; collect = list.stream().filter(u -&gt; <span class="string">&quot;北京&quot;</span>.equals(u.getAddr())).collect(Collectors.toList())</span><br><span class="line"></span><br><span class="line"><span class="number">5.</span>两个集合比较</span><br><span class="line"></span><br><span class="line"><span class="comment">//过滤符合某个集合的数据（为了比对效率，accounts不能是list，需要使用set集合）</span></span><br><span class="line">List&lt;ExamData&gt; existList = uniqueList.stream().filter(t-&gt;accounts.contains(t.getAccount())).collect(Collectors.toList());</span><br><span class="line"></span><br><span class="line"><span class="number">6.</span> 去重</span><br><span class="line"><span class="comment">//按单个属性去重</span></span><br><span class="line">List&lt;InstallOrder&gt; unique = installOrderList.stream().collect(</span><br><span class="line">                    Collectors.collectingAndThen(Collectors.toCollection(()-&gt;<span class="keyword">new</span> TreeSet&lt;&gt;(Comparator.comparing(InstallOrder::getOrderCode))),ArrayList::<span class="keyword">new</span>));</span><br><span class="line">List&lt;ExamData&gt; uniqueList = data.stream().distinct().collect(Collectors.toList()); <span class="comment">//这种写法需要重写ExamData中的hasCode和equals方法</span></span><br><span class="line"><span class="comment">//ExamData hasCode和equals重写</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(<span class="keyword">final</span> Object obj)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (obj == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">final</span> ExamData detail = (ExamData) obj;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span> == detail) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">this</span>.account.equals(detail.account));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> hashno = <span class="number">7</span>;</span><br><span class="line">    hashno = <span class="number">13</span> * hashno + (account == <span class="keyword">null</span> ? <span class="number">0</span> : account.hashCode());</span><br><span class="line">    <span class="keyword">return</span> hashno;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="mybatis-使用hikari-驱动读取全量数据"><a href="#mybatis-使用hikari-驱动读取全量数据" class="headerlink" title="mybatis 使用hikari 驱动读取全量数据"></a>mybatis 使用hikari 驱动读取全量数据</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//@Transactional Cursor mybatis游标方式必须设置事务否则执行报错。</span></span><br><span class="line"><span class="comment">//2，druid 连接池不支持 mybatis 游标方式。</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> List&lt;ExamData&gt; <span class="title">getExamData</span><span class="params">(String cityName, String opMonth)</span> </span>&#123;</span><br><span class="line">    List&lt;ExamData&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="keyword">try</span> (Cursor&lt;ExamData&gt; cursor = deatilMapper.findByCity4Cursor(cityName, opMonth)) &#123;</span><br><span class="line">        cursor.forEach(foo -&gt; &#123;list.add(foo); &#125;);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> list;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@Select(&quot;&lt;script&gt;&quot; +</span></span><br><span class="line"><span class="meta">        &quot;select &quot; +</span></span><br><span class="line"><span class="meta">        &quot;   id id,\n&quot; +</span></span><br><span class="line"><span class="meta">        &quot;   op_month opMonth,\n&quot; +</span></span><br><span class="line"><span class="meta">        &quot;   city_name cityName,\n&quot; +</span></span><br><span class="line"><span class="meta">        &quot;   ... \n&quot; +</span></span><br><span class="line"><span class="meta">        &quot; from ZS_EXAM_DETAIL &quot; +</span></span><br><span class="line"><span class="meta">        &quot;&lt;where&gt; &quot; +</span></span><br><span class="line"><span class="meta">        &quot;   OP_MONTH=#&#123;opMonth&#125; and city_name=#&#123;cityName&#125;&quot; +</span></span><br><span class="line"><span class="meta">        &quot;&lt;/where&gt;&quot; +</span></span><br><span class="line"><span class="meta">        &quot;&lt;/script&gt;&quot;)</span></span><br><span class="line"><span class="meta">@Options(fetchSize = 1000)</span></span><br><span class="line"><span class="function">Cursor&lt;ExamData&gt; <span class="title">findByCity4Cursor</span><span class="params">(<span class="meta">@Param(&quot;cityName&quot;)</span> String cityName,<span class="meta">@Param(&quot;opMonth&quot;)</span> String opMonth)</span></span>;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="Arduino资料"><a href="#Arduino资料" class="headerlink" title="Arduino资料"></a>Arduino资料</h3><p><a target="_blank" rel="noopener" href="https://www.arduino.cn/thread-1066-1-1.html">https://www.arduino.cn/thread-1066-1-1.html</a></p>
+<h3 id="在线文档"><a href="#在线文档" class="headerlink" title="在线文档"></a>在线文档</h3><p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/">java11文档</a><br><a target="_blank" rel="noopener" href="https://www.mklab.cn/api/jdk/11/cn">java11中文</a><br><a target="_blank" rel="noopener" href="https://www.apiref.com/java11-zh/index.html">java11中文-备份</a><br><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/">java11英文</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.mklab.cn/api/jdk/8/cn">java8中文</a><br><a target="_blank" rel="noopener" href="https://www.matools.com/api/java8">java8中文2</a><br><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/8/docs/api/">java8英文</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.redis.cn/documentation.html">Redis中文1</a><br><a target="_blank" rel="noopener" href="https://www.redis.net.cn/tutorial/3501.html">Redis中文2</a></p>
+<p><a target="_blank" rel="noopener" href="https://docs.spring.io/spring-boot/docs/2.3.12.RELEASE/reference/htmlsingle">spring-boot</a><br><a target="_blank" rel="noopener" href="https://www.apiref.com/spring-boot-zh/">spring-boot中文</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.springcloud.cc/spring-cloud-brixton.html">Spring Cloud中文</a><br><a target="_blank" rel="noopener" href="https://docs.spring.io/spring-cloud/docs/Hoxton.SR12/reference/html/">Spring Cloud Hoxton.SR12(springboot 2.3.12.RELEASE)</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.apiref.com/kubernetes-zh/index.html">Kubernetes(K8S)中文文档_Kubernetes中文社区</a><br><a target="_blank" rel="noopener" href="https://www.docker.org.cn/book/docker/what-is-docker-16.html">docker入门教程</a><br><a target="_blank" rel="noopener" href="https://www.runoob.com/docker/docker-tutorial.html">docker教程</a><br><a target="_blank" rel="noopener" href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/index.html">Elasticsearch: 权威指南</a></p>
+<p><a target="_blank" rel="noopener" href="https://openlayers.org/en/latest/apidoc/">openlayers文档</a><br><a target="_blank" rel="noopener" href="http://docs.geotools.org/stable/userguide/index.html">geotools文档</a><br><a target="_blank" rel="noopener" href="https://docs.geotools.org/stable/javadocs/">geotools api</a><br><a target="_blank" rel="noopener" href="http://locationtech.github.io/jts/javadoc/index.html">JTS api</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xiaxiaolu/p/13514915.html">聊聊常见的服务(接口)认证授权</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/joy99/p/10941543.html">Spring AOP——Spring 中面向切面编程</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38496561/article/details/105945386">Spring Boot Admin+Nacos从入门到上线</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/05ee63c5b932">Nacos整合Spring Boot Admin</a><br><a target="_blank" rel="noopener" href="http://www.uml.org.cn/wfw/2020041312.asp">微服务环境搭建</a></p>
+<h3 id="RSIC-V"><a href="#RSIC-V" class="headerlink" title="RSIC-V"></a>RSIC-V</h3><p><a target="_blank" rel="noopener" href="https://gitee.com/liangkangnan/tinyriscv#https://liangkangnan.gitee.io/2020/04/29/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%86%99RISC-V%E5%A4%84%E7%90%86%E5%99%A8/">从零开始写RISC-V处理器</a><br><a href="">Verilog HDL</a></p>
+<h3 id="springboot-cloud-示例"><a href="#springboot-cloud-示例" class="headerlink" title="springboot cloud 示例"></a>springboot cloud 示例</h3><p><a target="_blank" rel="noopener" href="https://gitee.com/matevip">MateCloud微服</a></p>
+<h3 id="计算机类书目"><a href="#计算机类书目" class="headerlink" title="计算机类书目"></a>计算机类书目</h3><p>1.计算机科学概论</p>
+<p>计算机科学概论<br>计算机系统概论(2016/11/27)<br>计算机系统要素(2016/11/27)</p>
+<p>2.计算机数学基础</p>
+<p>高等数学线性代数<br>概率论与数理统计<br>离散数学及其应用<br>离散数学教程(北大版)<br>什么是数学<br>具体数学：计算机科学基础</p>
+<p>3.C语言</p>
+<p>C primer plusThe C programming language<br>C和指针<br>C专家教程<br>C陷阱与缺陷<br>c语言解惑<br>C标准库<br>你必须知道的495个C语言问题</p>
+<p>4.算法与数据结构</p>
+<p>数据结构(清华版)数据结构与算法分析—C语言描述<br>C算法(第一卷:基础、数据结构、排序和搜索)<br>C算法(第二卷 图算法)<br>编程珠玑<br>编程珠玑II(More programming Pearls)<br>算法概论 2014-2-8</p>
+<p>算法第4版红皮书(2016/11/27)</p>
+<p>算法导论计算机程序设计艺术卷1<br>计算机程序设计艺术卷2<br>计算机程序设计艺术卷3</p>
+<p>5.电子技术基础</p>
+<p>模拟电子技术(童诗白版)<br>数字逻辑与数字集成电路(清华版)</p>
+<p>6.汇编语言</p>
+<p>汇编语言(王爽版)80X86汇编语言程序设计教程<br>Intel汇编语言程序设计<br>IBM PC汇编语言程序设计(国外版)<br>高级汇编语言程序设计<br>保护方式下的80386及其编程<br>黑客反汇编揭秘<br>Windows.环境下32位汇编语言程序设计(第2版)<br>汇编语言程序设计+基于ARM体系结构</p>
+<p>7.计算机硬件原理</p>
+<p>计算机组成-结构化方法微机原理与接口技术(陈光军版)<br>计算机体系结构(张晨曦版)<br>计算机组成与设计硬件/软件接口<br>Intel微处理器结构、编程与接口<br>计算机体系结构(量化研究方法)<br>编程卓越之道卷1<br>编程卓越之道卷2<br>深入理解计算机系统<br>编码的奥秘</p>
+<p>8.数据库系统原理</p>
+<p>数据库系统概念数据库系统导论<br>数据库系统实现</p>
+<p>9.编译原理</p>
+<p>编译原理(清华第2版)编译原理及实践<br>编译原理:原则,技术和工具<br>现代编译原理-C语言描述<br>高级编译器设计与实现</p>
+<p>10.操作系统原理</p>
+<p>操作系统概念现代操作系统<br>链接器和加载器<br>程序员的自我修养:链接、装载与库<br>自己动手写操作系统<br>操作系统设计与实现</p>
+<p>11.计算机网络</p>
+<p>计算机网络(Computer Networks)TCP-IP详解卷1<br>TCP-IP详解卷2<br>TCP-IP详解卷3<br>用TCP/IP进行网际互联(第一卷):原理、协议与结构<br>用TCP/IP进行网际互联第二卷：设计、实现与内核(第三版)<br>用TCP/IP 进行网际互联第三卷:客户-服务器编程与应用</p>
+<p>12.软件工程和面向对象程序设计</p>
+<p>C++编程思想卷<br>java编程思想<br>软件工程(Software.Engineering)<br>软件工程：实践者的研究方法<br>深入浅出面向对象分析与设计<br>head first设计模式<br>道法自然:面向对象实践指南<br>面向对象分析与设计<br>敏捷软件开发：原则、模式与实践<br>设计模式:可复用面向对象软件的基础<br>测试驱动开发<br>重构—改善既有代码的设计<br>代码大全<br>程序设计实践<br>程序员修炼之道：从小工到专家<br>卓有成效的程序员<br>代码之美<br>人月神话<br>计算机程序的构造和解释<br>观止-微软创建NT和未来的夺命狂奔<br>代码优化：有效使用内存[美]克里斯·卡巴斯基<br>编程高手箴言(梁肇新)<br>游戏之旅-我的编程感悟(云风)<br>企业应用架构模式</p>
+<p>修改代码的艺术</p>
+<p>xUnit.Test.Patterns.Refactoring.Test.Code</p>
+<p>13.windows编程基础</p>
+<p>Windows操作系统原理Inside Windows 2000<br>深入解析Windows操作系统<br>天书夜读：从汇编语言到Windows内核编程<br>windows程序设计<br>WINDOWS核心编程</p>
+<p>14.linux/unix编程基础</p>
+<p>鸟哥的Linux私房菜:基础学习篇鸟哥的Linux私房菜:服务器架设篇<br>linux程序设计<br>UNIX环境高级编程<br>Unix网络编程卷1<br>UNIX网络编程卷2<br>UNIX编程艺术<br>UNIX Shell范例精解<br>The Linux Programming Interface - A Linux and UNIX System Programming Handbook</p>
+<p>15.Linux/unix内核源代码和驱动程序</p>
+<p>Linux内核设计与实现LINUX内核源代码情景分析<br>深入理解LINUX内核<br>Linux内核完全注释<br>Linux设备驱动程序<br>深入Linux设备驱动程序内核机制<br>深入Linux内核架构<br>精通Linux设备驱动程序开发<br>Linux设备驱动开发详解</p>
+<p>16.C++语言</p>
+<p>C++编程思想2Essential C++<br>C++ primer<br>C++程序设计语言<br>C++语言的设计和演化<br>Accelerated C++<br>Effective C++<br>More Effective C++<br>Exceptional C++<br>More Exceptional C++<br>C++设计新思维<br>深度探索C++对象模型<br>C++沉思录<br>C++ Templates: The Complete Guide<br>C++ FAQs</p>
+<p>17.标准库STL使用<br>C++标准程序库Effective STL<br>泛型编程与STL<br>18.STL源代码<br>STL源码剖析</p>
+<p>19.java语言<br>java编程思想Java编程规范(The Java Language Specification)<br>Beginning Java(C#) Objects从概念到代码<br>effective java<br>Java解惑<br>Java性能优化权威指南<br>深入理解Java虚拟机<br>Java并发编程实践</p>
+<p>20.图形学/分布式/机器学习<br>计算机图形学(第三版)<br>大数据时代<br>多处理器编程的艺术<br>冈萨雷斯数字图像处理(</p>
+<p>（1）深入理解计算机系统(原书第3版).pdf<br>（2）计算机科学导论(第2版).pdf<br>（3）计算机科学概论(原书第5版).pdf</p>
+<p>（4）C程序设计语言(第2版 新版).pdf<br>（9）C陷阱与缺陷(第2版)-人民邮电出版社.pdf<br>（13）More Effective C++.pdf<br>（14）C++编程思想(两卷合订本).pdf<br>（15）C++标准程序库(中文版).pdf<br>（16）Exceptional C++ Style中文版.pdf<br>（17）More Exceptional C++中文版.pdf</p>
+<p>（18）Head First Java(第2版)中文版.pdf<br>（19）Java编程思想(第4版).pdf<br>（20）Java核心技术 卷1 基础知识(第10版).pdf<br>（21）Effective Java中文版(原书第3版).pdf</p>
+<p>（22）Python学习手册(第4版).pdf<br>（23）笨办法 学Python(第4版).pdf<br>（24）Python核心编程(第3版)中文版.pdf<br>（26）流畅的Python.pdf</p>
+<p>（27）算法导论(原书第3版).pdf<br>（28）计算机程序设计艺术 卷1：基本算法.pdf<br>（28）计算机程序设计艺术 卷2：半数值算法.pdf<br>（29）计算机程序设计艺术 卷3：排序与查找.pdf<br>（30）算法(第4版)中文版.pdf<br>（31）数据结构与算法分析 C语言描述(原书第2版).pdf<br>（32）算法竞赛入门经典(第2版).pdf</p>
+<p>（33）编译原理(龙书)中文版.pdf<br>（34）现代编译原理 C语言描述.pdf<br>（35）高级编译器设计与实现(鲸书)中文版.pdf</p>
+<p>（36）计算机网络 Andrew S.Tanenbaum(第四版).pdf<br>（37）计算机网络 自顶向下方法(英文第6版).pdf<br>（37）计算机网络 自顶向下方法(原书第6版).pdf<br>（37）计算机网络 自顶向下方法(中文第4版).pdf<br>（38）TCP IP详解 卷1：协议(原书第2版).pdf<br>（39）TCP IP详解 卷2：实现.pdf</p>
+<p>（41）现代操作系统(第三版).pdf<br>（42）鸟哥的Linux私房菜(第四版).pdf<br>（44）UNIX环境高级编程(第二版).pdf<br>（44）UNIX环境高级编程(第三版).pdf<br>（45）深入理解Linux内核(第三版)中文版.pdf</p>
+<p>（46）Pattern Recognition and Machine Learning.pdf<br>（47）Machine Learning A Probabilistic Perspective.pdf<br>（48）机器学习 Tom M.Mitchell.pdf<br>（49）机器学习 周志华.pdf<br>（50）统计自然语言处理基础(中文版).pdf<br>（51）DEEP LEARNING 深度学习 花书.pdf</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://groupfusion.github.io/2021/12/26/devlang/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/" data-id="clq6bcvnf000v2guz9i47dfgz" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/" rel="tag">技术积累</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+  
+<nav class="article-nav">
+  
+  <a href="/2022/08/15/dev/jvm%20%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6%E7%90%86%E8%A7%A3/" class="article-nav-link">
+    <strong class="article-nav-caption">前一篇</strong>
+    <div class="article-nav-title">
+      
+      jvm垃圾回收机制理解
+      
+    </div>
+  </a>
+  
+  
+  <a href="/2017/06/23/db/mysql%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90%E8%AE%BE%E7%BD%AE/" class="article-nav-link">
+    <strong class="article-nav-caption">后一篇</strong>
+    <div class="article-nav-title">Host &#39;192.168.＊.＊&#39; is not allowed to connect to this MariaDB server</div>
+  </a>
+  
+</nav>
+
+  
+
+  
+  
+  
+  
+
+</article>
+</section>
+    <footer class="footer">
+  <div class="outer">
+    <div class="float-right">
+      <ul class="list-inline">
+  
+  <li><i class="fe fe-smile-alt"></i> <span id="busuanzi_value_site_uv"></span></li>
+  
+  <li><i class="fe fe-bookmark"></i> <span id="busuanzi_value_page_pv"></span></li>
+  
+</ul>
+    </div>
+    <ul class="list-inline">
+      <li>缺陷代码 &copy; 2023</li>
+      
+        <li></li>
+      
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>theme  <a target="_blank" rel="noopener" href="https://github.com/zhwangart/hexo-theme-ocean">Ocean</a></li>
+    </ul>
+  </div>
+</footer>
+  </main>
+  <aside class="sidebar">
+    <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/xmon.svg" alt="缺陷代码"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/gallery">相册</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/favorites">收藏</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      <div class="totop" id="totop">
+  <i class="fe fe-rocket"></i>
+</div>
+    </li>
+    <li class="nav-item">
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="fe fe-feed"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+  </aside>
+  
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/copybtn.js"></script>
+
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+  });
+</script>
+
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+
+</html>
