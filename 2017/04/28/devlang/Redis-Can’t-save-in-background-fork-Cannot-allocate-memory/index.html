@@ -70,6 +70,7 @@
       
       <p>Redis: “Can’t save in background: fork: Cannot allocate memory”</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">redis.clients.jedis.exceptions.JedisDataException: MISCONF Redis is configured to save RDB snapshots, but is currently not able to persist on disk. Commands that may modify the data set are disabled. </span><br><span class="line">for details about the error.</span><br><span class="line">	redis.clients.jedis.Protocol.processError(Protocol.java:127)</span><br><span class="line">	redis.clients.jedis.Protocol.process(Protocol.java:161)</span><br><span class="line">	redis.clients.jedis.Protocol.read(Protocol.java:215)</span><br><span class="line">	</span><br><span class="line">	....</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
 
 <p>今天项目现场反馈说工单提交不了了，查看日志发现时 “Redis “MISCONF Redis is configured to save RDB snapshots, but is currently not able to persist on disk”的问题。这个错误信息是Redis客户端工具在保存数据时候抛出的异常信息。</p>
 <p>网上查了一下，很多人都是建议“config set stop-writes-on-bgsave-error no”。这样做其实是不好的，这仅仅是让程序忽略了这个异常，使得程序能够继续往下运行，但实际上数据还是会存储到硬盘失败！：</p>

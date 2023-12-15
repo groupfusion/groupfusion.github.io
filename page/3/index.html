@@ -100,16 +100,20 @@
         
       
       
-      <p>##03. spring与jedis整合使用</p>
+        <p>##03. spring与jedis整合使用</p>
 <h3 id="spring-redis"><a href="#spring-redis" class="headerlink" title="spring redis"></a>spring redis</h3><ul>
 <li><a target="_blank" rel="noopener" href="http://www.cnblogs.com/LiZhiW/p/4853486.html">04.spring-data-redis与Jedis整合使用</a></li>
 <li><a target="_blank" rel="noopener" href="https://github.com/kangyonggan/spring-redis">spring整合redis实现无侵入式的缓存管理</a></li>
 <li><a target="_blank" rel="noopener" href="http://blog.csdn.net/u013725455/article/details/52129283">Spring集成Redis使用注解</a></li>
 <li><a target="_blank" rel="noopener" href="http://phipray.iteye.com/blog/2248352">SpringMVC+Shiro+RedisCluster搭建session统一管理</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/alexxiyang/shiro-redis">shiro-redis</a></li>
-</ul>
-<h3 id="ehcache"><a href="#ehcache" class="headerlink" title="ehcache"></a>ehcache</h3><p>*<a target="_blank" rel="noopener" href="http://elim.iteye.com/blog/2123030">Spring使用Cache、整合Ehcache</a></p>
-
+<li><a target="_blank" rel="noopener" href="https://github.com/alexxiyang/shiro-redis">shiro-redis</a>
+        
+          <p>
+            <a class="article-more-link" href="/2017/01/17/devlang/03.spring%E4%B8%8EJedis%E6%95%B4%E5%90%88%E4%BD%BF%E7%94%A8/">
+              阅读全文
+            </a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -163,16 +167,17 @@
         
       
       
-      <p>比如在获取用户资料时，我们不想把密码等重要信息全部带出。那时，我们就要用到jpa query 返回指定字段。</p>
+        <p>比如在获取用户资料时，我们不想把密码等重要信息全部带出。那时，我们就要用到jpa query 返回指定字段。</p>
 <p>我要在网上查找了下都是比较基础的单表查询。好了，如何写呢？</p>
 <p>例如，下面的我们会将user的所有属性都会带出来，</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> @Query(&quot;SELECT u FROM BaseUser u JOIN u.roles roles WHERE roles.roleCode = :roleCode)</span><br><span class="line"></span><br><span class="line"> List&lt;BaseUser&gt; findUserByRoleCode(@Param(&quot;roleCode&quot;) String roleCode);</span><br><span class="line"></span><br><span class="line"> ⚠：上面select 后面的 “u” 是一个BaseUser，包括所有的属性。这是我们所不需要的，它泄漏了太多的信息。</span><br></pre></td></tr></table></figure>
-
-<p> 我们要指定字段，怎么定义呢？前面试了两次都失败了，最后参考<a target="_blank" rel="noopener" href="https://my.oschina.net/u/1045177/blog/550173">Spring Data Jpa 查询返回自定义对象</a> 才解决，非常感谢。也分享下我的经验。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> 1、 @Query(&quot;SELECT name,id,org FROM BaseUser u JOIN u.roles roles WHERE roles.roleCode = :roleCode)</span><br><span class="line"></span><br><span class="line"> ⚠ 这个根本就不能编译通过。</span><br><span class="line"></span><br><span class="line"> 2、 @Query(&quot;SELECT u.name,u.id,u.org  FROM BaseUser u JOIN u.roles roles WHERE roles.roleCode = :roleCode)</span><br><span class="line"></span><br><span class="line"> ⚠ 这个可以编译通过 但返回的不是BaseUser对象，只包括name，id属性和 org对象。不符合我的条件。</span><br><span class="line"></span><br><span class="line">3、@Query(&quot;SELECT new BaseUser(u.id,u.loginname,u.roles,u.org)  FROM BaseUser u JOIN u.roles roles WHERE roles.roleCode = :roleCode)</span><br></pre></td></tr></table></figure>
-
-<p>只有这个是正确的，返回了baseUser对象。这个要注意的是必须在实体baseuser中创建相应的构造方法。</p>
-
+        
+          <p>
+            <a class="article-more-link" href="/2017/01/16/devlang/%E5%85%B3%E4%BA%8Espring-jpa-%E5%A4%9A%E8%A1%A8%E5%85%B3%E7%B3%BB%E6%9F%A5%E8%AF%A2%E6%97%B6%EF%BC%8C%E8%87%AA%E5%AE%9A%E4%B9%89%E8%BF%94%E5%9B%9E%E5%AF%B9%E8%B1%A1/">
+              阅读全文
+            </a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -226,7 +231,7 @@
         
       
       
-      <h1 id="IDEA-快捷键［mac版本］"><a href="#IDEA-快捷键［mac版本］" class="headerlink" title="IDEA 快捷键［mac版本］"></a>IDEA 快捷键［mac版本］</h1><p>Mac键盘符号和修饰键说明</p>
+        <h1 id="IDEA-快捷键［mac版本］"><a href="#IDEA-快捷键［mac版本］" class="headerlink" title="IDEA 快捷键［mac版本］"></a>IDEA 快捷键［mac版本］</h1><p>Mac键盘符号和修饰键说明</p>
 <pre><code>⌘ Command
 ⇧ Shift
 ⌥ Option
@@ -246,54 +251,13 @@ End Fn + →
 ⇤ 左制表符（Shift+Tab）
 ⎋ Escape (Esc)
 </code></pre>
-<p>##一、Editing（编辑）</p>
-<pre><code>⌃Space 基本的代码补全（补全任何类、方法、变量）
-⌃⇧Space 智能代码补全（过滤器方法列表和变量的预期类型）
-⌘⇧↩ 自动结束代码，行末自动添加分号
-⌘P 显示方法的参数信息
-⌃J, Mid. button click 快速查看文档
-⇧F1 查看外部文档（在某些代码上会触发打开浏览器显示相关文档）
-⌘+鼠标放在代码上 显示代码简要信息
-⌘F1 在错误或警告处显示具体描述信息
-⌘N, ⌃↩, ⌃N 生成代码（getter、setter、构造函数、hashCode/equals,toString）
-⌃O 覆盖方法（重写父类方法）
-⌃I 实现方法（实现接口中的方法）
-⌘⌥T 包围代码（使用if..else, try..catch, for, synchronized等包围选中的代码）
-⌘/ 注释/取消注释与行注释
-⌘⌥/ 注释/取消注释与块注释
-⌥↑ 连续选中代码块
-⌥↓ 减少当前选中的代码块
-⌃⇧Q 显示上下文信息
-⌥↩ 显示意向动作和快速修复代码
-⌘⌥L 格式化代码
-⌃⌥O 优化import
-⌃⌥I 自动缩进线
-⇥ / ⇧⇥ 缩进代码 / 反缩进代码
-⌘X 剪切当前行或选定的块到剪贴板
-⌘C 复制当前行或选定的块到剪贴板
-⌘V 从剪贴板粘贴
-⌘⇧V 从最近的缓冲区粘贴
-⌘D 复制当前行或选定的块
-⌘⌫ 删除当前行或选定的块的行
-⌃⇧J 智能的将代码拼接成一行
-⌘↩ 智能的拆分拼接的行
-⇧↩ 开始新的一行
-⌘⇧U 大小写切换
-⌘⇧] / ⌘⇧[ 选择直到代码块结束/开始
-⌥⌦ 删除到单词的末尾（⌦键为Fn+Delete）
-⌥⌫ 删除到单词的开头
-⌘+ / ⌘- 展开 / 折叠代码块
-⌘⇧+ 展开所以代码块
-⌘⇧- 折叠所有代码块
-⌘W 关闭活动的编辑器选项卡
-</code></pre>
-<p>##二、Search/Replace（查询/替换）<br>    Double ⇧ 查询任何东西<br>    ⌘F 文件内查找<br>    ⌘G 查找模式下，向下查找<br>    ⌘⇧G 查找模式下，向上查找<br>    ⌘R 文件内替换<br>    ⌘⇧F 全局查找（根据路径）<br>    ⌘⇧R 全局替换（根据路径）<br>    ⌘⇧S 查询结构（Ultimate Edition 版专用，需要在Keymap中设置）<br>    ⌘⇧M 替换结构（Ultimate Edition 版专用，需要在Keymap中设置）<br>##三、Usage Search（使用查询）<br>    ⌥F7 / ⌘F7 在文件中查找用法 / 在类中查找用法<br>    ⌘⇧F7 在文件中突出显示的用法<br>    ⌘⌥F7 显示用法<br>##四、Compile and Run（编译和运行）<br>    ⌘F9  编译Project<br>    ⌘⇧F9 编译选择的文件、包或模块<br>    ⌃⌥R  弹出 Run 的可选择菜单<br>    ⌃⌥D  弹出 Debug 的可选择菜单<br>    ⌃R   运行<br>    ⌃D   调试<br>    ⌃⇧R, ⌃⇧D  从编辑器运行上下文环境配置<br>##五、Debugging（调试）<br>    F8     进入下一步，如果当前行断点是一个方法，则不进入当前方法体内<br>    F7     进入下一步，如果当前行断点是一个方法，则进入当前方法体内，如果该方法体还有方法，则不会进入该内嵌的方法中<br>    ⇧F7 智能步入，断点所在行上有多个方法调用，会弹出进入哪个方法<br>    ⇧F8 跳出<br>    ⌥F9 运行到光标处，如果光标前有其他断点会进入到该断点<br>    ⌥F8 计算表达式（可以更改变量值使其生效）<br>    ⌘⌥R 恢复程序运行，如果该断点下面代码还有断点则停在下一个断点上<br>    ⌘F8 切换断点（若光标当前行有断点则取消断点，没有则加上断点）<br>    ⌘⇧F8 查看断点信息<br>##六、Navigation（导航）<br>    ⌘O 查找类文件<br>    ⌘⇧O 查找所有类型文件、打开文件、打开目录，打开目录需要在输入的内容前面或后面加一个反斜杠/<br>    ⌘⌥O 前往指定的变量 / 方法<br>    ⌃← / ⌃→ 左右切换打开的编辑tab页<br>    F12 返回到前一个工具窗口<br>    ⎋ 从工具窗口进入代码文件窗口<br>    ⇧⎋ 隐藏当前或最后一个活动的窗口，且光标进入代码文件窗口<br>    ⌘⇧F4 关闭活动run/messages/find/… tab<br>    ⌘L 在当前文件跳转到某一行的指定处<br>    ⌘E 显示最近打开的文件记录列表<br>    ⌘⌥← / ⌘⌥→ 退回 / 前进到上一个操作的地方<br>    ⌘⇧⌫ 跳转到最后一个编辑的地方<br>    ⌥F1 显示当前文件选择目标弹出层，弹出层中有很多目标可以进行选择(如在代码编辑窗口可以选择显示该文件的Finder)<br>    ⌘B / ⌘ 鼠标点击 进入光标所在的方法/变量的接口或是定义处<br>    ⌘⌥B 跳转到实现处，在某个调用的方法名上使用会跳到具体的实现处，可以跳过接口<br>    ⌥ Space, ⌘Y 快速打开光标所在方法、类的定义<br>    ⌃⇧B 跳转到类型声明处<br>    ⌘U 前往当前光标所在方法的父类的方法 / 接口定义<br>    ⌃↓ / ⌃↑ 当前光标跳转到当前文件的前一个/后一个方法名位置<br>    ⌘] / ⌘[ 移动光标到当前所在代码的花括号开始/结束位置<br>    ⌘F12 弹出当前文件结构层，可以在弹出的层上直接输入进行筛选（可用于搜索类中的方法）<br>    ⌃H 显示当前类的层次结构<br>    ⌘⇧H 显示方法层次结构<br>    ⌃⌥H 显示调用层次结构<br>    F2 / ⇧F2 跳转到下一个/上一个突出错误或警告的位置<br>    F4 / ⌘↓ 编辑/查看代码源<br>    ⌥ Home 显示到当前文件的导航条<br>    F3选中文件/文件夹/代码行，添加/取消书签<br>    ⌥F3 选中文件/文件夹/代码行，使用助记符添加/取消书签<br>    ⌃0…⌃9 定位到对应数值的书签位置<br>    ⌘F3 显示所有书签<br>##七、Refactoring（重构）<br>    F5 复制文件到指定目录<br>    F6 移动文件到指定目录<br>    ⌘⌫ 在文件上为安全删除文件，弹出确认框<br>    ⇧F6 重命名文件<br>    ⌘F6 更改签名<br>    ⌘⌥N 一致性<br>    ⌘⌥M 将选中的代码提取为方法<br>    ⌘⌥V 提取变量<br>    ⌘⌥F 提取字段<br>    ⌘⌥C 提取常量<br>    ⌘⌥P 提取参数<br>##八、VCS/Local History（版本控制/本地历史记录）<br>    ⌘K 提交代码到版本控制器<br>    ⌘T 从版本控制器更新代码<br>    ⌥⇧C 查看最近的变更记录<br>    ⌃C 快速弹出版本控制器操作面板<br>##九、Live Templates（动态代码模板）<br>    ⌘⌥J 弹出模板选择窗口，将选定的代码使用动态模板包住<br>    ⌘J 插入自定义动态代码模板<br>##十、General（通用）<br>    ⌘1…⌘9 打开相应编号的工具窗口<br>    ⌘S 保存所有<br>    ⌘⌥Y 同步、刷新<br>    ⌃⌘F 切换全屏模式<br>    ⌘⇧F12 切换最大化编辑器<br>    ⌥⇧F 添加到收藏夹<br>    ⌥⇧I 检查当前文件与当前的配置文件<br>    §⌃, ⌃` 快速切换当前的scheme（切换主题、代码样式等）<br>    ⌘, 打开IDEA系统设置<br>    ⌘; 打开项目结构对话框<br>    ⇧⌘A 查找动作（可设置相关选项）<br>    ⌃⇥ 编辑窗口标签和工具窗口之间切换（如果在切换的过程加按上delete，则是关闭对应选中的窗口）<br>##十一、Other（一些官方文档上没有体现的快捷键）<br>    ⌘⇧8 竖编辑模式</p>
-<p>##导航<br>    ⌘O 查找类文件 Ctrl + N<br>    ⌘⌥O 前往指定的变量 / 方法 Ctrl + Shift + Alt + N<br>    ⌃← / ⌃→ 左右切换打开的编辑tab页 Alt← / Alt→<br>    ⎋ 从工具窗口进入代码文件窗口 ESC<br>    ⌘L 在当前文件跳转到某一行的指定处 Ctrl + G<br>    ⌘E 显示最近打开的文件记录列表 Ctrl + E<br>    ⌘⌥← / ⌘⌥→ 退回 / 前进到上一个操作的地方 Ctrl + Alt + ← Ctrl + Alt + →<br>    ⌘⇧⌫ 跳转到最后一个编辑的地方<br>    ⌃H 显示当前类的层次结构 Ctrl + H<br>    ⌘⇧H 显示方法层次结构<br>    ⌃⌥H 显示调用层次结构<br>    F4 / ⌘↓ 编辑/查看代码源<br>    ⌘⌥U 显示类UML图<br>    ⌃J 查看注释</p>
-<p>##编辑<br>    ⌥⌦ 删除到单词的末尾（⌦键为Fn+Delete）<br>    ⌥⌫ 删除到单词的开头<br>    ⌘+ / ⌘- 展开 / 折叠代码块<br>    ⌘F1 在错误或警告处显示具体描述信息<br>    ⌘⌥L 格式化代码<br>    ⌃⌥O 优化import<br>    ⇧↩ 开始新的一行<br>    ⌘⇧↩ 自动结束代码，行末自动添加分号<br>    ⌃I 实现方法（实现接口中的方法）<br>    ⇧F6 重命名文件或者变量<br>    ⌘N, ⌃↩, ⌃N 生成代码（getter、setter、构造函数、hashCode/equals,toString）<br>    ⌘P 显示方法的参数信息</p>
-<p>##查找<br>    Double⇧ 查找任何东西<br>    ⌘⇧F 全局查找（根据路径）<br>    ⌘F 文件内查找<br>    ⌘G 查找模式下，向下查找<br>    ⌘⇧G 查找模式下，向上查找</p>
-<p>##导航<br>    ⌘⌥B 跳转到接口的实现<br>    ⌘U 查看接口定义<br>    ⌘⌥← / ⌘⌥→ 退回 / 前进到上一个操作的地方<br>    ⌘B / ⌘ 鼠标点击 进入光标所在的方法/变量的接口或是定义处<br>    ⌃⇧B 跳转到类型声明处<br>    ⌥ Space, ⌘Y 快速打开光标所在方法、类的定义<br>    ⌘O 查找类文件<br>    ⌘⇧O 查找所有类型文件、打开文件、打开目录，打开目录需要在输入的内容前面或后面加一个反斜杠/<br>    F12 返回到前一个工具窗口<br>    ⎋ 从工具窗口进入代码文件窗口<br>    ⇧⎋ 隐藏当前或最后一个活动的窗口，且光标进入代码文件窗口<br>    F3选中文件/文件夹/代码行，添加/取消书签<br>    ⌥F3 选中文件/文件夹/代码行，使用助记符添加/取消书签<br>    ⌃0…⌃9 定位到对应数值的书签位置<br>    ⌘F3 显示所有书签<br>    ⌥F1 显示当前文件选择目标弹出层，弹出层中有很多目标可以进行选择(如在代码编辑窗口可以选择显示该文件的Finder)<br>    ⌘F12 弹出当前文件结构层，可以在弹出的层上直接输入进行筛选（可用于搜索类中的方法）</p>
-<p>##通用<br>    ⌃⌘F 切换全屏模式</p>
-
+        
+          <p>
+            <a class="article-more-link" href="/2017/01/16/tools/idea_%E5%BF%AB%E6%8D%B7%E9%94%AE/">
+              阅读全文
+            </a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -347,12 +311,15 @@ End Fn + →
         
       
       
-      <p>sonar 配置后台服务时，出现“Temp directory is not writable” 问题解决：</p>
+        <p>sonar 配置后台服务时，出现“Temp directory is not writable” 问题解决：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">WrapperSimpleApp: Encountered an error running main: java.lang.IllegalStateException: Temp directory is not writable: C:\Windows\system32\config\systemprofile\AppData\Local\Temp\</span><br><span class="line">java.lang.IllegalStateException: Temp directory is not writable: C:\Windows\system32\config\systemprofile\AppData\Local\Temp\</span><br><span class="line">at org.sonar.process.MinimumViableSystem.checkWritableDir(MinimumViableSystem.java:60)</span><br><span class="line">at org.sonar.process.MinimumViableSystem.checkWritableTempDir(MinimumViableSystem.java:52)</span><br><span class="line">at org.sonar.process.MinimumViableSystem.check(MinimumViableSystem.java:45)</span><br><span class="line">at org.sonar.application.App.main(App.java:108)</span><br><span class="line">at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)</span><br><span class="line">at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)</span><br><span class="line">at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)</span><br><span class="line">at java.lang.reflect.Method.invoke(Method.java:597)</span><br><span class="line">at org.tanukisoftware.wrapper.WrapperSimpleApp.run(WrapperSimpleApp.java:240)</span><br><span class="line">at java.lang.Thread.run(Thread.java:619)</span><br><span class="line">Caused by: java.io.IOException: 系统找不到指定的路径。</span><br><span class="line">at java.io.WinNTFileSystem.createFileExclusively(Native Method)</span><br><span class="line">at java.io.File.checkAndCreate(File.java:1704)</span><br><span class="line">at java.io.File.createTempFile(File.java:1792)</span><br><span class="line">at org.sonar.process.MinimumViableSystem.checkWritableDir(MinimumViableSystem.java:57)</span><br><span class="line">... 9 more</span><br><span class="line">&amp;lt;-- Wrapper Stopped</span><br><span class="line">The SonarQube service was launched, but failed to start.</span><br></pre></td></tr></table></figure>
-<p>解决办法如下：</p>
-<p>在conf目录找到wrapper.conf文件，打开。<br>在“wrapper.java.additional.1=-Djava.awt.headless=true”下增加</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">###set temp dir ,solve Temp directory is not writable</span><br><span class="line">wrapper.java.additional.2=-Djava.io.tmpdir=../../temp`</span><br></pre></td></tr></table></figure>
-
+        
+          <p>
+            <a class="article-more-link" href="/2017/01/05/tools/sonar-%E9%85%8D%E7%BD%AE%E6%9C%8D%E5%8A%A1%E9%BB%98%E8%AE%A4%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98/">
+              阅读全文
+            </a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -406,11 +373,15 @@ End Fn + →
         
       
       
-      <p>arcgis server安装后，池化“最大实例数”默认为2。可在“服务属性”对话框的池化选项卡中设置最大实例数，调整的原则为：首先应将实例数设置为等于 N+1，其中 N 是计算机上 CPU 核的数量。在个别情况下，如果您发现计算机上的 CPU 利用率未接近 90%，则可以考虑添加更多实例。</p>
+        <p>arcgis server安装后，池化“最大实例数”默认为2。可在“服务属性”对话框的池化选项卡中设置最大实例数，调整的原则为：首先应将实例数设置为等于 N+1，其中 N 是计算机上 CPU 核的数量。在个别情况下，如果您发现计算机上的 CPU 利用率未接近 90%，则可以考虑添加更多实例。</p>
 <p><a target="_blank" rel="noopener" href="http://help.arcgis.com/zh-cn/arcgisdesktop/10.0/help/index.html#/na/00530000009r000000/">http://help.arcgis.com/zh-cn/arcgisdesktop/10.0/help/index.html#/na/00530000009r000000/</a></p>
-<p>其他的部署及参数要求可参考：</p>
-<p><a target="_blank" rel="noopener" href="http://help.arcgis.com/zh-cn/arcgisdesktop/10.0/help/index.html#/na/000400000006000000/">http://help.arcgis.com/zh-cn/arcgisdesktop/10.0/help/index.html#/na/000400000006000000/</a></p>
-
+        
+          <p>
+            <a class="article-more-link" href="/2017/01/05/devlang/%E5%85%B3%E4%BA%8Earcgis-server%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
+              阅读全文
+            </a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -464,24 +435,14 @@ End Fn + →
         
       
       
-      <h3 id="一、临时表空间的作用"><a href="#一、临时表空间的作用" class="headerlink" title="一、临时表空间的作用"></a>一、临时表空间的作用</h3><p>Oracle临时表空间主要用来做查询和存放一些缓冲区数据。临时表空间消耗的主要原因是需要对查询的中间结果进行排序，下面的操作都会<br>使用大量的temporary段 ：<br>索引create或rebuild；<br>Order by 或 group by；<br>Distinct 操作；<br>Union 或 intersect 或 minus；<br>Sort-merge joins；<br>IMP/EXP操作；</p>
-<h3 id="二、临时表空间建多大合适，个人建议"><a href="#二、临时表空间建多大合适，个人建议" class="headerlink" title="二、临时表空间建多大合适，个人建议"></a>二、临时表空间建多大合适，个人建议</h3><p>1.一般的业务系统频繁使用临时段的需要单独创建临时表空间<br>2.临时表空间的太大或太小都会影响数据库性能，一般建议根据业务系统一天产生的大小作为初始大小。<br>3.临时表空间需要定期维护</p>
-<h3 id="三、oracle11g-临时表空间收缩（只针对oracle11g以后版本）"><a href="#三、oracle11g-临时表空间收缩（只针对oracle11g以后版本）" class="headerlink" title="三、oracle11g 临时表空间收缩（只针对oracle11g以后版本）"></a>三、oracle11g 临时表空间收缩（只针对oracle11g以后版本）</h3><ol>
-<li>常用查询临时表空间视图</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">select * from v$datafile //查询数据文件</span><br><span class="line">select * from v$tablespace //查询表空间信息</span><br><span class="line">select * from v$tempfile //查询临时文件信息</span><br><span class="line">select S.tablespace_name,S.TABLESPACE_SIZE/1024/1024 TSIZE,S.ALLOCATED_SPACE/1024/1024 USIZE,S.FREE_SPACE/1024/1024 FFIZE from dba_temp_free_space S //查询临时表空间使用情况</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>临时表空间收缩</li>
-</ol>
-<p>收缩临时表空间：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter tablespace USER_TEMP_TBS shrink space keep 200M;</span><br></pre></td></tr></table></figure>
-
-<p>收缩临时文件：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLESPACE USER_TEMP_TBS SHRINK TEMPFILE &#x27;/opt/oracle/oradata/user_temp_tbs01.dbf&#x27; keep 200M;</span><br></pre></td></tr></table></figure>
-
-<p>以上操作已经在测试环境中验证过，可以立即收缩空间，对数据库无太大影响，如果是生产库建议晚上做以上操作，否则会出现等待事件。</p>
-
+        <h3 id="一、临时表空间的作用"><a href="#一、临时表空间的作用" class="headerlink" title="一、临时表空间的作用"></a>一、临时表空间的作用</h3><p>Oracle临时表空间主要用来做查询和存放一些缓冲区数据。临时表空间消耗的主要原因是需要对查询的中间结果进行排序，下面的操作都会<br>使用大量的temporary段 ：<br>索引create或rebuild；<br>Order by 或 group by；<br>Distinct 操作；<br>Union 或 intersect 或 minus；<br>Sort-merge joins；<br>IMP/EXP操作；</p>
+        
+          <p>
+            <a class="article-more-link" href="/2017/01/05/db/%E5%85%B3%E4%BA%8E%E5%90%84%E9%A1%B9%E7%9B%AE%E4%B8%B4%E6%97%B6%E8%A1%A8%E7%A9%BA%E9%97%B4%E5%8D%A0%E7%94%A8%E7%A3%81%E7%9B%98%E7%A9%BA%E9%97%B4%E6%AF%94%E8%BE%83%E5%A4%A7%EF%BC%8C%E5%B9%B6%E4%B8%94%E5%86%8D%E6%8C%81%E7%BB%AD%E5%A2%9E%E9%95%BF%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+              阅读全文
+            </a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -535,264 +496,18 @@ End Fn + →
         
       
       
-      <h2 id="机器学习实践指南"><a href="#机器学习实践指南" class="headerlink" title="机器学习实践指南"></a>机器学习实践指南</h2><p><a target="_blank" rel="noopener" href="http://blog.jobbole.com/112569/?utm_source=blog.jobbole.com&amp;utm_medium=relatedPosts">http://blog.jobbole.com/112569/?utm_source=blog.jobbole.com&amp;utm_medium=relatedPosts</a></p>
+        <h2 id="机器学习实践指南"><a href="#机器学习实践指南" class="headerlink" title="机器学习实践指南"></a>机器学习实践指南</h2><p><a target="_blank" rel="noopener" href="http://blog.jobbole.com/112569/?utm_source=blog.jobbole.com&amp;utm_medium=relatedPosts">http://blog.jobbole.com/112569/?utm_source=blog.jobbole.com&amp;utm_medium=relatedPosts</a></p>
 <p>你可能在各种应用中听说过机器学习machine learning（ML），比如垃圾邮件过滤、光学字符识别（OCR）和计算机视觉。</p>
 <p>开启机器学习之旅是一个涉及多方面的漫长旅途。对于新手，有很多的书籍，有学术论文，有指导练习，有独立项目。在这些众多的选择里面，很容易迷失你最初想学习的目标。</p>
 <p>所以在今天的文章中，我会列出 7 个步骤（和 50 多个资源）帮助你开启这个令人兴奋的计算机科学领域的大门，并逐渐成为一个机器学习高手。</p>
 <p>请注意，这个资源列表并不详尽，只是为了让你入门。 除此之外，还有更多的资源。</p>
-<h4 id="1、-学习必要的背景知识"><a href="#1、-学习必要的背景知识" class="headerlink" title="1、 学习必要的背景知识"></a>1、 学习必要的背景知识</h4><p>你可能还记得 DataCamp 网站上的学习数据科学这篇文章里面的信息图：数学和统计学是开始机器学习（ML）的关键。 基础可能看起来很容易，因为它只有三个主题。 但不要忘记这些实际上是三个广泛的话题。</p>
-<p>在这里需要记住两件非常重要的事情：</p>
-<p>首先，你一定会需要一些进一步的指导，以了解开始机器学习需要覆盖哪些知识点。<br>其次，这些是你进一步学习的基础。 不要害怕花时间，有了这些知识你才能构建一切。<br>第一点很简单：学习线性代数和统计学是个好主意。这两门知识是必须要理解的。但是在你学习的同时，也应该尝试学习诸如最优化和高等微积分等主题。当你越来越深入 ML 的时候，它们就能派上用场。</p>
-<p>如果是从零开始的，这里有一些入门指南可供参考：</p>
-<ul>
-<li>Khan 学院 对于初学者是非常好的资源，可以考虑学习他们的<a target="_blank" rel="noopener" href="http://open.163.com/special/Khan/linearalgebra.html">线性代数－网易</a>和<a target="_blank" rel="noopener" href="http://open.163.com/special/Khan/differentialcalculus.html">微积分－网易</a>课程。</li>
-<li>在 麻省理工学院 OpenCourseWare 网站上学习<a target="_blank" rel="noopener" href="http://open.163.com/special/opencourse/daishu.html">线性代数－网易</a>、<a target="_blank" rel="noopener" href="http://open.163.com/special/opencourse/weijifen.html">微积分－网易</a> 课程。</li>
-<li>Coursera course 网站上对描述<a target="_blank" rel="noopener" href="http://open.163.com/special/Khan/khstatistics.html">统计学</a>、<a target="_blank" rel="noopener" href="http://open.163.com/special/Khan/probability.html">概率论</a>和推论统计学的介绍内容。</li>
-</ul>
-<p>图：统计学是学习 ML 的关键之一</p>
-<p>如果你更多喜欢阅读书籍，请参考以下内容：</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.amazon.com/Linear-Algebra-Its-Applications-4th/dp/0030105676">线性代数及其应用</a>Linear Algebra and Its Applications</li>
-<li><a target="_blank" rel="noopener" href="https://www.amazon.com/Applied-Linear-Algebra-3rd-Noble/dp/0130412600">应用线性代数</a>Applied Linear Algebra</li>
-<li><a target="_blank" rel="noopener" href="https://www.amazon.de/Solved-Problems-Linear-Algebra-Schaums/dp/0070380236">线性代数解决的 3000 个问题</a>3,000 Solved Problems in Linear Algebra</li>
-<li><a target="_blank" rel="noopener" href="https://ocw.mit.edu/courses/online-textbooks/">麻省理工学院在线教材</a></li>
-</ul>
-<p>然而，在大多数情况下，你已经对统计学和数学有了一个初步的了解。很有可能你已经浏览过上面列举的的那些资源。</p>
-<p>在这种情况下，诚实地回顾和评价你的知识是一个好主意，是否有一些领域是需要复习的，或者现在掌握的比较好的？</p>
-<p>如果你一切都准备好了，那么现在是时候使用 R 或者 Python 应用这些知识了。作为一个通用的指导方针，选择一门语言开始是个好主意。另外，你仍然可以将另一门语言加入到你的技能池里。</p>
-<p>为什么这些编程知识是必需的？</p>
-<p>嗯，你会看到上面列出的课程（或你在学校或大学学习的课程）将为你提供关于数学和统计学主题的更理论性的介绍（而不是应用性的）。 然而，ML 非常便于应用，你需要能够应用你所学到的所有主题。 所以最好再次复习一遍之前的材料，但是这次需要付诸应用。</p>
-<p>如果你想掌握 R 和 Python 的基础，可以看以下课程：</p>
-<ul>
-<li>DataCamp 上关于 Python 或者 R 的介绍性课程： <a target="_blank" rel="noopener" href="https://www.datacamp.com/courses/intro-to-python-for-data-science">Python 语言数据科学介绍</a> 或者 <a target="_blank" rel="noopener" href="https://www.datacamp.com/courses/free-introduction-to-r">R 语言编程介绍</a>。</li>
-<li>Edx 上关于 Python 或者 R 的介绍性课程： <a target="_blank" rel="noopener" href="https://www.edx.org/course/introduction-python-data-science-microsoft-dat208x-5">Python 语言数据科学介绍</a> 和 <a target="_blank" rel="noopener" href="https://www.edx.org/course/introduction-r-data-science-microsoft-dat204x-4">R 语言数据科学介绍</a>。</li>
-<li>还有很多其他免费的课程。查看 <a target="_blank" rel="noopener" href="http://www.coursera.org/">Coursera</a> 或者 <a target="_blank" rel="noopener" href="https://www.codecademy.com/">Codeacademy</a> 了解更多。</li>
-</ul>
-<p>当你打牢基础知识后，请查看 DataCamp 上的博客 <a target="_blank" rel="noopener" href="https://www.datacamp.com/community/tutorials/python-statistics-data-science">Python 统计学：40+ 数据科学资源</a>。 这篇文章提供了统计学方面的 40 多个资源，这些资源都是你开始数据科学（以及 ML）需要学习的。</p>
-<p>还要确保你查看了关于向量和数组的 <a target="_blank" rel="noopener" href="https://www.datacamp.com/community/tutorials/python-scipy-tutorial">这篇 SciPy 教程</a>文章，以及使用 Python 进行科学计算的<a target="_blank" rel="noopener" href="http://www.math.pitt.edu/~siam/workshops/python10/python.pdf">研讨会</a>。</p>
-<p>要使用 Python 和微积分进行实践，你可以了解下 <a target="_blank" rel="noopener" href="http://docs.sympy.org/latest/tutorial/calculus.html">SymPy 软件包</a>。</p>
-<h4 id="2、-不要害怕在-ML-的“理论”上浪费时间"><a href="#2、-不要害怕在-ML-的“理论”上浪费时间" class="headerlink" title="2、 不要害怕在 ML 的“理论”上浪费时间"></a>2、 不要害怕在 ML 的“理论”上浪费时间</h4><p>很多人并不会花很多精力去浏览理论材料，因为理论是枯燥的、无聊的。但从长远来看，在理论知识上投入时间是至关重要的、非常值得的。 你将会更好地了解机器学习的新进展，也能和背景知识结合起来。 这将有助于你保持学习积极性。</p>
-<p>此外，理论并不会多无聊。 正如你在介绍中所看到的，你可以借助非常多的资料深入学习。</p>
-<p>书籍是吸收理论知识的最佳途径之一。 它们可以让你停下来想一会儿。 当然，看书是一件非常平静的事情，可能不符合你的学习风格。 不过，请尝试阅读下列书籍，看看它是否适合你：</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="http://www.cs.cmu.edu/~tom/mlbook.html">机器学习教程</a>Machine Learning textbook， Tom Mitchell 著，书可能比较旧，但是却很经典。这本书很好的解释介绍了机器学习中最重要的课题，步骤详尽，逐层深入。</li>
-<li>机器学习: 使数据有意义的算法艺术和科学Machine Learning: The Art and Science of Algorithms that Make Sense of Data（你可以在<a target="_blank" rel="noopener" href="http://www.cs.bris.ac.uk/~flach/mlbook/materials/mlbook-beamer.pdf">这里</a>看到这本书的幻灯片版本）：这本书对初学者来说非常棒。 里面讨论了许多实践中的应用程序，其中有一些是在 Tom Mitchell 的书中缺少的。</li>
-<li><a target="_blank" rel="noopener" href="http://www.mlyearning.org/">机器学习之向往</a>Machine Learning Yearning ：这本书由吴恩达Andrew Ng编写的，仍未完本，但对于那些正在学习 ML 的学生来说，这一定是很好的参考资料。</li>
-<li><a target="_blank" rel="noopener" href="https://www.amazon.com/Algorithms-Data-Structures-Applications-Practitioner/dp/0134894286">算法与数据结构</a>Algorithms and Data Structures  由 Jurg Nievergelt 和 Klaus Hinrichs 著。</li>
-<li>也可以参阅 Matthew North 的<a target="_blank" rel="noopener" href="https://www.amazon.com/Data-Mining-Masses-Matthew-North/dp/0615684378">面向大众的数据挖掘</a>Data Mining for the Masses。 你会发现这本书引导你完成一些最困难的主题。</li>
-<li><a target="_blank" rel="noopener" href="http://alex.smola.org/drafts/thebook.pdf">机器学习介绍</a>Introduction to Machine Learning  由 Alex Smola 和 S.V.N. Vishwanathan 著。</li>
-</ul>
-<p>花些时间看书并研究其中涵盖的资料</p>
-<p>视频和慕课对于喜欢边听边看来学习的人来说非常棒。 慕课和视频非常的多，多到可能你都很难找到适合你的。 下面列出了最知名的几个：</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.coursera.org/learn/machine-learning">这个著名的机器学习慕课</a>，是吴恩达Andrew Ng讲的，介绍了机器学习及其理论。 别担心，这个慕课讲的非常好，一步一步深入，所以对初学者来说非常适用。</li>
-<li><a target="_blank" rel="noopener" href="https://youtu.be/TjZBTDzGeGg?list=PLnvKubj2-I2LhIibS8TOGC42xsD3-liux">麻省理工学院 Open Courseware 的 6034 课程的节目清单</a>，已经有点前沿了。 在你开始本系列之前，你需要做一些 ML 理论方面的准备工作，但是你不会后悔的。</li>
-</ul>
-<p>在这一点上，重要的是要将各种独立的技术融会贯通，形成整体的结构图。 首先了解关键的概念：监督学习supervised learning和无监督学习unsupervised learning的区别、分类和回归等。 手动（书面）练习可以派上用场，能帮你了解算法是如何工作的以及如何应用这些算法。 在大学课程里你经常会找到一些书面练习，可以看看波特兰州立大学的 <a target="_blank" rel="noopener" href="http://web.cecs.pdx.edu/~mm/MachineLearningSpring2017/">ML 课程</a>。</p>
-<h4 id="3、-开始动手"><a href="#3、-开始动手" class="headerlink" title="3、 开始动手"></a>3、 开始动手</h4><p>通过看书和看视频了解理论和算法都非常好，但是需要超越这一阶段，就要开始做一些练习。你要学着去实现这些算法，应用学到的理论。</p>
-<p>首先，有很多介绍 Python 和 R 方面的机器学习的基础知识。当然最好的方法就是使用交互式教程：</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.datacamp.com/community/tutorials/machine-learning-python">Python 机器学习：Scikit-Learn 教程</a>，在这篇教程里面，你可以学到使用 Scikit-Learn 构建模型的 KMeans 和支持向量机（SVM）相关的知名算法。</li>
-<li><a target="_blank" rel="noopener" href="https://www.datacamp.com/community/tutorials/machine-learning-in-r">给初学者的 R 语言机器学习教程</a> 用 R 中的类和 caret 包介绍机器学习。</li>
-<li>[<a target="_blank" rel="noopener" href="https://www.datacamp.com/community/tutorials/deep-learning-python">Keras 教程：Python 深度学习25</a> 涵盖了如何一步一步的为分类和回归任务构建多层感知器（MLP）。</li>
-</ul>
-<p>还请查看以下静态的（非互动的）教程，这些需要你在 IDE 中操作：</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="http://machinelearningmastery.com/machine-learning-in-python-step-by-step/">循序渐进：Python 机器学习</a>： 一步一步地学习 Scikit-Learn。</li>
-<li><a target="_blank" rel="noopener" href="http://machinelearningmastery.com/tutorial-first-neural-network-python-keras/">循序渐进：使用 Keras 开发你的第一个神经网络</a>： 按这个教程一步一步地使用 Keras 开发你的第一个神经网络。</li>
-<li>你可以考虑看更多的教程，但是<a target="_blank" rel="noopener" href="http://www.machinelearningmastery.com/">机器学习精要</a>这篇教程是非常好的。</li>
-</ul>
-<p>除了教程之外，还有一些课程。参加课程可以帮助你系统性地应用学到的概念。 经验丰富的导师很有帮助。 以下是 Python 和机器学习的一些互动课程：</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.datacamp.com/courses/supervised-learning-with-scikit-learn">用 scikit-learn 做监督学习</a>： 学习如何构建预测模型，调整参数，并预测在未知数据上执行的效果。你将使用 Scikit-Learn 操作真实世界的数据集。</li>
-<li><a target="_blank" rel="noopener" href="https://www.datacamp.com/courses/unsupervised-learning-in-python">用 Python 做无监督学习</a>： 展示给你如何从未标记的数据集进行聚类、转换、可视化和提取关键信息。 在课程结束时，还会构建一个推荐系统。</li>
-<li><a target="_blank" rel="noopener" href="https://www.datacamp.com/courses/deep-learning-in-python">Python 深度学习</a>： 你将获得如何使用 Keras 2.0 进行深度学习的实践知识，Keras 2.0 是前沿的 Python 深度学习库 Keras 的最新版本。</li>
-<li><a target="_blank" rel="noopener" href="https://www.coursera.org/learn/python-machine-learning">在 Python 中应用机器学习</a>： 将学习者引入到机器学习实践中，更多地关注技术和方法，而不是这些方法背后的统计学知识。</li>
-</ul>
-<p>视频课程：<br><a target="_blank" rel="noopener" href="http://open.163.com/special/opencourse/machinelearning.html">斯坦福大学公开课 ：机器学习课程</a><br><a target="_blank" rel="noopener" href="https://study.163.com/topics/deepLearning/?utm_source=baidu&utm_medium=cpc&utm_campaign=affiliate&utm_term=DeepLearning03&utm_content=SEM">人工智能</a></p>
-<p>理论学习之后，花点时间来应用你所学到的知识。</p>
-<p>对于那些正在学习 R 语言机器学习的人，还有这些互动课程：</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.datacamp.com/courses/introduction-to-machine-learning-with-r">机器学习介绍</a> 可以让你宏观了解机器学习学科最常见的技术和应用，还可以更多地了解不同机器学习模型的评估和训练。这门课程剩下的部分重点介绍三个最基本的机器学习任务： 分类、回归和聚类。</li>
-<li><a target="_blank" rel="noopener" href="https://www.datacamp.com/courses/unsupervised-learning-in-r">R 语言无监督学习</a> ，用 R 语言从 ML 角度提供聚类和降维的基本介绍。 可以让你尽快获得数据的关键信息。</li>
-<li><a target="_blank" rel="noopener" href="https://www.coursera.org/learn/practical-machine-learning">实操机器学习</a>涵盖了构建和应用预测功能的基本组成部分，其重点是实际应用。</li>
-</ul>
-<p>最后，还有很多书籍以偏向实践的方式介绍了 ML 主题。 如果你想借助书籍内容和 IDE 来学习，请查看这些书籍：</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/rasbt/python-machine-learning-book">Python 机器学习</a>Python Machine Learning Book，Sebastian Raschka 著。</li>
-<li><a target="_blank" rel="noopener" href="https://github.com/rasbt/deep-learning-book">人工神经网络与深度学习导论：Python 应用实用指南</a>Introduction to Artificial Neural Networks and Deep Learning: A Practical Guide with Applications in Python，Sebastian Raschka 著。</li>
-<li><a target="_blank" rel="noopener" href="https://books.google.be/books/about/Machine_Learning_with_R.html?id=ZQu8AQAAQBAJ&amp;amp;amp;amp;amp;source=kp_cover&amp;amp;amp;amp;amp;redir_esc=y">R 语言机器学习</a>Machine Learning with R，Brett Lantz 著。<h4 id="4、-练习"><a href="#4、-练习" class="headerlink" title="4、 练习"></a>4、 练习</h4></li>
-</ul>
-<p>实践比使用 Python 进行练习和修改材料更重要。 这一步对我来说可能是最难的。 在做了一些练习后看看其他人是如何实现 ML 算法的。 然后，开始你自己的项目，阐述你对 ML 算法和理论的理解。</p>
-<p>最直接的方法之一就是将练习的规模做得更大些。 要做一个更大的练习，就需要你做更多的数据清理和功能工程。</p>
-<ul>
-<li>从 <a target="_blank" rel="noopener" href="http://www.kaggle.com/">Kaggle</a> 开始。 如果你需要额外的帮助来征服所谓的“数据恐惧”，请查看 <a target="_blank" rel="noopener" href="https://www.datacamp.com/community/open-courses/kaggle-python-tutorial-on-machine-learning">Kaggle 的 Python 机器学习教程</a> 和 <a target="_blank" rel="noopener" href="https://www.datacamp.com/community/open-courses/kaggle-tutorial-on-machine-learing-the-sinking-of-the-titanic">Kaggle 的 R 语言机器学习教程</a>。 这些将带给您快速的提升。</li>
-<li>此后，你也可以自己开始挑战。 查看这些网站，您可以在其中找到大量的 ML 数据集：<a target="_blank" rel="noopener" href="http://archive.ics.uci.edu/ml/">UCI 机器学习仓库</a>，<a target="_blank" rel="noopener" href="http://homepages.inf.ed.ac.uk/rbf/IAPR/researchers/MLPAGES/mldat.htm">用于机器学习的公开数据集</a> 和 <a target="_blank" rel="noopener" href="https://data.world/">data.world</a>。</li>
-</ul>
-<p>熟能生巧。</p>
-<h4 id="5、-项目"><a href="#5、-项目" class="headerlink" title="5、 项目"></a>5、 项目</h4><p>虽然做一些小的练习也不错，但是在最后，您需要做一个项目，可以在其中展示您对使用到的 ML 算法的理解。</p>
-<p>最好的练习是实现你自己的 ML 算法。 您可以在以下页面中阅读更多关于为什么您应该做这样的练习，以及您可以从中学到什么内容：</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.quora.com/Why-is-there-a-need-to-manually-implement-machine-learning-algorithms-when-there-are-many-advanced-APIs-like-tensorflow-available">为什么有许多先进的 API，比如 tensorflow，还需要自己手动实现机器学习的算法？</a></li>
-<li><a target="_blank" rel="noopener" href="http://www.kdnuggets.com/2016/05/implement-machine-learning-algorithms-scratch.html">为什么要从头开始实现机器学习算法？</a></li>
-<li><a target="_blank" rel="noopener" href="http://www.jeannicholashould.com/what-i-learned-implementing-a-classifier-from-scratch.html">使用 Python 从头开始实现一个分类器，我能从中学到什么？</a></li>
-</ul>
-<p>接下来，您可以查看以下文章和仓库。 可以从中获得一些灵感，并且了解他们是如何实现 ML 算法的。</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="http://machinelearningmastery.com/how-to-implement-a-machine-learning-algorithm/">如何实现机器学习算法</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/eriklindernoren/ML-From-Scratch">从头开始学习机器学习</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/madhug-nadig/Machine-Learning-Algorithms-from-Scratch">从头开始学习机器学习算法</a></li>
-</ul>
-<p>开始时项目可能会很难，但是可以极大增加你的理解。</p>
-<h4 id="6、-不要停止"><a href="#6、-不要停止" class="headerlink" title="6、 不要停止"></a>6、 不要停止</h4><p>对 ML 的学习永远不能停止，即使你在这个领域工作了十年，总是有新的东西要学习，许多人都将会证实这一点。</p>
-<p>例如，ML 趋势，比如深度学习deep learning现在就很受欢迎。你也可以专注于那些现在不怎么火，但是将来会火的话题上。如果你想了解更多，可以看看<a target="_blank" rel="noopener" href="https://www.quora.com/Should-I-quit-machine-learning">这个有趣的问题和答案</a>。</p>
-<p>当你苦恼于掌握基础知识时，你最先想到的可能不是论文。 但是它们是你紧跟最新研究的一个途径。 论文并不适合刚刚开始学习的人，但是绝对适合高级人员。</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="http://www.kdnuggets.com/2017/04/top-20-papers-machine-learning.html">20 篇最新的机器学习和深度学习领域的顶级研究论文</a></li>
-<li><a target="_blank" rel="noopener" href="http://www.jmlr.org/">机器学习研究杂志</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/terryum/awesome-deep-learning-papers">优秀的深度学习论文</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.quora.com/What-are-some-of-the-best-research-papers-books-for-Machine-learning">机器学习的一些最好的研究论文和书籍</a></li>
-</ul>
-<p>其他技术也是需要考虑的。 但是当你刚开始学习时，不要担心这些。 例如，您可以专注于 Python 或 R 语言 （取决于你已经知道哪一个），并把它到你的技能池里。 你可以通过这篇文章来查找一些感兴趣的资源。</p>
-<p>如果您还想转向大数据，您可以考虑研究 Spark。 这里有一些有趣的资源：</p>
-<ul>
-<li><p><a target="_blank" rel="noopener" href="https://www.datacamp.com/courses/introduction-to-spark-in-r-using-sparklyr">在 R 语言中使用 sparklyr 来了解 Spark</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://www.edx.org/xseries/data-science-engineering-apache-spark">Spark 数据科学与工程</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://www.edx.org/course/introduction-apache-spark-uc-berkeleyx-cs105x">介绍 Apache Spark</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://www.edx.org/course/distributed-machine-learning-apache-uc-berkeleyx-cs120x">Apache Spark 分布式机器学习</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://www.edx.org/course/big-data-analysis-apache-spark-uc-berkeleyx-cs110x">用 Apache Spark 进行大数据分析</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://www.datacamp.com/community/tutorials/apache-spark-python">初学者指南：用 Python 操作 Apache Spark</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://www.datacamp.com/community/blog/pyspark-cheat-sheet-python">PySpark RDD 速查表</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://www.datacamp.com/community/blog/pyspark-sql-cheat-sheet">PySpark SQL 速查表</a><br>其他编程语言，比如 Java、JavaScript、C 和 C++ 在 ML 中越来越重要。 从长远来看，您可以考虑将其中一种语言添加到学习列表中。 你可以使用这些博客文章来指导你选择：</p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://fossbytes.com/popular-top-programming-languages-machine-learning-data-science/">机器学习和数据科学最流行的编程语言</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="http://www.kdnuggets.com/2017/01/most-popular-language-machine-learning-data-science.html">机器学习和数据科学最流行的语言是…</a></p>
-</li>
-</ul>
-<p>学无止境。</p>
-<h4 id="7、-利用一切可以利用的资源"><a href="#7、-利用一切可以利用的资源" class="headerlink" title="7、 利用一切可以利用的资源"></a>7、 利用一切可以利用的资源</h4><p>机器学习是一个充满难度的话题，有时候可能会让你失去动力。 或者也许你觉得你需要点改变。 在这种情况下，请记住，有很多资源可以让你打消掉这种想法。 查看以下资源：</p>
-<p>播客是可以让你继续你的 ML 旅程，紧跟这个领域最新的发展的伟大资源：</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="http://www.thetalkingmachines.com/">谈论机器</a></li>
-<li><a target="_blank" rel="noopener" href="https://dataskeptic.com/">数据怀疑论者</a></li>
-<li><a target="_blank" rel="noopener" href="http://lineardigressions.com/">线性化</a></li>
-<li><a target="_blank" rel="noopener" href="https://twimlai.com/">本周的机器学习及 AI</a></li>
-<li><a target="_blank" rel="noopener" href="http://www.learningmachines101.com/">机器学习 101</a></li>
-</ul>
-<p>当然，还有更多的播客。</p>
-<p><strong>文档和软件包源代码</strong>是深入了解 ML 算法的实现的两种方法。 查看这些仓库：</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/scikit-learn/scikit-learn">Scikit-Learn</a>：知名的 Python ML 软件包</li>
-<li><a target="_blank" rel="noopener" href="http://www.github.com/fchollet/keras">Keras</a>： Python 深度学习软件包</li>
-<li><a target="_blank" rel="noopener" href="http://topepo/caret">caret</a>： 非常受欢迎的用于分类和回归训练 R 软件包</li>
-</ul>
-<p>可视化是深入 ML 理论的最新也是最流行的方式之一。 它们对初学者来说非常棒，但对于更高级的学习者来说也是非常有趣的。 你肯定会被下面这些可视化资源所吸引，它们能让你更加了解 ML 的工作原理：</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="http://www.r2d3.us/visual-intro-to-machine-learning-part-1/">机器学习的可视化介绍</a></li>
-<li><a target="_blank" rel="noopener" href="http://distill.pub/">Distill</a> 使 ML 研究清晰，动态和生动。</li>
-<li>如果你想玩下神经网络架构，可以看下 <a target="_blank" rel="noopener" href="http://playground.tensorflow.org/">Tensorflow – 神经网络游乐场</a>。</li>
-<li>更多的看这里：<a target="_blank" rel="noopener" href="https://www.quora.com/What-are-the-best-visualizations-of-machine-learning-algorithms">机器学习算法最佳的可视化方法是什么？</a></li>
-</ul>
-<p>学习中的一些变化更加能激励你。</p>
-<p>现在你可以开始了</p>
-<p>现在一切都取决于你自己了。学习机器学习是一个持续的过程，所以开始的越早就会越好。 运用你手边的一切工具开始吧。 祝你好运，并确保让我们知道你的进步。<br>这篇文章是我基于 Quora 问题（<a target="_blank" rel="noopener" href="https://www.quora.com/How-does-a-total-beginner-start-to-learn-machine-learning/answer/Karlijn-Willems-1">小白该如何开始机器学习</a>）给出的答案。</p>
-<h3 id="小白该如何开始机器学习"><a href="#小白该如何开始机器学习" class="headerlink" title="小白该如何开始机器学习"></a>小白该如何开始机器学习</h3><p>考虑到我自己没有任何数学或统计背景，我大约两年前开始学习机器。开始时很难，但考虑到你已经有了一些编程经验，一定会有优势的。</p>
-<p>这里有一些学习机器学习的技巧：</p>
-<p>1.<strong>评估，刷新和学习数学和统计数据</strong>。这可能是一个很难的，因为我真的没有想法要找什么。如今，我建议您通过这个列表（40+ Python数据科学资源统计），并通过使用Python应用程序尽可能多地学习。对于数学，我考虑在汗学院学习线性代数。</p>
-<p>2.<strong>不要害怕投资“理论”</strong>。我听到很多的是，人们不会努力通过一些更干燥/理论的材料。但是，从长远来看，这是非常有价值的。我经历了机器学习教科书，同时我看了机器学习 - 斯坦福大学的视频 Coursera。我认为这些都是非常有启发性的，并从中获得了坚实的基础。</p>
-<p>3.<strong>获取动手</strong>。我提到的这些材料是建立基础的好东西，但你也应该能够应用你所学到的概念。您可以考虑参加机器学习课程介绍 Udacity，还可以看看在Python中使用scikit学习和无监督学习的监督学习。</p>
-<p>4.<strong>实践</strong>。但是，比使用Python进行实践和修改材料更重要，正在练习。这一步对我来说可能是最难的。我没有找到任何我喜欢的材料，那就是我的水平，所以我不得不自己做大部分的事情。最近，我为初学者编写了一个Python机器学习教程：Python机器学习：Scikit学习教程。我也推荐Kaggle Python教程机器学习。</p>
-<p>5.<strong>不要害怕项目</strong>。之后，请考虑通过您的数据科学家开始一些项目。确保把你的代码放在Github上，让别人看到你的进度和讨论。</p>
-<p>6.<strong>不要停止</strong> 总有新材料出现，如果您正在关注机器学习播客，您将始终掌握最新消息。我也考虑进入R进行机器学习。以下课程可以帮助您做到这一点：免费介绍R编程在线课程，OpenIntro，数据分析和统计推理，基本统计或统计与R Track | DataCamp的基础和统计与R和机器学习介绍 - 在线课程，R：无人值守学习和机器学习在R初学者机器学习。</p>
-<p>7.<strong>利用所有在那里的材料</strong>。除了播客之外，还有很好的文档，这绝对会帮助你摆脱困境，并征服数据恐惧：scikit学习：Python中的机器学习，Keras文档和作弊表，如选择正确的估计器，Scikit-Learn作弊表：Python机器学习，Keras作弊表：Python中的神经网络，或其他材料，如机器学习的视觉介绍，与GIF集成的Scikit。<br>祝你好运！</p>
-<p>视频：<br>网易和MOOC上适合电气工程及其自动化专<br>MOOC</p>
-<ul>
-<li><p><a target="_blank" rel="noopener" href="http://mooc.guokr.com/course/1304/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%EF%BC%88%E4%B8%80%EF%BC%89/">高等数学（一）</a>（5.20开课）</p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="http://mooc.guokr.com/course/1479/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%EF%BC%88%E4%BA%8C%EF%BC%89/">高等数学（二）</a>（7.22开课）</p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="http://mooc.guokr.com/course/1480/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%EF%BC%88%E4%B8%89%EF%BC%89/">高等数学（二）</a>（10.8开课）</p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="http://mooc.guokr.com/course/1481/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%EF%BC%88%E5%9B%9B%EF%BC%89/">高等数学（二）</a>（5.20开课）</p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="http://mooc.guokr.com/course/1482/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%EF%BC%88%E4%BA%94%EF%BC%89/">高等数学（二）</a>（7.22开课）</p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="http://mooc.guokr.com/course/1040/%E5%BE%AE%E7%A7%AF%E5%88%86B-1-/">微积分B(1)</a>（9.22开课）</p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="http://mooc.guokr.com/course/1525/%E5%BE%AE%E7%A7%AF%E5%88%86-1/">微积分-1</a>（9.22开课）<br>Calculus: </p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="http://mooc.guokr.com/course/236/Calculus--Single-Variable/">Single Variable单变量微积分</a>（9.8开课）</p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="http://mooc.guokr.com/course/1472/2014%E5%BE%AE%E7%A9%8D%E5%88%86%E5%B0%8E%E8%AB%96/">微积分导论</a>（7.14开课）<br><a target="_blank" rel="noopener" href="http://mooc.guokr.com/course/523/Calculus-One/">Calculus One微积分基础</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="http://mooc.guokr.com/course/558/Calculus-Two--Sequences-and-Series/">Calculus Two: Sequences andSeries微积分（二）：数列与级数</a>（3.1开课）</p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="http://mooc.guokr.com/course/1282/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0-1-/">线性代数(1)</a>（9.25开课）</p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="http://mooc.guokr.com/course/791/Linear-Algebra---Foundations-to-Frontiers/">Linear Algebra - Foundationsto Frontiers线性代数-从基础到前沿</a>（1.15开课）</p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="http://mooc.guokr.com/course/145/Introduction-to-Statistics--Probability/">统计学导论：概率</a>（4.14开课）</p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="http://mooc.guokr.com/course/881/Introduction-to-Probability---The-Science-of-Uncertainty/">Introduction to Probability -The Science of Uncertainty概率论入门：不确定性</a>（2.4开课）</p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="http://mooc.guokr.com/course/107/Elementary-Statistics/">Elementary Statistics统计学基础</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="http://mooc.guokr.com/course/1438/%E7%94%B5%E8%B7%AF%E5%8E%9F%E7%90%86/">电路原理</a>（9.15开课）</p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="http://mooc.guokr.com/course/1597/%E7%94%B5%E8%B7%AF/">电路</a>（9.16开课）</p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="http://mooc.guokr.com/course/565/Principles-of-Electric-Circuits--Part-1/">电路原理1</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="http://mooc.guokr.com/course/814/%E7%94%B5%E8%B7%AF%E5%8E%9F%E7%90%86%EF%BC%88%E4%BA%8C%EF%BC%89/">电路原理2</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://www.edx.org/course/mitx/mitx-6-002x-circuits-electronics-2606#.U8YYZ_mSxSU/">Circuits and Electronics电路与电子学</a>（8.25开课）</p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="http://mooc.guokr.com/course/550/Introduction-to-Power-Electronics/">Introduction to PowerElectronics电力电子学</a>（9.1开课）</p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="http://mooc.guokr.com/course/1602/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%863%EF%BC%9A%E7%94%B5%E7%A3%81%E5%AD%A6/">大学物理3：电磁学</a>（9.16开课）</p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="http://mooc.guokr.com/course/557/Electricity-and-Magnetism/">Electricity and Magnetism电磁学</a>(13年开课)</p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="http://mooc.guokr.com/course/1526/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%862--%E7%94%B5%E7%A3%81%E5%AD%A6%E3%80%81%E5%85%89%E5%AD%A6%E5%92%8C%E9%87%8F%E5%AD%90%E7%89%A9%E7%90%86-/">大学物理2 (电磁学、光学和量子物理)</a>（10.6开课）</p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="http://mooc.guokr.com/course/1305/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86-%E7%94%B5%E7%A3%81%E5%AD%A6/">大学物理-电磁学</a>（5.20开课）</p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="http://mooc.guokr.com/course/123/Electricity---Magnetism/">Electricity &amp; Magnetism电磁学</a>（1.13开课）</p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="http://mooc.guokr.com/course/1446/Electrify--An-Introduction-to-Electrical-and-Electronic-Engineering/">Electrify: An Introduction toElectrical and Electronic Engineering电气化：电气和电子工程</a>（9.22开课）</p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="http://mooc.guokr.com/course/684/Modelling-and-Simulation-using-MATLAB/">Modelling and Simulation usingMATLAB用MATLAB建模和仿真</a>（4.22开课）</p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="http://mooc.guokr.com/course/884/Discrete-Time-Signals-and-Systems/">Discrete Time Signals andSystems离散时间信号与系统</a>（2.14开课）</p>
-</li>
-</ul>
-<p>网易：</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="http://v.163.com/special/opencourse/daishu.html">麻省理工公开课：线性代数</a>本课程共35集翻译完</li>
-<li><a target="_blank" rel="noopener" href="http://v.163.com/special/Khan/linearalgebra.html">可汗学院公开课：线性代数</a>本课程共143集翻译完</li>
-<li><a target="_blank" rel="noopener" href="http://v.163.com/special/Khan/precalculus.html">可汗学院公开课：微积分预备</a>本课程共44集网易正在翻译37-44集</li>
-<li><a target="_blank" rel="noopener" href="http://v.163.com/special/Khan/differentialcalculus.html">可汗学院公开课：微积分-微分学</a>本课程共57集网易正在翻译5-57集</li>
-<li><a target="_blank" rel="noopener" href="http://v.163.com/special/opencourse/equations.html">麻省理工学院公开课：微分方程</a>本课程共33集(缺18集) 翻译完</li>
-<li><a target="_blank" rel="noopener" href="http://v.163.com/special/Khan/differential.html">可汗学院公开课：微分方程</a>本课程共45集翻译完</li>
-<li><a target="_blank" rel="noopener" href="http://v.163.com/special/opencourse/weijifen.html">麻省理工学院公开课：微积分重点</a>本课程共18集翻译完</li>
-<li><a target="_blank" rel="noopener" href="http://v.163.com/special/opencourse/calculus.html">麻省理工学院公开课：单变量微积分习题课</a>本课程共87集网易正在翻译75-87集</li>
-<li><a target="_blank" rel="noopener" href="http://v.163.com/special/opencourse/multivariable.html">麻省理工学院公开课：多变量微积分</a>本课程共35集翻译完</li>
-<li><a target="_blank" rel="noopener" href="http://v.163.com/special/opencourse/fouriertransforms.html">斯坦福大学公开课：傅里叶变换及其应用</a>本课程共30集翻译完</li>
-<li><a target="_blank" rel="noopener" href="http://v.163.com/special/Khan/probability.html">可汗学院公开课：概率</a>本课程共55集翻译完</li>
-<li><a target="_blank" rel="noopener" href="http://v.163.com/special/Khan/khstatistics.html">可汗学院公开课：统计学</a>本课程共85集翻译完</li>
-<li><a target="_blank" rel="noopener" href="http://v.163.com/special/fundamentalsofphysics/">耶鲁大学开放课程：基础物理</a>本课程共24集翻译完</li>
-<li><a target="_blank" rel="noopener" href="http://v.163.com/special/opencourse/circuits.html">麻省理工公开课：电路和电子学</a>本课程共25集翻译完</li>
-<li><a target="_blank" rel="noopener" href="http://v.163.com/special/opencourse/signals.html">麻省理工学院公开课：信号与系统：模拟与数字信号处理</a>本课程共26集网易正在翻译19-26集</li>
-</ul>
-
+        
+          <p>
+            <a class="article-more-link" href="/2017/01/05/devlang/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
+              阅读全文
+            </a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -846,8 +561,7 @@ End Fn + →
         
       
       
-      <p>Mac OS X上安装配置apache服务器</p>
-<p>说明：Mac在安装完成Mac系统的时候它已经自带了apache服务器，接下来就是配置和将它启动运行了。那么接下来要做的事情就是：</p>
+        <h1 id="Mac-OS-X上安装配置apache服务器"><a href="#Mac-OS-X上安装配置apache服务器" class="headerlink" title="Mac OS X上安装配置apache服务器"></a>Mac OS X上安装配置apache服务器</h1><p>说明：Mac在安装完成Mac系统的时候它已经自带了apache服务器，接下来就是配置和将它启动运行了。那么接下来要做的事情就是：</p>
 <pre><code>1.配置apache的配置文件
 2.设置虚拟主机
 </code></pre>
@@ -855,45 +569,13 @@ End Fn + →
 <pre><code>$sudo apachectl start
 $sudo apachectl -v
 </code></pre>
-<p>配置apache主配置文件<br>apache的主配置文件在路径／etc／apache2/下</p>
-<pre><code>先将原来的文件备份
-$sudo cp /etc/apache2/httpd.conf /etc/apache2/httpd.conf.backup
-修改主配置文件
-$vi /etc/apache2/httpd.conf
-</code></pre>
-<p>要修改的地方如下,为了便于参考默认配置，笔者将只是将修改的地方注释掉</p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;Directory /&gt;</span><br><span class="line">    #AllowOverride none</span><br><span class="line">    # Require all denied</span><br><span class="line">    Require all granted</span><br><span class="line">    AllowOverride all</span><br><span class="line">&lt;/Directory&gt;</span><br><span class="line"></span><br><span class="line"># Virtual hosts</span><br><span class="line">#Include /private/etc/apache2/extra/httpd-vhosts.conf</span><br><span class="line">Include /private/etc/apache2/extra/httpd-vhosts.conf</span><br></pre></td></tr></table></figure>
-
-<p>Ps：某些老版本的配置中时allow什么的在网上能找到非常多的教程，在这就不加解释了。</p>
-<p>设置虚拟主机</p>
-<p>apache的默认的根目录在/Library/WebServer/下，配置虚拟主机后可以不用理会默认的网站根目录，根据自己的需要在合适的地方建立不同的网站目录。</p>
-<p>修改httpd-vhosts.conf文件，文件位置在／etc／apache2/extra/下.</p>
-<pre><code>备份原有的文件
-$sudo cp ／etc／apache2/extra/httpd-vhosts.conf ／etc／apache2/extra/httpd-vhosts.conf.backup
-
-$sudo vi ／etc／apache2/extra/httpd-vhosts.conf
-设置虚拟主机(此站点本机访问域名是mysite.local,根目录是/var/wwwroot/abc)
-...
-&lt;VirtualHost *:80&gt;
-    ServerAdmin webmaster@mysite.local
-    DocumentRoot &quot;/var/wwwroot/abc&quot;
-    ServerName mysite.local
-    ErrorLog &quot;/private/var/log/apache2/mysite.local-error_log&quot;
-    CustomLog &quot;/private/var/log/apache2/mysite.local-access_log&quot; common
-&lt;/VirtualHost&gt;
-...
-</code></pre>
-<p>修改hosts文件，文件位置在/etc/</p>
-<pre><code>$sudo vi ／etc／hosts
-将自定义的域名绑定到127.0.0.1
-...
-127.0.0.1       localhost mysite.local
-...
-</code></pre>
-<p>重新启动Apache服务器</p>
-<pre><code>sudo apachectl restart
-</code></pre>
-
+        
+          <p>
+            <a class="article-more-link" href="/2016/06/16/devlang/mac%20os%20%E5%AE%89%E8%A3%85apache/">
+              阅读全文
+            </a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -947,40 +629,19 @@ $sudo vi ／etc／apache2/extra/httpd-vhosts.conf
         
       
       
-      <p>参考：<a target="_blank" rel="noopener" href="http://www.tuicool.com/articles/buEFfi7">http://www.tuicool.com/articles/buEFfi7</a></p>
+        <p>参考：<a target="_blank" rel="noopener" href="http://www.tuicool.com/articles/buEFfi7">http://www.tuicool.com/articles/buEFfi7</a></p>
 <p>jenkins、ssh实现了远程自动化部署或者发布。一般情况下，我们都会要把项目部署到远程Linux服务器上，所以这节的主要内容是：</p>
 <p>1、部署（发布）开发环境下的Web项目到远程Linux服务器；</p>
 <p>2、实现自动备份；</p>
 <p>当然，发布程序要比部署要简单，不需要执行远程脚步。</p>
 <h4 id="准备环境："><a href="#准备环境：" class="headerlink" title="准备环境："></a>准备环境：</h4><p>jenkins环境，Linux服务器，linux安装tomcat。</p>
-<h4 id="步骤："><a href="#步骤：" class="headerlink" title="步骤："></a>步骤：</h4><p>1、安装插件，登录到Jenkins后台，选择“系统管理”&#8212;&gt;“管理插件”，在可选插件中，选择 <a target="_blank" rel="noopener" href="http://wiki.jenkins-ci.org/display/JENKINS/Publish+Over+SSH+Plugin">Publish Over SSH</a> ，安装这个插件；</p>
-<p>2、安装完后，配置这个选项，在系统管理中找到，如下图：</p>
-<p>如果SSH是通过Key来进行验证的这里需要输入相关服务器的Key，要是通过用户名密码进行验证的话，SSH Key的输入栏可以全部置空。</p>
-<p>&nbsp;<br><img src="/images/674c63a970af2ad41c161960683b4034.jpg" alt="Jenkins(Hudson)实现远程部署Web项目 Publish Over SSH Plugin插件"></p>
-<p>我是通过用户名和密码进行验证的，因此SSH Server要配置服务器的信息还有用户名和密码。</p>
-<p>&nbsp;<br><img src="/images/6E07EA50-6687-423E-9AD1-9436F1B68B07.png" alt="Jenkins(Hudson)实现远程部署Web项目 Publish Over SSH Plugin插件"></p>
-<p>这里只说下主要配置项，SSH Server Name，服务器名称，自己随便起个名字即可；Hostname，服务器的IP地址；Username，远程服务器的帐号，这里我用了root；Remote Directory，访问路径，“/”根路径即可。</p>
-<p>其他的选项参考， <a target="_blank" rel="noopener" href="http://blog.csdn.net/wangmuming/article/details/22925895">http://blog.csdn.net/wangmuming/article/details/22925895</a>。</p>
-<p>3、这次不用新建项目了，以上次建的项目为基础，做个拷贝，在此基础上修改就行，如图：</p>
-<p><img src="/images/22QBfuI.png" alt="Jenkins(Hudson)实现远程部署Web项目"></p>
-<p>4、上面的都不用动，只修改“构建后操作”，把上次部署war包的方式（Deploy war/ear to a container）删除，添加刚才安装插件后的（Send build artifacts over SSH），配置见图：</p>
-<p><img src="/images/0D8064F6-D0B0-481B-B095-57E49E19A8C6.png" alt="Jenkins(Hudson)实现远程部署Web项目"></p>
-<p>需要注意的地方：Remote directory，这个最好配置为绝对路径，主要是为了临时放置项目的地方，在第5步可以看到；如果只是发布程序，exec command 不需要设置；如果部署，需要设置远程deploy.sh 脚本位置。</p>
-<p>5、增加deploy.sh脚本，新下载的tomcat的bin目录没有该文件，自己新建一个即可，里面的内容如下，根据自己的实际情况进行调整，都是一些常见的shell命令：</p>
-<pre class="prettyprint bash"><span class="shebang">#!/bin/sh</span>
-export JAVA_HOME=/usr/java/jdk1.7.0_75
-kill -9 $(ps -aef | grep tomcat | grep -v grep | awk <span class="string">'{print $2}'</span>)
-cd /app/programs/tomcat_test1/webapps
-mv ROOT.war ROOT_`date +%Y%m%d%H%M%S`.war.bak
-<span class="comment">#rm -rf ROOT</span>
-mv  /app/programs/temp/mvcDemo3*-SNAPSHOT.war ROOT.war
-cd /app/programs/tomcat_test1/bin
-
-./startup.sh</pre>
-
-<p>6、经过以上配置后，访问测试，运行通过。</p>
-<p>总结：截至到现在，已经完成了自动化部署到本地和远程的全部配置。我这两篇文档主要侧重于操作实现和备忘，一些细节未进行说明，有需要的朋友可以自行往下深入研究，可以一块讨论。。。</p>
-
+        
+          <p>
+            <a class="article-more-link" href="/2016/01/22/devlang/Jenkins%E9%83%A8%E7%BD%B2%E5%88%B0%E8%BF%9C%E7%A8%8B%EF%BC%88Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%89/">
+              阅读全文
+            </a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -1034,15 +695,14 @@ cd /app/programs/tomcat_test1/bin
         
       
       
-      <p>在linux 使用exp导出备份数据时提示：<br>EXP-00091: Exporting questionable statistics.<br>1.问题产生的原因<br>linux下oracle用户环境变量语言集和oracle数据库中的环境变量语言集不同<br>2.解决方法<br>只要将oracle环境变量语言集改成和数据库环境变量语言集一样的就可以<br>查看服务端字符集</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from nls_database_parameters t where t.parameter=&#x27;NLS_CHARACTERSET&#x27;</span><br></pre></td></tr></table></figure>
-
-<p>or</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from v$nls_parameters where parameter=&#x27;NLS_CHARACTERSET&#x27;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[oracle@rac01 ~]$ export NLS_LANG=AMERICAN_AMERICA.ZHS16GBK</span><br><span class="line">[oracle@rac01 ~]$ exp tuser/****** tables=UCM_BOARDWS_INSTALLWORK,UCM_BOARDWS_APINSTALL file=/orabak/1015installworkBak.dmp log=/orabak/1015installworkBak.log</span><br><span class="line"></span><br><span class="line">Export: Release 11.2.0.3.0 - Production on Wed Oct 15 10:05:16 2014</span><br><span class="line"></span><br><span class="line">Copyright (c) 1982, 2011, Oracle and/or its affiliates. All rights reserved.</span><br><span class="line">Connected to: Oracle Database 11g Enterprise Edition Release 11.2.0.3.0 - 64bit Production</span><br><span class="line">With the Partitioning, Real Application Clusters, Automatic Storage Management, OLAP,</span><br><span class="line">Data Mining and Real Application Tes</span><br><span class="line">Export done in ZHS16GBK character set and AL16UTF16 NCHAR character set</span><br><span class="line"></span><br><span class="line">About to export specified tables via Conventional Path ...</span><br><span class="line">. . exporting table UCM_BOARDWS_INSTALLWORK 1998871 rows exported</span><br><span class="line">. . exporting table UCM_BOARDWS_APINSTALL 2190269 rows exported</span><br><span class="line">Export terminated successfully without warnings.</span><br></pre></td></tr></table></figure>
-
-
+        <p>在linux 使用exp导出备份数据时提示：<br>EXP-00091: Exporting questionable statistics.<br>1.问题产生的原因<br>linux下oracle用户环境变量语言集和oracle数据库中的环境变量语言集不同<br>2.解决方法<br>只要将oracle环境变量语言集改成和数据库环境变量语言集一样的就可以<br>查看服务端字符集</p>
+        
+          <p>
+            <a class="article-more-link" href="/2016/01/05/db/%E5%9C%A8linux-%E4%BD%BF%E7%94%A8exp%E5%AF%BC%E5%87%BA%E5%A4%87%E4%BB%BD%E6%95%B0%E6%8D%AE%E6%97%B6%E6%8F%90%E7%A4%BAEXP-00091-Exporting-questionable-statistics/">
+              阅读全文
+            </a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">

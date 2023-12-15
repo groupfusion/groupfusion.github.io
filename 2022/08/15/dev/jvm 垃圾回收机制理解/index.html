@@ -70,10 +70,12 @@
       
       
       
-      <h1 id="jvm-垃圾回收机制理解"><a href="#jvm-垃圾回收机制理解" class="headerlink" title="jvm 垃圾回收机制理解"></a>jvm 垃圾回收机制理解</h1><h1 id="jvm-垃圾回收机制理解-1"><a href="#jvm-垃圾回收机制理解-1" class="headerlink" title="jvm 垃圾回收机制理解"></a>jvm 垃圾回收机制理解</h1><h2 id="堆内存区域划分"><a href="#堆内存区域划分" class="headerlink" title="堆内存区域划分"></a>堆内存区域划分</h2><p>堆内存被划分为年轻代和老年代两个区域，而年轻代又分为一个伊甸园区（Eden）和两个幸存区（from_Survivor和to_Survivor），年轻代分配比例8：1：1。</p>
+      <h1 id="jvm-垃圾回收机制理解"><a href="#jvm-垃圾回收机制理解" class="headerlink" title="jvm 垃圾回收机制理解"></a>jvm 垃圾回收机制理解</h1><h2 id="堆内存区域划分"><a href="#堆内存区域划分" class="headerlink" title="堆内存区域划分"></a>堆内存区域划分</h2><p>堆内存被划分为年轻代和老年代两个区域，而年轻代又分为一个伊甸园区（Eden）和两个幸存区（from_Survivor和to_Survivor），年轻代分配比例8：1：1。</p>
 <p>##了解垃圾回收机制前我们要先了解下，如何判断对象可用被回收？</p>
 <p>将“GC roots”对象作为根节点，从根节点开始向下查找引用对象，直到最后一个节点，找到的对象都标记为<strong>非垃圾对象</strong>，其余未标记的都是垃圾对象。<br>线程栈中的本地变量，静态变量，本地方法中的变量都可用作为GC roots根节点， 这就是可达性分析算法。</p>
 <p>标记为非垃圾的对象会被复制空的survivor区，对象的分代年龄加1，剩余伊甸园区的垃圾对象会被清除。当伊甸园区域再次满了后会再次触发minor gc。<br>再次根据可达性分析算法标记非垃圾对象，重复上面的操作。<br>当长期存活对象（分代年龄达到15）和大对象，将会放到老年区。</p>
+<span id="more"></span>
+
 <h2 id="对象动态年龄判断"><a href="#对象动态年龄判断" class="headerlink" title="对象动态年龄判断"></a>对象动态年龄判断</h2><p>还有当前放对象的Survivor区域里（其中一块区域，放对象的那块s区），一批对象的总大小大于这块Survivor区域内存大小的50%（-XX:TargetSurvivorRatio可以指定），那么此时大于等于这批对象年龄最大值的对象，就可以直接进入老年代了，例如Survivor区域里现在有一批对象，年龄1+年龄2+年龄n的多个年龄对象总和超过了Survivor区域的50%，此时就会把年龄n(含)以上的对象都放入老年代。这个规则其实是希望那些可能是长期存活的对象，尽早进入老年代。对象动态年龄判断机制一般是在minor gc之后触发的。</p>
 <h2 id="full-gc"><a href="#full-gc" class="headerlink" title="full gc"></a>full gc</h2><p>当老年代满了后，进行一次full gc，老年代依然满着，这时会出OOM内存溢出。<br>我们调优的目的主要就是减少full gc 次数，以减少STW（Stop the World），STW是指full gc时，会暂停当前执行线程，等待full gc结束，即在full gc期间，JVM虚拟机是暂停的。</p>
 <p><strong>注：一般老年代占对内存的2/3.</strong></p>

@@ -69,6 +69,8 @@
       
       
       <p>在linux 使用exp导出备份数据时提示：<br>EXP-00091: Exporting questionable statistics.<br>1.问题产生的原因<br>linux下oracle用户环境变量语言集和oracle数据库中的环境变量语言集不同<br>2.解决方法<br>只要将oracle环境变量语言集改成和数据库环境变量语言集一样的就可以<br>查看服务端字符集</p>
+<span id="more"></span>
+
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from nls_database_parameters t where t.parameter=&#x27;NLS_CHARACTERSET&#x27;</span><br></pre></td></tr></table></figure>
 
 <p>or</p>

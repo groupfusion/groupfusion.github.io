@@ -72,6 +72,8 @@
       
       <h1 id="linux-swap分区调整"><a href="#linux-swap分区调整" class="headerlink" title="linux swap分区调整"></a>linux swap分区调整</h1><p>近期安装了一套ubantu系统，因为物理机内存有限，想调整swap分区，顾边学边整理的此篇内容。</p>
 <h2 id="swap分区多大合适"><a href="#swap分区多大合适" class="headerlink" title="swap分区多大合适"></a>swap分区多大合适</h2><p>我们在安装系统的时候已经建立了 swap 分区。swap 分区通常被称为交换分区，这是一块特殊的硬盘空间，即当实际内存不够用的时候，操作系统会从内存中取出一部分暂时不用的数据，放在交换分区中，从而为当前运行的程序腾出足够的内存空间。<br>那么swap分区到底设置成多大才最优？</p>
+<span id="more"></span>
+
 <p>以前几乎所有Linux 系统管理的书上都推荐设置交换分区大小为内存的2倍。这些建议到了现在就是也适用，具体情况还是要根据实际情况作出调整。</p>
 <p>首先看下Redhat官方的文档中关于swap分区大小设置的建议：</p>
 <table>

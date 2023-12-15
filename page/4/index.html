@@ -100,15 +100,20 @@
         
       
       
-      <p>checkstyle检查问题</p>
+        <p>checkstyle检查问题</p>
 <p>ot an exception &#8211; expecting &#8216;&#8221;&#8216;, found &#8216;&lt;EOF&gt;&#8217;</p>
 <p>解决办法：</p>
 <p>在配置文件的根节点上增加编码的配置。</p>
 <p>&lt;module name=&#8221;Checker&#8221;&gt;</p>
 <p>&lt;property name=&#8221;severity&#8221; value=&#8221;warning&#8221;/&gt;</p>
 <p>&lt;property name=&#8221;charset&#8221; value=&#8221;UTF-8&#8243;/&gt; &lt;!&#8211;新增&#8211;&gt;</p>
-<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/bnbqian/p/3451777.html">http://www.cnblogs.com/bnbqian/p/3451777.html</a></p>
-
+        
+          <p>
+            <a class="article-more-link" href="/2015/08/06/tools/checkstyle%E6%A3%80%E6%9F%A5%E9%97%AE%E9%A2%98-ot-an-exception-%E2%80%93-expecting-%E2%80%98%E2%80%9D%E2%80%98-found-%E2%80%98%E2%80%98/">
+              阅读全文
+            </a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -162,28 +167,15 @@
         
       
       
-      <p>Idea gradle android 开发问题1:</p>
+        <p>Idea gradle android 开发问题1:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">* What went wrong:</span><br><span class="line"></span><br><span class="line">A problem occurred configuring project &#x27;:app&#x27;.</span><br><span class="line">&amp;gt; Could not resolve all dependencies for configuration &#x27;:app:_debugCompile&#x27;.</span><br><span class="line">   &amp;gt; Could not find com.android.support:support-v4:21.0.3.</span><br><span class="line">     Searched in the following locations:</span><br><span class="line">         http://nexus.cabletech.com.cn/content/groups/public/com/android/support/support-v4/21.0.3/support-v4-21.0.3.pom</span><br><span class="line">         http://nexus.cabletech.com.cn/content/groups/public/com/android/support/support-v4/21.0.3/support-v4-21.0.3.jar</span><br><span class="line">         https://repo1.maven.org/maven2/com/android/support/support-v4/21.0.3/support-v4-21.0.3.pom</span><br><span class="line">         https://repo1.maven.org/maven2/com/android/support/support-v4/21.0.3/support-v4-21.0.3.jar</span><br><span class="line">         https://jcenter.bintray.com/com/android/support/support-v4/21.0.3/support-v4-21.0.3.pom</span><br><span class="line">         https://jcenter.bintray.com/com/android/support/support-v4/21.0.3/support-v4-21.0.3.jar</span><br><span class="line">     Required by:</span><br><span class="line">         workspace:app:unspecified &amp;gt; com.facebook.fresco:fresco:0.5.3 &amp;gt; com.facebook.fresco:drawee:0.5.3</span><br><span class="line">         workspace:app:unspecified &amp;gt; com.facebook.fresco:fresco:0.5.3 &amp;gt; com.facebook.fresco:imagepipeline:0.5.3</span><br></pre></td></tr></table></figure>
-
-<p>解决办法：</p>
-<p>一般都是因为Android SDK Manager中没有下载Extras下的Android Support Repository </p>
-<p>没有下载导致的。</p>
-<p> 参考：<a target="_blank" rel="noopener" href="http://vjson.com/wordpress/could-not-find-com-android-support.html">http://vjson.com/wordpress/could-not-find-com-android-support.html</a></p>
-<p>Idea gradle android 开发问题2:</p>
-<ul>
-<li>What went wrong:</li>
-</ul>
-<p>Execution failed for task ‘:app:processArmeabiDebugResources’.</p>
-<p>&gt; com.android.ide.common.process.ProcessException: org.gradle.process.internal.ExecException: Process ‘command ‘E:\android-sdk\sdk\build-tools\22.0.1\aapt.exe’’ finished with non-zero exit value 1</p>
-<p>解决方法：</p>
-<p>在build.gradle中引入的依赖包中不能使用“+”。</p>
-<p>之前：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    //compile fileTree(dir: &#x27;libs&#x27;, include: [&#x27;*.jar&#x27;])</span><br><span class="line">    compile &#x27;com.android.support:appcompat-v7:22.2.+&#x27;</span><br><span class="line">    compile &#x27;com.google.code.gson:gson:2.3.1&#x27;</span><br><span class="line">    //compile &#x27;com.squareup.picasso:picasso:2.5.2&#x27;</span><br><span class="line">    //compile &#x27;com.nostra13.universalimageloader:universal-image-loader:1.9.3&#x27;</span><br><span class="line">    compile &#x27;de.greenrobot:eventbus:2.4.0&#x27;</span><br><span class="line">    compile &#x27;com.facebook.fresco:fresco:0.5.3&#x27;</span><br><span class="line">    compile &#x27;com.squareup.okhttp:okhttp:2.4.0&#x27;</span><br><span class="line">    //compile &#x27;com.squareup.retrofit:retrofit:1.9.0&#x27;</span><br><span class="line">    compile(&#x27;com.mikepenz:materialdrawer:3.1.2@aar&#x27;) &#123;</span><br><span class="line">        transitive = true</span><br><span class="line">    &#125;</span><br><span class="line">    compile &#x27;com.android.support:design:22.2.+&#x27;</span><br><span class="line">    compile &#x27;com.mikepenz:octicons-typeface:2.2.0@aar&#x27;</span><br><span class="line">    compile &#x27;com.rengwuxian.materialedittext:library:2.1.4@aar&#x27;</span><br><span class="line">    compile files(&#x27;libs/AMap_3DMap_V2.4.1.jar&#x27;)</span><br><span class="line">    compile files(&#x27;libs/Android_Location_V1.3.2.jar&#x27;)</span><br><span class="line">    compile files(&#x27;libs/Android_Navi_V1.1.2.jar&#x27;)</span><br><span class="line">    compile files(&#x27;libs/Msc.jar&#x27;)</span><br><span class="line">    compile files(&#x27;libs/AMap_Services_V2.4.0.jar&#x27;)</span><br></pre></td></tr></table></figure>
-
-<p>之后：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    //compile fileTree(dir: &#x27;libs&#x27;, include: [&#x27;*.jar&#x27;])</span><br><span class="line">    compile &#x27;com.android.support:appcompat-v7:22.2.0&#x27;</span><br><span class="line">    compile &#x27;com.google.code.gson:gson:2.3.1&#x27;</span><br><span class="line">    //compile &#x27;com.squareup.picasso:picasso:2.5.2&#x27;</span><br><span class="line">    //compile &#x27;com.nostra13.universalimageloader:universal-image-loader:1.9.3&#x27;</span><br><span class="line">    compile &#x27;de.greenrobot:eventbus:2.4.0&#x27;</span><br><span class="line">    compile &#x27;com.facebook.fresco:fresco:0.5.3&#x27;</span><br><span class="line">    compile &#x27;com.squareup.okhttp:okhttp:2.4.0&#x27;</span><br><span class="line">    //compile &#x27;com.squareup.retrofit:retrofit:1.9.0&#x27;</span><br><span class="line">    compile(&#x27;com.mikepenz:materialdrawer:3.1.2@aar&#x27;) &#123;</span><br><span class="line">        transitive = true</span><br><span class="line">    &#125;</span><br><span class="line">    compile &#x27;com.android.support:design:22.2.0&#x27;</span><br><span class="line">    compile &#x27;com.mikepenz:octicons-typeface:2.2.0@aar&#x27;</span><br><span class="line">    compile &#x27;com.rengwuxian.materialedittext:library:2.1.4@aar&#x27;</span><br><span class="line">    compile files(&#x27;libs/AMap_3DMap_V2.4.1.jar&#x27;)</span><br><span class="line">    compile files(&#x27;libs/Android_Location_V1.3.2.jar&#x27;)</span><br><span class="line">    compile files(&#x27;libs/Android_Navi_V1.1.2.jar&#x27;)</span><br><span class="line">    compile files(&#x27;libs/Msc.jar&#x27;)</span><br><span class="line">    compile files(&#x27;libs/AMap_Services_V2.4.0.jar&#x27;)</span><br></pre></td></tr></table></figure>
-
-
+        
+          <p>
+            <a class="article-more-link" href="/2015/07/28/tools/Idea-gradle-android-%E5%BC%80%E5%8F%91%E9%97%AE%E9%A2%98/">
+              阅读全文
+            </a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">

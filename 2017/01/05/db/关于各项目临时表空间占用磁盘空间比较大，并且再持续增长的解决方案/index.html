@@ -71,6 +71,8 @@
       
       
       <h3 id="一、临时表空间的作用"><a href="#一、临时表空间的作用" class="headerlink" title="一、临时表空间的作用"></a>一、临时表空间的作用</h3><p>Oracle临时表空间主要用来做查询和存放一些缓冲区数据。临时表空间消耗的主要原因是需要对查询的中间结果进行排序，下面的操作都会<br>使用大量的temporary段 ：<br>索引create或rebuild；<br>Order by 或 group by；<br>Distinct 操作；<br>Union 或 intersect 或 minus；<br>Sort-merge joins；<br>IMP/EXP操作；</p>
+<span id="more"></span>
+
 <h3 id="二、临时表空间建多大合适，个人建议"><a href="#二、临时表空间建多大合适，个人建议" class="headerlink" title="二、临时表空间建多大合适，个人建议"></a>二、临时表空间建多大合适，个人建议</h3><p>1.一般的业务系统频繁使用临时段的需要单独创建临时表空间<br>2.临时表空间的太大或太小都会影响数据库性能，一般建议根据业务系统一天产生的大小作为初始大小。<br>3.临时表空间需要定期维护</p>
 <h3 id="三、oracle11g-临时表空间收缩（只针对oracle11g以后版本）"><a href="#三、oracle11g-临时表空间收缩（只针对oracle11g以后版本）" class="headerlink" title="三、oracle11g 临时表空间收缩（只针对oracle11g以后版本）"></a>三、oracle11g 临时表空间收缩（只针对oracle11g以后版本）</h3><ol>
 <li>常用查询临时表空间视图</li>
