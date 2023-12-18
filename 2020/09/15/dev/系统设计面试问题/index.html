@@ -10,6 +10,7 @@
   <meta name="description" content="一个程序员的学习、工作日志">
   
   <title>
+    系统设计面试问题 |
     
     缺陷代码
   </title>
@@ -32,41 +33,8 @@
 
 <body>
   <main class="content">
-    <section class="jumbotron">
-  <div class="video">
-    
-    <div class="video-frame">
-      <img src="/images/ocean/overlay-hero.png" alt="Decorative image frame">
-    </div>
-    
-    <div class="video-media">
-      <video playsinline="" autoplay="" loop="" muted="" data-autoplay="" poster="/images/ocean/ocean.png"
-        x5-video-player-type="h5">
-        <source src="/images/ocean/ocean.mp4" type="video/mp4">
-        <source src="/images/ocean/ocean.ogv" type="video/ogg">
-        <source src="/images/ocean/ocean.webm" type="video/webm">
-        <p>Your user agent does not support the HTML5 Video element.</p>
-      </video>
-      <div class="video-overlay"></div>
-    </div>
-    <div class="video-inner text-center text-white">
-      <h1><a href="/">缺陷代码</a></h1>
-      <p>生活不止有眼前的苟且，还有诗和远方...</p>
-      <div><img src="/images/arxmk-rz6dz.svg" class="brand" alt="缺陷代码"></div>
-    </div>
-    <div class="video-learn-more">
-      <a class="anchor" href="#landingpage"><i class="fe fe-mouse"></i></a>
-    </div>
-  </div>
-</section>
-<div id="landingpage">
-  <section class="outer">
-  <article class="articles">
-    
-    <h1 class="page-type-title"></h1>
-    
-    
-    <article id="post-dev/nacos项目集中配置管理设置说明" class="article article-type-post" itemscope
+    <section class="outer">
+  <article id="post-dev/系统设计面试问题" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -74,570 +42,9 @@
     <header class="article-header">
       
 
-<h2 itemprop="name">
-  <a class="article-title" href="/2023/10/14/dev/nacos%E9%A1%B9%E7%9B%AE%E9%9B%86%E4%B8%AD%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86%E8%AE%BE%E7%BD%AE%E8%AF%B4%E6%98%8E/">nacos项目集中配置管理设置说明</a>
-</h2>
-
-
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2023/10/14/dev/nacos%E9%A1%B9%E7%9B%AE%E9%9B%86%E4%B8%AD%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86%E8%AE%BE%E7%BD%AE%E8%AF%B4%E6%98%8E/" class="article-date">
-  <time datetime="2023-10-14T07:41:20.000Z" itemprop="datePublished">2023-10-14</time>
-</a>
-      
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-        
-      
-      
-        <h1 id="nacos项目集中配置管理设置说明"><a href="#nacos项目集中配置管理设置说明" class="headerlink" title="nacos项目集中配置管理设置说明"></a>nacos项目集中配置管理设置说明</h1><p>在springboot 微服项目开发中，微服数量不断增加，长期的结果就是配置文件过于分散混乱，难以管理等问题。这里我们使用nacos配置中心为例，实现统一管理项目中所有配置信息。下面让我们开始吧！</p>
-<h2 id="配置依赖引入"><a href="#配置依赖引入" class="headerlink" title="配置依赖引入"></a>配置依赖引入</h2><p>在build.gradle中增加下面依赖</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">implementation &#x27;com.alibaba.boot:nacos-config-spring-boot-starter:0.2.12&#x27;</span><br></pre></td></tr></table></figure>
-        
-          <p>
-            <a class="article-more-link" href="/2023/10/14/dev/nacos%E9%A1%B9%E7%9B%AE%E9%9B%86%E4%B8%AD%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86%E8%AE%BE%E7%BD%AE%E8%AF%B4%E6%98%8E/">
-              阅读全文
-            </a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://groupfusion.github.io/2023/10/14/dev/nacos%E9%A1%B9%E7%9B%AE%E9%9B%86%E4%B8%AD%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86%E8%AE%BE%E7%BD%AE%E8%AF%B4%E6%98%8E/" data-id="clq6f63ut000e5guz51e7a3ce" class="article-share-link">
-        分享
-      </a>
-      
-<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nacos/" rel="tag">nacos</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-    
-    <article id="post-readbook/设计模式之策略模式应用" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-
-<h2 itemprop="name">
-  <a class="article-title" href="/2023/10/13/readbook/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F%E5%BA%94%E7%94%A8/">设计模式之策略模式应用</a>
-</h2>
-
-
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2023/10/13/readbook/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F%E5%BA%94%E7%94%A8/" class="article-date">
-  <time datetime="2023-10-13T07:41:20.000Z" itemprop="datePublished">2023-10-13</time>
-</a>
-      
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-        
-      
-      
-        <h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h2><p>本篇文章主要介绍策略模式在SpringBoot框架中如何使用。是一篇策略模式的应用实践的文章，需要对设计模式的理论又一定的了解。</p>
-<h3 id="1-1-策略模式简述"><a href="#1-1-策略模式简述" class="headerlink" title="1.1 策略模式简述"></a>1.1 策略模式简述</h3><p>策略模式包含以下3个核心角色：<br>    -  环境（Context）：定义了使用算法的环境，负责将客户端请求委派给具体的策略对象执行。环境类可以通过依赖注入、简单工厂等方式来获取具体策略对象。<br>    -  抽象策略（Abstract Strategy）：定义了策略对象的公共接口或抽象类，规定了具体策略类必须实现的方法。<br>    -  具体策略（Concrete Strategy）：实现了抽象策略定义的接口或抽象类，包含了具体的算法实现。</p>
-        
-          <p>
-            <a class="article-more-link" href="/2023/10/13/readbook/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F%E5%BA%94%E7%94%A8/">
-              阅读全文
-            </a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://groupfusion.github.io/2023/10/13/readbook/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F%E5%BA%94%E7%94%A8/" data-id="clq6f63v1001a5guz7vz359p6" class="article-share-link">
-        分享
-      </a>
-      
-<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-    
-    <article id="post-devlang/java/Java 集合stream流操作示例详解" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-
-<h2 itemprop="name">
-  <a class="article-title" href="/2023/09/15/devlang/java/Java%20%E9%9B%86%E5%90%88stream%E6%B5%81%E6%93%8D%E4%BD%9C%E7%A4%BA%E4%BE%8B%E8%AF%A6%E8%A7%A3/">Java 集合stream流操作示例详解</a>
-</h2>
-
-
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2023/09/15/devlang/java/Java%20%E9%9B%86%E5%90%88stream%E6%B5%81%E6%93%8D%E4%BD%9C%E7%A4%BA%E4%BE%8B%E8%AF%A6%E8%A7%A3/" class="article-date">
-  <time datetime="2023-09-15T07:41:20.000Z" itemprop="datePublished">2023-09-15</time>
-</a>
-      
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-        
-      
-      
-        <h1 id="Java-集合stream流操作示例详解"><a href="#Java-集合stream流操作示例详解" class="headerlink" title="Java 集合stream流操作示例详解"></a>Java 集合stream流操作示例详解</h1><p>自java 8 版本起推出集合stream流操作特性，确实非常方便的对list进行各种操作，告别使用for的时代来了。下面总结了一些常用的对List对象进行遍历、过滤、查询、去重、排序、分组、提取等操作示例，；</p>
-        
-          <p>
-            <a class="article-more-link" href="/2023/09/15/devlang/java/Java%20%E9%9B%86%E5%90%88stream%E6%B5%81%E6%93%8D%E4%BD%9C%E7%A4%BA%E4%BE%8B%E8%AF%A6%E8%A7%A3/">
-              阅读全文
-            </a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://groupfusion.github.io/2023/09/15/devlang/java/Java%20%E9%9B%86%E5%90%88stream%E6%B5%81%E6%93%8D%E4%BD%9C%E7%A4%BA%E4%BE%8B%E8%AF%A6%E8%A7%A3/" data-id="clq6f63v8002r5guzezci6az7" class="article-share-link">
-        分享
-      </a>
-      
-<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java-stream/" rel="tag">java stream</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-    
-    <article id="post-linux/linuxswap" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-
-<h2 itemprop="name">
-  <a class="article-title" href="/2023/09/14/linux/linuxswap/">linux swap分区调整</a>
-</h2>
-
-
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2023/09/14/linux/linuxswap/" class="article-date">
-  <time datetime="2023-09-14T07:41:20.000Z" itemprop="datePublished">2023-09-14</time>
-</a>
-      
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-        
-      
-      
-        <h1 id="linux-swap分区调整"><a href="#linux-swap分区调整" class="headerlink" title="linux swap分区调整"></a>linux swap分区调整</h1><p>近期安装了一套ubantu系统，因为物理机内存有限，想调整swap分区，顾边学边整理的此篇内容。</p>
-<h2 id="swap分区多大合适"><a href="#swap分区多大合适" class="headerlink" title="swap分区多大合适"></a>swap分区多大合适</h2><p>我们在安装系统的时候已经建立了 swap 分区。swap 分区通常被称为交换分区，这是一块特殊的硬盘空间，即当实际内存不够用的时候，操作系统会从内存中取出一部分暂时不用的数据，放在交换分区中，从而为当前运行的程序腾出足够的内存空间。<br>那么swap分区到底设置成多大才最优？</p>
-        
-          <p>
-            <a class="article-more-link" href="/2023/09/14/linux/linuxswap/">
-              阅读全文
-            </a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://groupfusion.github.io/2023/09/14/linux/linuxswap/" data-id="clq6f63v2001c5guzej5wa5l6" class="article-share-link">
-        分享
-      </a>
-      
-<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-    
-    <article id="post-dev/Redis持久化学习笔记" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-
-<h2 itemprop="name">
-  <a class="article-title" href="/2022/11/14/dev/Redis%E6%8C%81%E4%B9%85%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">reids 持久化学习笔记</a>
-</h2>
-
-
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2022/11/14/dev/Redis%E6%8C%81%E4%B9%85%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
-  <time datetime="2022-11-14T07:41:20.000Z" itemprop="datePublished">2022-11-14</time>
-</a>
-      
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-        
-      
-      
-        <h1 id="reids-持久化学习笔记"><a href="#reids-持久化学习笔记" class="headerlink" title="reids 持久化学习笔记"></a>reids 持久化学习笔记</h1><h2 id="RDB快照-snapshot"><a href="#RDB快照-snapshot" class="headerlink" title="RDB快照 (snapshot)"></a>RDB快照 (snapshot)</h2><p>在默认情况下，Redis将内存数据库快照保存在名字为dump.rdb 的二进制文件中。你可以对 Redis进行设置，让它在“N秒内数据集至少有M个改动”这一条件被满足时，自动保存一次数据集.<br>比如说，以下设置会让 Redis 在满足“60 秒内有至少有1000 个键被改动”这一条件时，自动保存一次数据集</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#save 60 1000 /关闭RDB只需要将所有的save保存策略注释掉即可</span><br></pre></td></tr></table></figure>
-
-<p>还可以手动执行命令生成RDB快照，进入redis客户端执行命令<strong>save</strong>或<strong>bgsave</strong>可以生成dump.rdb文件，每次命令执行都会将所有redis内存快照到一个新的rdb文件里，并覆盖原有rdb快照文件。</p>
-        
-          <p>
-            <a class="article-more-link" href="/2022/11/14/dev/Redis%E6%8C%81%E4%B9%85%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-              阅读全文
-            </a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://groupfusion.github.io/2022/11/14/dev/Redis%E6%8C%81%E4%B9%85%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-id="clq6f63us000b5guzbo5r5lkl" class="article-share-link">
-        分享
-      </a>
-      
-<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-    
-    <article id="post-dev/reids 学习笔记" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-
-<h2 itemprop="name">
-  <a class="article-title" href="/2022/11/14/dev/reids%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">reids 数据类型学习笔记</a>
-</h2>
-
-
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2022/11/14/dev/reids%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
-  <time datetime="2022-11-14T07:41:20.000Z" itemprop="datePublished">2022-11-14</time>
-</a>
-      
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-        
-      
-      
-        <h1 id="reids-数据类型学习笔记"><a href="#reids-数据类型学习笔记" class="headerlink" title="reids 数据类型学习笔记"></a>reids 数据类型学习笔记</h1><h2 id="redis-基本数据类型"><a href="#redis-基本数据类型" class="headerlink" title="redis 基本数据类型"></a>redis 基本数据类型</h2><p><img src="/images/redis/a7c36999e90a41038134360ace7da42a.png#pic_center" alt="在这里插入图片描述"></p>
-        
-          <p>
-            <a class="article-more-link" href="/2022/11/14/dev/reids%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-              阅读全文
-            </a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://groupfusion.github.io/2022/11/14/dev/reids%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-id="clq6f63uu000g5guzbz14hqox" class="article-share-link">
-        分享
-      </a>
-      
-<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-    
-    <article id="post-dev/Java对象进入老年代的条件" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-
-<h2 itemprop="name">
-  <a class="article-title" href="/2022/09/15/dev/Java%E5%AF%B9%E8%B1%A1%E8%BF%9B%E5%85%A5%E8%80%81%E5%B9%B4%E4%BB%A3%E7%9A%84%E6%9D%A1%E4%BB%B6/">Java对象进入老年代的条件</a>
-</h2>
-
-
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2022/09/15/dev/Java%E5%AF%B9%E8%B1%A1%E8%BF%9B%E5%85%A5%E8%80%81%E5%B9%B4%E4%BB%A3%E7%9A%84%E6%9D%A1%E4%BB%B6/" class="article-date">
-  <time datetime="2022-09-15T07:41:20.000Z" itemprop="datePublished">2022-09-15</time>
-</a>
-      
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-        
-      
-      
-        <h1 id="Java对象进入老年代的条件"><a href="#Java对象进入老年代的条件" class="headerlink" title="Java对象进入老年代的条件"></a>Java对象进入老年代的条件</h1><h2 id="大对象直接进入老年代"><a href="#大对象直接进入老年代" class="headerlink" title="大对象直接进入老年代"></a>大对象直接进入老年代</h2><p>大对象就是需要大量连续内存空间的对象。JVM参数 -XX:PretenureSizeThreshold 可以设置大对象的大小，如果对象超过设置大小会直接进入老年代，不会进入年轻代，这个参数只在 Serial 和ParNew两个收集器下有效。</p>
-<p>比如设置JVM参数：-XX:PretenureSizeThreshold=1000000 (单位是字节) -XX:+UseSerialGC ，再执行下上面的第一个程序会发现大对象直接进了老年代。</p>
-        
-          <p>
-            <a class="article-more-link" href="/2022/09/15/dev/Java%E5%AF%B9%E8%B1%A1%E8%BF%9B%E5%85%A5%E8%80%81%E5%B9%B4%E4%BB%A3%E7%9A%84%E6%9D%A1%E4%BB%B6/">
-              阅读全文
-            </a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://groupfusion.github.io/2022/09/15/dev/Java%E5%AF%B9%E8%B1%A1%E8%BF%9B%E5%85%A5%E8%80%81%E5%B9%B4%E4%BB%A3%E7%9A%84%E6%9D%A1%E4%BB%B6/" data-id="clq6f63ur00085guzbx9qc7ua" class="article-share-link">
-        分享
-      </a>
-      
-<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jvm/" rel="tag">jvm</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-    
-    <article id="post-dev/jvm 垃圾回收机制理解" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-
-<h2 itemprop="name">
-  <a class="article-title" href="/2022/08/15/dev/jvm%20%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6%E7%90%86%E8%A7%A3/">jvm垃圾回收机制理解</a>
-</h2>
-
-
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2022/08/15/dev/jvm%20%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6%E7%90%86%E8%A7%A3/" class="article-date">
-  <time datetime="2022-08-15T07:41:20.000Z" itemprop="datePublished">2022-08-15</time>
-</a>
-      
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-        
-      
-      
-        <h1 id="jvm-垃圾回收机制理解"><a href="#jvm-垃圾回收机制理解" class="headerlink" title="jvm 垃圾回收机制理解"></a>jvm 垃圾回收机制理解</h1><h2 id="堆内存区域划分"><a href="#堆内存区域划分" class="headerlink" title="堆内存区域划分"></a>堆内存区域划分</h2><p>堆内存被划分为年轻代和老年代两个区域，而年轻代又分为一个伊甸园区（Eden）和两个幸存区（from_Survivor和to_Survivor），年轻代分配比例8：1：1。</p>
-<p>##了解垃圾回收机制前我们要先了解下，如何判断对象可用被回收？</p>
-<p>将“GC roots”对象作为根节点，从根节点开始向下查找引用对象，直到最后一个节点，找到的对象都标记为<strong>非垃圾对象</strong>，其余未标记的都是垃圾对象。<br>线程栈中的本地变量，静态变量，本地方法中的变量都可用作为GC roots根节点， 这就是可达性分析算法。</p>
-<p>标记为非垃圾的对象会被复制空的survivor区，对象的分代年龄加1，剩余伊甸园区的垃圾对象会被清除。当伊甸园区域再次满了后会再次触发minor gc。<br>再次根据可达性分析算法标记非垃圾对象，重复上面的操作。<br>当长期存活对象（分代年龄达到15）和大对象，将会放到老年区。</p>
-        
-          <p>
-            <a class="article-more-link" href="/2022/08/15/dev/jvm%20%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6%E7%90%86%E8%A7%A3/">
-              阅读全文
-            </a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://groupfusion.github.io/2022/08/15/dev/jvm%20%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6%E7%90%86%E8%A7%A3/" data-id="clq6f63us000c5guz3v3o0lhu" class="article-share-link">
-        分享
-      </a>
-      
-<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jvm/" rel="tag">jvm</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-    
-    <article id="post-devlang/工作中技术积累" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/12/26/devlang/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/">工作学习中技术积累</a>
-</h2>
-
-
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2021/12/26/devlang/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/" class="article-date">
-  <time datetime="2021-12-26T08:29:57.000Z" itemprop="datePublished">2021-12-26</time>
-</a>
-      
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-        
-      
-      
-        <h2 id="使用技术纪录"><a href="#使用技术纪录" class="headerlink" title="使用技术纪录"></a>使用技术纪录</h2><h3 id="百度指定网站搜索"><a href="#百度指定网站搜索" class="headerlink" title="百度指定网站搜索"></a>百度指定网站搜索</h3><p>site:(jianshu.com) WKT</p>
-<h3 id="在线工具站点"><a href="#在线工具站点" class="headerlink" title="在线工具站点"></a>在线工具站点</h3><p><a target="_blank" rel="noopener" href="https://tooltt.com/yaml2properties/">yaml转properties</a><br><a target="_blank" rel="noopener" href="https://www.box3.cn/tools/lbs.html">经纬度距离计算</a></p>
-        
-          <p>
-            <a class="article-more-link" href="/2021/12/26/devlang/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/">
-              阅读全文
-            </a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://groupfusion.github.io/2021/12/26/devlang/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/" data-id="clq6f63v000155guzh8iv45n2" class="article-share-link">
-        分享
-      </a>
-      
-<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/" rel="tag">技术积累</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-    
-    <article id="post-dev/系统设计面试问题" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/09/15/dev/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98/">系统设计面试问题</a>
-</h2>
+<h1 class="article-title" itemprop="name">
+  系统设计面试问题
+</h1>
 
 
 
@@ -654,11 +61,13 @@
     
 
     
+    
+<div class="tocbot"></div>
+
+    
 
     <div class="article-entry" itemprop="articleBody">
       
-      
-        
       
       
       <h2 id="系统设计面试问题–您应该知道的概念（转载）"><a href="#系统设计面试问题–您应该知道的概念（转载）" class="headerlink" title="系统设计面试问题–您应该知道的概念（转载）"></a>系统设计面试问题–您应该知道的概念（转载）</h2><p>转至 <a target="_blank" rel="noopener" href="https://www.freecodecamp.org/news/systems-design-for-interviews">System Design Interview</a></p>
@@ -972,29 +381,43 @@
   </div>
 
   
+  
+<nav class="article-nav">
+  
+  <a href="/2021/12/26/devlang/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/" class="article-nav-link">
+    <strong class="article-nav-caption">前一篇</strong>
+    <div class="article-nav-title">
+      
+      工作学习中技术积累
+      
+    </div>
+  </a>
+  
+  
+  <a href="/2017/06/23/db/mysql%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90%E8%AE%BE%E7%BD%AE/" class="article-nav-link">
+    <strong class="article-nav-caption">后一篇</strong>
+    <div class="article-nav-title">Host &#39;192.168.＊.＊&#39; is not allowed to connect to this MariaDB server</div>
+  </a>
+  
+</nav>
 
+  
+
+  
+  
+  
   
 
 </article>
-    
-  </article>
-  
-
-  
-  <nav class="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
-  </nav>
-  
 </section>
-</div>
     <footer class="footer">
   <div class="outer">
     <div class="float-right">
       <ul class="list-inline">
   
-  <li><i class="fe fe-bar-chart"></i> <span id="busuanzi_value_site_pv"></span></li>
-  
   <li><i class="fe fe-smile-alt"></i> <span id="busuanzi_value_site_uv"></span></li>
+  
+  <li><i class="fe fe-bookmark"></i> <span id="busuanzi_value_page_pv"></span></li>
   
 </ul>
     </div>
@@ -1093,6 +516,23 @@
 
 
 
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+  });
+</script>
 
 
 
