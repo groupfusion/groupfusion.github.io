@@ -1225,7 +1225,7 @@ img {
 .video-media {
   position: relative;
   z-index: 0;
-  height: 90vh;
+  height: 30vh;
   overflow: hidden;
 }
 .video-media video,
