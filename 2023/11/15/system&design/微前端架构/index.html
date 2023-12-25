@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  <meta name="description" content="一个程序员的学习、工作日志">
+  
+  <title>
+    微前端架构 |
+    
+    缺陷代码
+  </title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<script src="/js/pace.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="缺陷代码" type="application/atom+xml">
+</head>
+
+<body>
+  <main class="content">
+    <section class="outer">
+  <article id="post-system&amp;design/微前端架构" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+
+<h1 class="article-title" itemprop="name">
+  微前端架构
+</h1>
+
+
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2023/11/15/system&design/%E5%BE%AE%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84/" class="article-date">
+  <time datetime="2023-11-15T07:41:20.000Z" itemprop="datePublished">2023-11-15</time>
+</a>
+      
+    </div>
+    
+
+    
+    
+<div class="tocbot"></div>
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+      <p>本文概述了微前端，以及如何将遗留用户界面分解为微前端架构。</p>
+<h2 id="什么是微前端？"><a href="#什么是微前端？" class="headerlink" title="什么是微前端？"></a>什么是微前端？</h2><p>微前端是一种架构方法，它将微服务的概念扩展到 Web 应用程序的前端。在微前端体系结构中，复杂的 Web 应用程序被分解为更小的、可独立部署且可维护的单元，称为微前端。每个微前端负责用户界面的特定部分及其相关功能。</p>
+<p>微前端的主要特征和概念包括：</p>
+<ul>
+<li>独立：微前端是自成一体的，独立开发、测试和部署。这种自主权允许不同的团队以最少的协调处理应用程序的不同部分。</li>
+<li>与技术无关：每个微前端都可以使用不同的前端技术（例如，Angular，React，Vue.js），只要它们可以集成到父应用程序或Shell应用程序中即可。</li>
+<li>隔离：微前端在代码和依赖关系方面都是相互隔离的。这种隔离可确保一个微前端中的更改不会影响其他前端。</li>
+<li>集成：容器或 Shell 应用程序负责集成和编排微前端。它提供了用户界面的整体结构，并处理微前端之间的路由。</li>
+<li>独立部署：微前端可以独立部署，从而实现持续交付和更快的更新。这降低了回归问题的风险，并加快了发布周期。</li>
+<li>松散耦合：微前端通过定义良好的 API 和共享协议（如 HTTP）进行通信，从而允许它们松散耦合。这种关注点的分离简化了开发和维护。</li>
+<li>用户界面组合：容器应用程序通过将微前端组合在一起来组装用户界面。这种组合可以在服务器端（服务器端包含）或客户端（客户端路由）上完成。</li>
+<li>扩展和性能：微型前端支持应用程序特定部分的水平扩展，有助于优化频繁访问区域的性能。</li>
+<li>分散式团队：不同的团队或开发团队可以在单独的微前端上工作。这种去中心化对于大型或分布式组织是有利的。</li>
+</ul>
+<p>微前端架构在大型、复杂的 Web 应用程序中特别有用，在这些应用程序中，整体式方法可能会导致开发瓶颈、复杂性增加以及维护和扩展应用程序的困难。</p>
+<p>通过使用微前端，组织可以在其前端开发过程中实现更大的灵活性、敏捷性和可维护性，从而与软件架构领域微服务的更广泛趋势保持一致。</p>
+<h2 id="微前端框架方案"><a href="#微前端框架方案" class="headerlink" title="微前端框架方案"></a>微前端框架方案</h2><h3 id="路由转发"><a href="#路由转发" class="headerlink" title="路由转发"></a>路由转发</h3><p>路由分发式前端，即通过路由将不同的业务分发到不同的独立前端应用上。通常可以通过HTTP服务器的反向代理来实现，或者通过应用框架自带的路由来解决。当前而言，路由分发式的架构是采用得最多、最容易的“微前端”方案。只是将不同的前端应用拼凑到一起，让它们看起来像一个完整的整体。这种应用缺少了对应用状态的处理，对用户的体验不太友好。</p>
+<h3 id="前端微服务化"><a href="#前端微服务化" class="headerlink" title="前端微服务化"></a>前端微服务化</h3><p>前端微服务化是微服务架构在前端的实施，每个前端应用都是完全独立（技术栈、部署、构建独立）、自主运行的，最后通过模块化的方式组合出完整的前端应用。</p>
+<h3 id="组合式集成：微应用化"><a href="#组合式集成：微应用化" class="headerlink" title="组合式集成：微应用化"></a>组合式集成：微应用化</h3><p>微应用化是指，在开发时应用都是以单一、微小应用的形式存在的，而在运行时，则通过构建系统合并这些应用，并组合成一个新的应用。<br>纯前端改造，体验良好，可无感知切换，子应用相互隔离。<br>需要设计和开发，有父子应用处于同一页面运行，需要解决子应用的样式冲突、变量对象污染，通信机制等技术点</p>
+<h3 id="微件化"><a href="#微件化" class="headerlink" title="微件化"></a>微件化</h3><p>微件化是指每个业务团队编写自己的业务代码，并将编译好的代码部署到指定的服务器上。在运行时，我们只需要加载相应的业务模块即可。</p>
+<h3 id="前端容器：iframe"><a href="#前端容器：iframe" class="headerlink" title="前端容器：iframe"></a>前端容器：iframe</h3><p>iframe 可以创建一个全新的独立的宿主环境，类似于沙箱隔离，这意味着我们的前端应用之间可以相互独立运行，仅需要做好应用之间的管理、通信即可。<br>实现简单，子应用之间自带沙箱，天然隔离，互不影响<br>iframe的样式现实、兼容性等都具有局限性。</p>
+<h3 id="结合Web-Components构建"><a href="#结合Web-Components构建" class="headerlink" title="结合Web Components构建"></a>结合Web Components构建</h3><p>Web Components 是一套不同的技术，允许开发者创建可重用的定制元素（它们的功能封装在代码之外）并且在Web应用中使用它们.<br>Web Components技术，离项目应用还有些距离。<br>每个子应用都拥有独立的script和css，也可独立部署。<br>对历史系统改造成本高，子应用通信较为复杂。</p>
+<p>以上6中方案各有优缺点，根据业务等实际情况进行选择。另外，为确保前端体验，不论使用上述那种方案都要完成对应的基座架构框架的搭建。<br>基座就是用于集成各种业务系统前端的框架，可以包括登录、退出</p>
+<h2 id="微前端的业务划分方式"><a href="#微前端的业务划分方式" class="headerlink" title="微前端的业务划分方式"></a>微前端的业务划分方式</h2><p>常见的几种划分微前端的方式：</p>
+<p>  按照业务拆分<br>  按照权限拆分<br>  按照变更的频率拆分<br>  按照组织结构拆分<br>  跟随后端微服务拆分 </p>
+<p>还要根据业务需求选择以上划分方式。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://groupfusion.github.io/2023/11/15/system&design/%E5%BE%AE%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84/" data-id="clqgpd3470006rcuzds6j9tn3" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/" rel="tag">系统架构</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+  
+<nav class="article-nav">
+  
+  <a href="/2023/12/25/tools/%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85%E5%91%A8%E5%88%8A003/" class="article-nav-link">
+    <strong class="article-nav-caption">前一篇</strong>
+    <div class="article-nav-title">
+      
+      独立开发者周刊003
+      
+    </div>
+  </a>
+  
+  
+  <a href="/2023/10/14/dev/nacos%E9%A1%B9%E7%9B%AE%E9%9B%86%E4%B8%AD%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86%E8%AE%BE%E7%BD%AE%E8%AF%B4%E6%98%8E/" class="article-nav-link">
+    <strong class="article-nav-caption">后一篇</strong>
+    <div class="article-nav-title">nacos项目集中配置管理设置说明</div>
+  </a>
+  
+</nav>
+
+  
+
+  
+  
+  
+  
+
+</article>
+</section>
+    <footer class="footer">
+  <div class="outer">
+    <div class="float-right">
+      <ul class="list-inline">
+  
+  <li><i class="fe fe-smile-alt"></i> <span id="busuanzi_value_site_uv"></span></li>
+  
+  <li><i class="fe fe-bookmark"></i> <span id="busuanzi_value_page_pv"></span></li>
+  
+</ul>
+    </div>
+    <ul class="list-inline">
+      <li>缺陷代码 &copy; 2023</li>
+      
+        <li></li>
+      
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>theme  <a target="_blank" rel="noopener" href="https://github.com/zhwangart/hexo-theme-ocean">Ocean</a></li>
+    </ul>
+  </div>
+</footer>
+  </main>
+  <aside class="sidebar">
+    <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/xmon.svg" alt="缺陷代码"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/gallery">相册</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/favorites">收藏</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      <div class="totop" id="totop">
+  <i class="fe fe-rocket"></i>
+</div>
+    </li>
+    <li class="nav-item">
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="fe fe-feed"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+  </aside>
+  
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/copybtn.js"></script>
+
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+  });
+</script>
+
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+
+</html>
