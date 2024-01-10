@@ -72,7 +72,7 @@
       
       <h1 id="Redis错误：Could-not-create-server-TCP-listening-socket-6379-不知道这样的主机。"><a href="#Redis错误：Could-not-create-server-TCP-listening-socket-6379-不知道这样的主机。" class="headerlink" title="Redis错误：Could not create server TCP listening socket * :6379: 不知道这样的主机。"></a>Redis错误：Could not create server TCP listening socket * :6379: 不知道这样的主机。</h1><h2 id="报错："><a href="#报错：" class="headerlink" title="报错："></a>报错：</h2><p>redis服务在window下启动时，报错：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">D:\server\Redis&gt;redis-server redis.windows.conf</span><br><span class="line">[30268] 10 Jan 10:24:57.196 <span class="comment"># oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo</span></span><br><span class="line">[30268] 10 Jan 10:24:57.197 <span class="comment"># Redis version=5.0.14, bits=64, commit=a7c01ef4, modified=0, pid=30268, just started</span></span><br><span class="line">[30268] 10 Jan 10:24:57.197 <span class="comment"># Configuration loaded</span></span><br><span class="line">[30268] 10 Jan 10:24:57.200 <span class="comment"># Could not create server TCP listening socket *:6379: 不知道这样的主机。</span></span><br></pre></td></tr></table></figure>
-
+<span id="more"></span>
 <h2 id="原因："><a href="#原因：" class="headerlink" title="原因："></a>原因：</h2><p>redis bind 地址设置导致的</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#这里设置所有ip都可以访问，包括所有ipv6都可以访问</span><br><span class="line">bind * -::*</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h2 id="解决方案："><a href="#解决方案：" class="headerlink" title="解决方案："></a>解决方案：</h2><p>redis 修改成</p>
@@ -98,19 +98,10 @@
   
 <nav class="article-nav">
   
+  
   <a href="/2024/01/10/dev/redis_bind%E8%AE%BE%E7%BD%AE/" class="article-nav-link">
-    <strong class="article-nav-caption">前一篇</strong>
-    <div class="article-nav-title">
-      
-      Redis bind ip 连接认证及bind的注意事项
-      
-    </div>
-  </a>
-  
-  
-  <a href="/2024/01/09/devlang/vue/vue3+element-plus%E5%9B%BD%E9%99%85%E5%8C%96/" class="article-nav-link">
     <strong class="article-nav-caption">后一篇</strong>
-    <div class="article-nav-title">Vue3 + element-plus + I18n 国际化</div>
+    <div class="article-nav-title">Redis bind ip 连接认证及bind的注意事项</div>
   </a>
   
 </nav>

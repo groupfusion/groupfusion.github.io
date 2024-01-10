@@ -54,7 +54,7 @@
     
     <div class="article-meta">
       <a href="/2024/01/10/dev/redis_bind%E8%AE%BE%E7%BD%AE/" class="article-date">
-  <time datetime="2024-01-10T07:41:20.000Z" itemprop="datePublished">2024-01-10</time>
+  <time datetime="2024-01-10T02:41:20.000Z" itemprop="datePublished">2024-01-10</time>
 </a>
       
     </div>
@@ -72,7 +72,7 @@
       
       <h2 id="开启保护模式-默认开启"><a href="#开启保护模式-默认开启" class="headerlink" title="开启保护模式(默认开启)"></a>开启保护模式(默认开启)</h2><p>设置 protected-mode 为 yes</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"># Protected mode is a layer of security protection, in order to avoid that</span><br><span class="line"># Redis instances left open on the internet are accessed and exploited.</span><br><span class="line"># 保护模式是一层安全保护，以避免在互联网上打开的Redis实例会被访问和利用。</span><br><span class="line"># </span><br><span class="line"># When protected mode is on and if:</span><br><span class="line"># 当保护模式打开时，如果：</span><br><span class="line"># </span><br><span class="line"># 1) The server is not binding explicitly to a set of addresses using the</span><br><span class="line">#    &quot;bind&quot; directive.</span><br><span class="line">#    服务器未使用“bind”指令显式绑定到一组地址。</span><br><span class="line"># 2) No password is configured.</span><br><span class="line">#    未配置密码。</span><br><span class="line"># </span><br><span class="line"># The server only accepts connections from clients connecting from the</span><br><span class="line"># IPv4 and IPv6 loopback addresses 127.0.0.1 and ::1, and from Unix domain</span><br><span class="line"># sockets.</span><br><span class="line"># 服务器只接受来自从IPv4 和 IPv6 环回地址 127.0.0.1 和::1，以及来自 Unix 域sockets客户端的连接。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
+<span id="more"></span>
 <p>如果开启了保护模式，并且bind未配置，密码也未设置。redis只接受来自本机的连接。</p>
 <h2 id="bind地址设置"><a href="#bind地址设置" class="headerlink" title="bind地址设置"></a>bind地址设置</h2><p>对于bind，不少人都误解了。以为这个设置是只对客户端IP的连接限制，其实这是错误的！错误的！错误的！bind是你服务器的IP地址！</p>
 <p>比如我的虚拟机有三个网卡：<br>地址分别为192.168.1.5，192.168.1.6，192.168.1.9</p>
@@ -112,10 +112,19 @@
   
 <nav class="article-nav">
   
-  
   <a href="/2024/01/10/dev/Redis%E9%94%99%E8%AF%AF-%E4%B8%8D%E7%9F%A5%E9%81%93%E8%BF%99%E6%A0%B7%E7%9A%84%E4%B8%BB%E6%9C%BA/" class="article-nav-link">
+    <strong class="article-nav-caption">前一篇</strong>
+    <div class="article-nav-title">
+      
+      Redis错误：Could not create server TCP listening socket * :6379： 不知道这样的主机。
+      
+    </div>
+  </a>
+  
+  
+  <a href="/2024/01/09/devlang/vue/vue3+element-plus%E5%9B%BD%E9%99%85%E5%8C%96/" class="article-nav-link">
     <strong class="article-nav-caption">后一篇</strong>
-    <div class="article-nav-title">Redis错误：Could not create server TCP listening socket * :6379： 不知道这样的主机。</div>
+    <div class="article-nav-title">Vue3 + element-plus + I18n 国际化</div>
   </a>
   
 </nav>
