@@ -66,6 +66,271 @@
     <h1 class="page-type-title"></h1>
     
     
+    <article id="post-tools/idea_快捷键" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+
+<h2 itemprop="name">
+  <a class="article-title" href="/2017/01/16/tools/idea_%E5%BF%AB%E6%8D%B7%E9%94%AE/">IDEA 快捷键 mac版本</a>
+</h2>
+
+
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2017/01/16/tools/idea_%E5%BF%AB%E6%8D%B7%E9%94%AE/" class="article-date">
+  <time datetime="2017-01-16T07:41:20.000Z" itemprop="datePublished">2017-01-16</time>
+</a>
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        
+      
+      
+        <h1 id="IDEA-快捷键［mac版本］"><a href="#IDEA-快捷键［mac版本］" class="headerlink" title="IDEA 快捷键［mac版本］"></a>IDEA 快捷键［mac版本］</h1><p>Mac键盘符号和修饰键说明</p>
+<pre><code>⌘ Command
+⇧ Shift
+⌥ Option
+⌃ Control
+↩︎ Return/Enter
+⌫ Delete
+⌦ 向前删除键（Fn+Delete）
+↑ 上箭头
+↓ 下箭头
+← 左箭头
+→ 右箭头
+⇞ Page Up（Fn+↑）
+⇟ Page Down（Fn+↓）
+Home Fn + ←
+End Fn + →
+⇥ 右制表符（Tab键）
+⇤ 左制表符（Shift+Tab）
+⎋ Escape (Esc)
+</code></pre>
+        
+          <p>
+            <a class="article-more-link" href="/2017/01/16/tools/idea_%E5%BF%AB%E6%8D%B7%E9%94%AE/">
+              阅读全文
+            </a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://groupfusion.github.io/2017/01/16/tools/idea_%E5%BF%AB%E6%8D%B7%E9%94%AE/" data-id="clqaijkav001lpguz69ahdu8s" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+    
+    <article id="post-tools/sonar-配置服务默认路径问题" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+
+<h2 itemprop="name">
+  <a class="article-title" href="/2017/01/05/tools/sonar-%E9%85%8D%E7%BD%AE%E6%9C%8D%E5%8A%A1%E9%BB%98%E8%AE%A4%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98/">sonar 配置服务默认路径问题</a>
+</h2>
+
+
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2017/01/05/tools/sonar-%E9%85%8D%E7%BD%AE%E6%9C%8D%E5%8A%A1%E9%BB%98%E8%AE%A4%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98/" class="article-date">
+  <time datetime="2017-01-05T08:38:48.000Z" itemprop="datePublished">2017-01-05</time>
+</a>
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        
+      
+      
+        <p>sonar 配置后台服务时，出现“Temp directory is not writable” 问题解决：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">WrapperSimpleApp: Encountered an error running main: java.lang.IllegalStateException: Temp directory is not writable: C:\Windows\system32\config\systemprofile\AppData\Local\Temp\</span><br><span class="line">java.lang.IllegalStateException: Temp directory is not writable: C:\Windows\system32\config\systemprofile\AppData\Local\Temp\</span><br><span class="line">at org.sonar.process.MinimumViableSystem.checkWritableDir(MinimumViableSystem.java:60)</span><br><span class="line">at org.sonar.process.MinimumViableSystem.checkWritableTempDir(MinimumViableSystem.java:52)</span><br><span class="line">at org.sonar.process.MinimumViableSystem.check(MinimumViableSystem.java:45)</span><br><span class="line">at org.sonar.application.App.main(App.java:108)</span><br><span class="line">at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)</span><br><span class="line">at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)</span><br><span class="line">at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)</span><br><span class="line">at java.lang.reflect.Method.invoke(Method.java:597)</span><br><span class="line">at org.tanukisoftware.wrapper.WrapperSimpleApp.run(WrapperSimpleApp.java:240)</span><br><span class="line">at java.lang.Thread.run(Thread.java:619)</span><br><span class="line">Caused by: java.io.IOException: 系统找不到指定的路径。</span><br><span class="line">at java.io.WinNTFileSystem.createFileExclusively(Native Method)</span><br><span class="line">at java.io.File.checkAndCreate(File.java:1704)</span><br><span class="line">at java.io.File.createTempFile(File.java:1792)</span><br><span class="line">at org.sonar.process.MinimumViableSystem.checkWritableDir(MinimumViableSystem.java:57)</span><br><span class="line">... 9 more</span><br><span class="line">&amp;lt;-- Wrapper Stopped</span><br><span class="line">The SonarQube service was launched, but failed to start.</span><br></pre></td></tr></table></figure>
+        
+          <p>
+            <a class="article-more-link" href="/2017/01/05/tools/sonar-%E9%85%8D%E7%BD%AE%E6%9C%8D%E5%8A%A1%E9%BB%98%E8%AE%A4%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98/">
+              阅读全文
+            </a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://groupfusion.github.io/2017/01/05/tools/sonar-%E9%85%8D%E7%BD%AE%E6%9C%8D%E5%8A%A1%E9%BB%98%E8%AE%A4%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98/" data-id="clqaijkaw001npguz8vwfcs5v" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" rel="tag">开发工具</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+    
+    <article id="post-devlang/关于arcgis-server性能优化" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+
+<h2 itemprop="name">
+  <a class="article-title" href="/2017/01/05/devlang/%E5%85%B3%E4%BA%8Earcgis-server%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">关于arcgis server性能优化</a>
+</h2>
+
+
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2017/01/05/devlang/%E5%85%B3%E4%BA%8Earcgis-server%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" class="article-date">
+  <time datetime="2017-01-05T08:31:33.000Z" itemprop="datePublished">2017-01-05</time>
+</a>
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        
+      
+      
+        <p>arcgis server安装后，池化“最大实例数”默认为2。可在“服务属性”对话框的池化选项卡中设置最大实例数，调整的原则为：首先应将实例数设置为等于 N+1，其中 N 是计算机上 CPU 核的数量。在个别情况下，如果您发现计算机上的 CPU 利用率未接近 90%，则可以考虑添加更多实例。</p>
+<p><a target="_blank" rel="noopener" href="http://help.arcgis.com/zh-cn/arcgisdesktop/10.0/help/index.html#/na/00530000009r000000/">http://help.arcgis.com/zh-cn/arcgisdesktop/10.0/help/index.html#/na/00530000009r000000/</a></p>
+        
+          <p>
+            <a class="article-more-link" href="/2017/01/05/devlang/%E5%85%B3%E4%BA%8Earcgis-server%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
+              阅读全文
+            </a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://groupfusion.github.io/2017/01/05/devlang/%E5%85%B3%E4%BA%8Earcgis-server%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" data-id="clqaijkar0012pguzeauzcjxh" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GIS/" rel="tag">GIS</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+    
+    <article id="post-db/关于各项目临时表空间占用磁盘空间比较大，并且再持续增长的解决方案" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+
+<h2 itemprop="name">
+  <a class="article-title" href="/2017/01/05/db/%E5%85%B3%E4%BA%8E%E5%90%84%E9%A1%B9%E7%9B%AE%E4%B8%B4%E6%97%B6%E8%A1%A8%E7%A9%BA%E9%97%B4%E5%8D%A0%E7%94%A8%E7%A3%81%E7%9B%98%E7%A9%BA%E9%97%B4%E6%AF%94%E8%BE%83%E5%A4%A7%EF%BC%8C%E5%B9%B6%E4%B8%94%E5%86%8D%E6%8C%81%E7%BB%AD%E5%A2%9E%E9%95%BF%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">关于各项目临时表空间占用磁盘空间比较大，并且再持续增长的解决方案</a>
+</h2>
+
+
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2017/01/05/db/%E5%85%B3%E4%BA%8E%E5%90%84%E9%A1%B9%E7%9B%AE%E4%B8%B4%E6%97%B6%E8%A1%A8%E7%A9%BA%E9%97%B4%E5%8D%A0%E7%94%A8%E7%A3%81%E7%9B%98%E7%A9%BA%E9%97%B4%E6%AF%94%E8%BE%83%E5%A4%A7%EF%BC%8C%E5%B9%B6%E4%B8%94%E5%86%8D%E6%8C%81%E7%BB%AD%E5%A2%9E%E9%95%BF%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="article-date">
+  <time datetime="2017-01-05T08:29:57.000Z" itemprop="datePublished">2017-01-05</time>
+</a>
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        
+      
+      
+        <h3 id="一、临时表空间的作用"><a href="#一、临时表空间的作用" class="headerlink" title="一、临时表空间的作用"></a>一、临时表空间的作用</h3><p>Oracle临时表空间主要用来做查询和存放一些缓冲区数据。临时表空间消耗的主要原因是需要对查询的中间结果进行排序，下面的操作都会<br>使用大量的temporary段 ：<br>索引create或rebuild；<br>Order by 或 group by；<br>Distinct 操作；<br>Union 或 intersect 或 minus；<br>Sort-merge joins；<br>IMP/EXP操作；</p>
+        
+          <p>
+            <a class="article-more-link" href="/2017/01/05/db/%E5%85%B3%E4%BA%8E%E5%90%84%E9%A1%B9%E7%9B%AE%E4%B8%B4%E6%97%B6%E8%A1%A8%E7%A9%BA%E9%97%B4%E5%8D%A0%E7%94%A8%E7%A3%81%E7%9B%98%E7%A9%BA%E9%97%B4%E6%AF%94%E8%BE%83%E5%A4%A7%EF%BC%8C%E5%B9%B6%E4%B8%94%E5%86%8D%E6%8C%81%E7%BB%AD%E5%A2%9E%E9%95%BF%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+              阅读全文
+            </a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://groupfusion.github.io/2017/01/05/db/%E5%85%B3%E4%BA%8E%E5%90%84%E9%A1%B9%E7%9B%AE%E4%B8%B4%E6%97%B6%E8%A1%A8%E7%A9%BA%E9%97%B4%E5%8D%A0%E7%94%A8%E7%A3%81%E7%9B%98%E7%A9%BA%E9%97%B4%E6%AF%94%E8%BE%83%E5%A4%A7%EF%BC%8C%E5%B9%B6%E4%B8%94%E5%86%8D%E6%8C%81%E7%BB%AD%E5%A2%9E%E9%95%BF%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" data-id="clqaijkam000gpguz25iz1ggs" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+    
     <article id="post-devlang/机器学习" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -477,7 +742,7 @@ $sudo apachectl -v
 </ul>
     </div>
     <ul class="list-inline">
-      <li>缺陷代码 &copy; 2023</li>
+      <li>缺陷代码 &copy; 2024</li>
       
         <li></li>
       
