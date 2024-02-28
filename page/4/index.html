@@ -66,6 +66,137 @@
     <h1 class="page-type-title"></h1>
     
     
+    <article id="post-devlang/03.spring与Jedis整合使用" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+
+<h2 itemprop="name">
+  <a class="article-title" href="/2017/01/17/devlang/03.spring%E4%B8%8EJedis%E6%95%B4%E5%90%88%E4%BD%BF%E7%94%A8/">03. spring与jedis整合使用</a>
+</h2>
+
+
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2017/01/17/devlang/03.spring%E4%B8%8EJedis%E6%95%B4%E5%90%88%E4%BD%BF%E7%94%A8/" class="article-date">
+  <time datetime="2017-01-17T01:47:57.000Z" itemprop="datePublished">2017-01-17</time>
+</a>
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        
+      
+      
+        <p>##03. spring与jedis整合使用</p>
+<h3 id="spring-redis"><a href="#spring-redis" class="headerlink" title="spring redis"></a>spring redis</h3><ul>
+<li><a target="_blank" rel="noopener" href="http://www.cnblogs.com/LiZhiW/p/4853486.html">04.spring-data-redis与Jedis整合使用</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/kangyonggan/spring-redis">spring整合redis实现无侵入式的缓存管理</a></li>
+<li><a target="_blank" rel="noopener" href="http://blog.csdn.net/u013725455/article/details/52129283">Spring集成Redis使用注解</a></li>
+<li><a target="_blank" rel="noopener" href="http://phipray.iteye.com/blog/2248352">SpringMVC+Shiro+RedisCluster搭建session统一管理</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/alexxiyang/shiro-redis">shiro-redis</a>
+        
+          <p>
+            <a class="article-more-link" href="/2017/01/17/devlang/03.spring%E4%B8%8EJedis%E6%95%B4%E5%90%88%E4%BD%BF%E7%94%A8/">
+              阅读全文
+            </a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://groupfusion.github.io/2017/01/17/devlang/03.spring%E4%B8%8EJedis%E6%95%B4%E5%90%88%E4%BD%BF%E7%94%A8/" data-id="clqaijkao000lpguzab0o212x" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" rel="tag">分布式</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+    
+    <article id="post-devlang/关于spring-jpa-多表关系查询时，自定义返回对象" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+
+<h2 itemprop="name">
+  <a class="article-title" href="/2017/01/16/devlang/%E5%85%B3%E4%BA%8Espring-jpa-%E5%A4%9A%E8%A1%A8%E5%85%B3%E7%B3%BB%E6%9F%A5%E8%AF%A2%E6%97%B6%EF%BC%8C%E8%87%AA%E5%AE%9A%E4%B9%89%E8%BF%94%E5%9B%9E%E5%AF%B9%E8%B1%A1/">关于spring jpa 多表关系查询时，自定义返回对象</a>
+</h2>
+
+
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2017/01/16/devlang/%E5%85%B3%E4%BA%8Espring-jpa-%E5%A4%9A%E8%A1%A8%E5%85%B3%E7%B3%BB%E6%9F%A5%E8%AF%A2%E6%97%B6%EF%BC%8C%E8%87%AA%E5%AE%9A%E4%B9%89%E8%BF%94%E5%9B%9E%E5%AF%B9%E8%B1%A1/" class="article-date">
+  <time datetime="2017-01-16T07:41:20.000Z" itemprop="datePublished">2017-01-16</time>
+</a>
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        
+      
+      
+        <p>比如在获取用户资料时，我们不想把密码等重要信息全部带出。那时，我们就要用到jpa query 返回指定字段。</p>
+<p>我要在网上查找了下都是比较基础的单表查询。好了，如何写呢？</p>
+<p>例如，下面的我们会将user的所有属性都会带出来，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> @Query(&quot;SELECT u FROM BaseUser u JOIN u.roles roles WHERE roles.roleCode = :roleCode)</span><br><span class="line"></span><br><span class="line"> List&lt;BaseUser&gt; findUserByRoleCode(@Param(&quot;roleCode&quot;) String roleCode);</span><br><span class="line"></span><br><span class="line"> ⚠：上面select 后面的 “u” 是一个BaseUser，包括所有的属性。这是我们所不需要的，它泄漏了太多的信息。</span><br></pre></td></tr></table></figure>
+        
+          <p>
+            <a class="article-more-link" href="/2017/01/16/devlang/%E5%85%B3%E4%BA%8Espring-jpa-%E5%A4%9A%E8%A1%A8%E5%85%B3%E7%B3%BB%E6%9F%A5%E8%AF%A2%E6%97%B6%EF%BC%8C%E8%87%AA%E5%AE%9A%E4%B9%89%E8%BF%94%E5%9B%9E%E5%AF%B9%E8%B1%A1/">
+              阅读全文
+            </a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://groupfusion.github.io/2017/01/16/devlang/%E5%85%B3%E4%BA%8Espring-jpa-%E5%A4%9A%E8%A1%A8%E5%85%B3%E7%B3%BB%E6%9F%A5%E8%AF%A2%E6%97%B6%EF%BC%8C%E8%87%AA%E5%AE%9A%E4%B9%89%E8%BF%94%E5%9B%9E%E5%AF%B9%E8%B1%A1/" data-id="clqaijkas0015pguz35jkd08f" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+    
     <article id="post-tools/idea_快捷键" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -530,7 +661,7 @@ $sudo apachectl -v
 
 </article>
     
-    <article id="post-db/在linux-使用exp导出备份数据时提示EXP-00091-Exporting-questionable-statistics" class="article article-type-post" itemscope
+    <article id="post-中医/《针灸资生经》(全本)" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -539,7 +670,7 @@ $sudo apachectl -v
       
 
 <h2 itemprop="name">
-  <a class="article-title" href="/2016/01/05/db/%E5%9C%A8linux-%E4%BD%BF%E7%94%A8exp%E5%AF%BC%E5%87%BA%E5%A4%87%E4%BB%BD%E6%95%B0%E6%8D%AE%E6%97%B6%E6%8F%90%E7%A4%BAEXP-00091-Exporting-questionable-statistics/">在linux 使用exp导出备份数据时提示EXP-00091: Exporting questionable statistics.</a>
+  <a class="article-title" href="/2016/01/15/%E4%B8%AD%E5%8C%BB/%E3%80%8A%E9%92%88%E7%81%B8%E8%B5%84%E7%94%9F%E7%BB%8F%E3%80%8B(%E5%85%A8%E6%9C%AC)/">《针灸资生经》</a>
 </h2>
 
 
@@ -549,8 +680,8 @@ $sudo apachectl -v
 
     
     <div class="article-meta">
-      <a href="/2016/01/05/db/%E5%9C%A8linux-%E4%BD%BF%E7%94%A8exp%E5%AF%BC%E5%87%BA%E5%A4%87%E4%BB%BD%E6%95%B0%E6%8D%AE%E6%97%B6%E6%8F%90%E7%A4%BAEXP-00091-Exporting-questionable-statistics/" class="article-date">
-  <time datetime="2016-01-05T08:40:04.000Z" itemprop="datePublished">2016-01-05</time>
+      <a href="/2016/01/15/%E4%B8%AD%E5%8C%BB/%E3%80%8A%E9%92%88%E7%81%B8%E8%B5%84%E7%94%9F%E7%BB%8F%E3%80%8B(%E5%85%A8%E6%9C%AC)/" class="article-date">
+  <time datetime="2016-01-15T07:41:20.000Z" itemprop="datePublished">2016-01-15</time>
 </a>
       
     </div>
@@ -564,10 +695,10 @@ $sudo apachectl -v
         
       
       
-        <p>在linux 使用exp导出备份数据时提示：<br>EXP-00091: Exporting questionable statistics.<br>1.问题产生的原因<br>linux下oracle用户环境变量语言集和oracle数据库中的环境变量语言集不同<br>2.解决方法<br>只要将oracle环境变量语言集改成和数据库环境变量语言集一样的就可以<br>查看服务端字符集</p>
+        <h1 id="《针灸资生经》-全本"><a href="#《针灸资生经》-全本" class="headerlink" title="《针灸资生经》(全本)"></a>《针灸资生经》(全本)</h1><h2 id="序"><a href="#序" class="headerlink" title="序"></a>序</h2><p>铜人明堂．黄帝岐伯鬼臾区留以活天下后世．自隔垣透肤之妙无传．乃谓是能绝筋脉伤．至望而畏之．有疾则甘心于庸医．百药之俱试．不知病在巅者．必灸风池风府．非桂枝辈所能攻．病在膺者．必灸刺魂门．虽枳实辈不能下．遂至于束手无策．岂不哀哉．近世朱肱庞安常俱为针法．许知可亦谓病当以刺愈．三衢邹握虎以治法为歌诗该括行．古圣贤活人之意．赖以复传．今东嘉王叔权又取三百六十穴．背面巅末．行分类别．以穴对病．凡百氏之说切于理．自己之见得于心者．悉疏于下．针灸之书．至是始略备．古圣贤活人之意．至是始无遗憾．传谓为人子者．不可不学医．予亲年八十．精力强健．非赖此书耶．因俾医卫世杰订证不传见者十有八条．锓木庾司．以补惠民之阙．时嘉定庚辰孟夏朔承议郎提举淮南东路常平茶盐公事徐正卿序</p>
         
           <p>
-            <a class="article-more-link" href="/2016/01/05/db/%E5%9C%A8linux-%E4%BD%BF%E7%94%A8exp%E5%AF%BC%E5%87%BA%E5%A4%87%E4%BB%BD%E6%95%B0%E6%8D%AE%E6%97%B6%E6%8F%90%E7%A4%BAEXP-00091-Exporting-questionable-statistics/">
+            <a class="article-more-link" href="/2016/01/15/%E4%B8%AD%E5%8C%BB/%E3%80%8A%E9%92%88%E7%81%B8%E8%B5%84%E7%94%9F%E7%BB%8F%E3%80%8B(%E5%85%A8%E6%9C%AC)/">
               阅读全文
             </a>
           </p>
@@ -575,140 +706,11 @@ $sudo apachectl -v
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://groupfusion.github.io/2016/01/05/db/%E5%9C%A8linux-%E4%BD%BF%E7%94%A8exp%E5%AF%BC%E5%87%BA%E5%A4%87%E4%BB%BD%E6%95%B0%E6%8D%AE%E6%97%B6%E6%8F%90%E7%A4%BAEXP-00091-Exporting-questionable-statistics/" data-id="clqaijkai0006pguzhwwg3zez" class="article-share-link">
+      <a data-url="https://groupfusion.github.io/2016/01/15/%E4%B8%AD%E5%8C%BB/%E3%80%8A%E9%92%88%E7%81%B8%E8%B5%84%E7%94%9F%E7%BB%8F%E3%80%8B(%E5%85%A8%E6%9C%AC)/" data-id="clrhl55yf0009ywuz771g645w" class="article-share-link">
         分享
       </a>
       
-<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-    
-    <article id="post-tools/checkstyle检查问题-ot-an-exception-–-expecting-‘”‘-found-‘‘" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-
-<h2 itemprop="name">
-  <a class="article-title" href="/2015/08/06/tools/checkstyle%E6%A3%80%E6%9F%A5%E9%97%AE%E9%A2%98-ot-an-exception-%E2%80%93-expecting-%E2%80%98%E2%80%9D%E2%80%98-found-%E2%80%98%E2%80%98/">checkstyle检查问题 ot an exception – expecting ‘”‘, found ‘‘</a>
-</h2>
-
-
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2015/08/06/tools/checkstyle%E6%A3%80%E6%9F%A5%E9%97%AE%E9%A2%98-ot-an-exception-%E2%80%93-expecting-%E2%80%98%E2%80%9D%E2%80%98-found-%E2%80%98%E2%80%98/" class="article-date">
-  <time datetime="2015-08-06T10:23:01.000Z" itemprop="datePublished">2015-08-06</time>
-</a>
-      
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-        
-      
-      
-        <p>checkstyle检查问题</p>
-<p>ot an exception &#8211; expecting &#8216;&#8221;&#8216;, found &#8216;&lt;EOF&gt;&#8217;</p>
-<p>解决办法：</p>
-<p>在配置文件的根节点上增加编码的配置。</p>
-<p>&lt;module name=&#8221;Checker&#8221;&gt;</p>
-<p>&lt;property name=&#8221;severity&#8221; value=&#8221;warning&#8221;/&gt;</p>
-<p>&lt;property name=&#8221;charset&#8221; value=&#8221;UTF-8&#8243;/&gt; &lt;!&#8211;新增&#8211;&gt;</p>
-        
-          <p>
-            <a class="article-more-link" href="/2015/08/06/tools/checkstyle%E6%A3%80%E6%9F%A5%E9%97%AE%E9%A2%98-ot-an-exception-%E2%80%93-expecting-%E2%80%98%E2%80%9D%E2%80%98-found-%E2%80%98%E2%80%98/">
-              阅读全文
-            </a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://groupfusion.github.io/2015/08/06/tools/checkstyle%E6%A3%80%E6%9F%A5%E9%97%AE%E9%A2%98-ot-an-exception-%E2%80%93-expecting-%E2%80%98%E2%80%9D%E2%80%98-found-%E2%80%98%E2%80%98/" data-id="clqaijkav001jpguz6q65076l" class="article-share-link">
-        分享
-      </a>
-      
-<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" rel="tag">开发工具</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-    
-    <article id="post-tools/Idea-gradle-android-开发问题" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-
-<h2 itemprop="name">
-  <a class="article-title" href="/2015/07/28/tools/Idea-gradle-android-%E5%BC%80%E5%8F%91%E9%97%AE%E9%A2%98/">Idea gradle android 开发问题</a>
-</h2>
-
-
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2015/07/28/tools/Idea-gradle-android-%E5%BC%80%E5%8F%91%E9%97%AE%E9%A2%98/" class="article-date">
-  <time datetime="2015-07-28T07:38:53.000Z" itemprop="datePublished">2015-07-28</time>
-</a>
-      
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-        
-      
-      
-        <p>Idea gradle android 开发问题1:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">* What went wrong:</span><br><span class="line"></span><br><span class="line">A problem occurred configuring project &#x27;:app&#x27;.</span><br><span class="line">&amp;gt; Could not resolve all dependencies for configuration &#x27;:app:_debugCompile&#x27;.</span><br><span class="line">   &amp;gt; Could not find com.android.support:support-v4:21.0.3.</span><br><span class="line">     Searched in the following locations:</span><br><span class="line">         http://nexus.cabletech.com.cn/content/groups/public/com/android/support/support-v4/21.0.3/support-v4-21.0.3.pom</span><br><span class="line">         http://nexus.cabletech.com.cn/content/groups/public/com/android/support/support-v4/21.0.3/support-v4-21.0.3.jar</span><br><span class="line">         https://repo1.maven.org/maven2/com/android/support/support-v4/21.0.3/support-v4-21.0.3.pom</span><br><span class="line">         https://repo1.maven.org/maven2/com/android/support/support-v4/21.0.3/support-v4-21.0.3.jar</span><br><span class="line">         https://jcenter.bintray.com/com/android/support/support-v4/21.0.3/support-v4-21.0.3.pom</span><br><span class="line">         https://jcenter.bintray.com/com/android/support/support-v4/21.0.3/support-v4-21.0.3.jar</span><br><span class="line">     Required by:</span><br><span class="line">         workspace:app:unspecified &amp;gt; com.facebook.fresco:fresco:0.5.3 &amp;gt; com.facebook.fresco:drawee:0.5.3</span><br><span class="line">         workspace:app:unspecified &amp;gt; com.facebook.fresco:fresco:0.5.3 &amp;gt; com.facebook.fresco:imagepipeline:0.5.3</span><br></pre></td></tr></table></figure>
-        
-          <p>
-            <a class="article-more-link" href="/2015/07/28/tools/Idea-gradle-android-%E5%BC%80%E5%8F%91%E9%97%AE%E9%A2%98/">
-              阅读全文
-            </a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://groupfusion.github.io/2015/07/28/tools/Idea-gradle-android-%E5%BC%80%E5%8F%91%E9%97%AE%E9%A2%98/" data-id="clqaijkav001hpguz6qw15w54" class="article-share-link">
-        分享
-      </a>
-      
-<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" rel="tag">开发工具</a></li></ul>
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%92%88%E7%81%B8%E8%B5%84%E7%94%9F%E7%BB%8F/" rel="tag">针灸资生经</a></li></ul>
 
     </footer>
 
@@ -725,7 +727,7 @@ $sudo apachectl -v
 
   
   <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/page/3/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+    <a class="extend prev" rel="prev" href="/page/3/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">下一页</a>
   </nav>
   
 </section>
