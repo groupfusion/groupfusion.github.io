@@ -82,26 +82,6 @@
   </entry>
   
   <entry>
-    <title>微前端架构</title>
-    <link href="https://groupfusion.github.io/2024/01/05/system&amp;design/%E5%BE%AE%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84/"/>
-    <id>https://groupfusion.github.io/2024/01/05/system&amp;design/%E5%BE%AE%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84/</id>
-    <published>2024-01-05T07:41:20.000Z</published>
-    <updated>2024-01-10T05:44:36.368Z</updated>
-    
-    <content type="html"><![CDATA[<p>本文概述了微前端，以及如何将遗留用户界面分解为微前端架构。</p><h2 id="什么是微前端？"><a href="#什么是微前端？" class="headerlink" title="什么是微前端？"></a>什么是微前端？</h2><p>微前端是一种架构方法，它将微服务的概念扩展到 Web 应用程序的前端。在微前端体系结构中，复杂的 Web 应用程序被分解为更小的、可独立部署且可维护的单元，称为微前端。每个微前端负责用户界面的特定部分及其相关功能。</p><span id="more"></span><p>微前端的主要特征和概念包括：</p><ul><li>独立：微前端是自成一体的，独立开发、测试和部署。这种自主权允许不同的团队以最少的协调处理应用程序的不同部分。</li><li>与技术无关：每个微前端都可以使用不同的前端技术（例如，Angular，React，Vue.js），只要它们可以集成到父应用程序或Shell应用程序中即可。</li><li>隔离：微前端在代码和依赖关系方面都是相互隔离的。这种隔离可确保一个微前端中的更改不会影响其他前端。</li><li>集成：容器或 Shell 应用程序负责集成和编排微前端。它提供了用户界面的整体结构，并处理微前端之间的路由。</li><li>独立部署：微前端可以独立部署，从而实现持续交付和更快的更新。这降低了回归问题的风险，并加快了发布周期。</li><li>松散耦合：微前端通过定义良好的 API 和共享协议（如 HTTP）进行通信，从而允许它们松散耦合。这种关注点的分离简化了开发和维护。</li><li>用户界面组合：容器应用程序通过将微前端组合在一起来组装用户界面。这种组合可以在服务器端（服务器端包含）或客户端（客户端路由）上完成。</li><li>扩展和性能：微型前端支持应用程序特定部分的水平扩展，有助于优化频繁访问区域的性能。</li><li>分散式团队：不同的团队或开发团队可以在单独的微前端上工作。这种去中心化对于大型或分布式组织是有利的。</li></ul><p>微前端架构在大型、复杂的 Web 应用程序中特别有用，在这些应用程序中，整体式方法可能会导致开发瓶颈、复杂性增加以及维护和扩展应用程序的困难。</p><p>通过使用微前端，组织可以在其前端开发过程中实现更大的灵活性、敏捷性和可维护性，从而与软件架构领域微服务的更广泛趋势保持一致。</p><h2 id="微前端框架方案"><a href="#微前端框架方案" class="headerlink" title="微前端框架方案"></a>微前端框架方案</h2><h3 id="路由转发"><a href="#路由转发" class="headerlink" title="路由转发"></a>路由转发</h3><p>路由分发式前端，即通过路由将不同的业务分发到不同的独立前端应用上。通常可以通过HTTP服务器的反向代理来实现，或者通过应用框架自带的路由来解决。当前而言，路由分发式的架构是采用得最多、最容易的“微前端”方案。只是将不同的前端应用拼凑到一起，让它们看起来像一个完整的整体。这种应用缺少了对应用状态的处理，对用户的体验不太友好。</p><h3 id="前端微服务化"><a href="#前端微服务化" class="headerlink" title="前端微服务化"></a>前端微服务化</h3><p>前端微服务化是微服务架构在前端的实施，每个前端应用都是完全独立（技术栈、部署、构建独立）、自主运行的，最后通过模块化的方式组合出完整的前端应用。</p><h3 id="组合式集成：微应用化"><a href="#组合式集成：微应用化" class="headerlink" title="组合式集成：微应用化"></a>组合式集成：微应用化</h3><p>微应用化是指，在开发时应用都是以单一、微小应用的形式存在的，而在运行时，则通过构建系统合并这些应用，并组合成一个新的应用。<br>纯前端改造，体验良好，可无感知切换，子应用相互隔离。<br>需要设计和开发，有父子应用处于同一页面运行，需要解决子应用的样式冲突、变量对象污染，通信机制等技术点</p><h3 id="微件化"><a href="#微件化" class="headerlink" title="微件化"></a>微件化</h3><p>微件化是指每个业务团队编写自己的业务代码，并将编译好的代码部署到指定的服务器上。在运行时，我们只需要加载相应的业务模块即可。</p><h3 id="前端容器：iframe"><a href="#前端容器：iframe" class="headerlink" title="前端容器：iframe"></a>前端容器：iframe</h3><p>iframe 可以创建一个全新的独立的宿主环境，类似于沙箱隔离，这意味着我们的前端应用之间可以相互独立运行，仅需要做好应用之间的管理、通信即可。<br>实现简单，子应用之间自带沙箱，天然隔离，互不影响<br>iframe的样式现实、兼容性等都具有局限性。</p><h3 id="结合Web-Components构建"><a href="#结合Web-Components构建" class="headerlink" title="结合Web Components构建"></a>结合Web Components构建</h3><p>Web Components 是一套不同的技术，允许开发者创建可重用的定制元素（它们的功能封装在代码之外）并且在Web应用中使用它们.<br>Web Components技术，离项目应用还有些距离。<br>每个子应用都拥有独立的script和css，也可独立部署。<br>对历史系统改造成本高，子应用通信较为复杂。</p><p>以上6中方案各有优缺点，根据业务等实际情况进行选择。另外，为确保前端体验，不论使用上述那种方案都要完成对应的基座架构框架的搭建。<br>基座就是用于集成各种业务系统前端的框架，可以包括登录、退出</p><h2 id="微前端的业务划分方式"><a href="#微前端的业务划分方式" class="headerlink" title="微前端的业务划分方式"></a>微前端的业务划分方式</h2><p>常见的几种划分微前端的方式：</p><p>  按照业务拆分<br>  按照权限拆分<br>  按照变更的频率拆分<br>  按照组织结构拆分<br>  跟随后端微服务拆分 </p><p>还要根据业务需求选择以上划分方式。</p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;本文概述了微前端，以及如何将遗留用户界面分解为微前端架构。&lt;/p&gt;
-&lt;h2 id=&quot;什么是微前端？&quot;&gt;&lt;a href=&quot;#什么是微前端？&quot; class=&quot;headerlink&quot; title=&quot;什么是微前端？&quot;&gt;&lt;/a&gt;什么是微前端？&lt;/h2&gt;&lt;p&gt;微前端是一种架构方法，它将微服务的概念扩展到 Web 应用程序的前端。在微前端体系结构中，复杂的 Web 应用程序被分解为更小的、可独立部署且可维护的单元，称为微前端。每个微前端负责用户界面的特定部分及其相关功能。&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="系统架构" scheme="https://groupfusion.github.io/tags/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/"/>
-    
-  </entry>
-  
-  <entry>
     <title>如何做技术规划</title>
     <link href="https://groupfusion.github.io/2024/01/05/dev/%E5%A6%82%E4%BD%95%E5%81%9A%E6%8A%80%E6%9C%AF%E8%A7%84%E5%88%92/"/>
     <id>https://groupfusion.github.io/2024/01/05/dev/%E5%A6%82%E4%BD%95%E5%81%9A%E6%8A%80%E6%9C%AF%E8%A7%84%E5%88%92/</id>
@@ -120,6 +100,26 @@
     
     
     <category term="技术规划" scheme="https://groupfusion.github.io/tags/%E6%8A%80%E6%9C%AF%E8%A7%84%E5%88%92/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>微前端架构</title>
+    <link href="https://groupfusion.github.io/2024/01/05/system&amp;design/%E5%BE%AE%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84/"/>
+    <id>https://groupfusion.github.io/2024/01/05/system&amp;design/%E5%BE%AE%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84/</id>
+    <published>2024-01-05T07:41:20.000Z</published>
+    <updated>2024-01-10T05:44:36.368Z</updated>
+    
+    <content type="html"><![CDATA[<p>本文概述了微前端，以及如何将遗留用户界面分解为微前端架构。</p><h2 id="什么是微前端？"><a href="#什么是微前端？" class="headerlink" title="什么是微前端？"></a>什么是微前端？</h2><p>微前端是一种架构方法，它将微服务的概念扩展到 Web 应用程序的前端。在微前端体系结构中，复杂的 Web 应用程序被分解为更小的、可独立部署且可维护的单元，称为微前端。每个微前端负责用户界面的特定部分及其相关功能。</p><span id="more"></span><p>微前端的主要特征和概念包括：</p><ul><li>独立：微前端是自成一体的，独立开发、测试和部署。这种自主权允许不同的团队以最少的协调处理应用程序的不同部分。</li><li>与技术无关：每个微前端都可以使用不同的前端技术（例如，Angular，React，Vue.js），只要它们可以集成到父应用程序或Shell应用程序中即可。</li><li>隔离：微前端在代码和依赖关系方面都是相互隔离的。这种隔离可确保一个微前端中的更改不会影响其他前端。</li><li>集成：容器或 Shell 应用程序负责集成和编排微前端。它提供了用户界面的整体结构，并处理微前端之间的路由。</li><li>独立部署：微前端可以独立部署，从而实现持续交付和更快的更新。这降低了回归问题的风险，并加快了发布周期。</li><li>松散耦合：微前端通过定义良好的 API 和共享协议（如 HTTP）进行通信，从而允许它们松散耦合。这种关注点的分离简化了开发和维护。</li><li>用户界面组合：容器应用程序通过将微前端组合在一起来组装用户界面。这种组合可以在服务器端（服务器端包含）或客户端（客户端路由）上完成。</li><li>扩展和性能：微型前端支持应用程序特定部分的水平扩展，有助于优化频繁访问区域的性能。</li><li>分散式团队：不同的团队或开发团队可以在单独的微前端上工作。这种去中心化对于大型或分布式组织是有利的。</li></ul><p>微前端架构在大型、复杂的 Web 应用程序中特别有用，在这些应用程序中，整体式方法可能会导致开发瓶颈、复杂性增加以及维护和扩展应用程序的困难。</p><p>通过使用微前端，组织可以在其前端开发过程中实现更大的灵活性、敏捷性和可维护性，从而与软件架构领域微服务的更广泛趋势保持一致。</p><h2 id="微前端框架方案"><a href="#微前端框架方案" class="headerlink" title="微前端框架方案"></a>微前端框架方案</h2><h3 id="路由转发"><a href="#路由转发" class="headerlink" title="路由转发"></a>路由转发</h3><p>路由分发式前端，即通过路由将不同的业务分发到不同的独立前端应用上。通常可以通过HTTP服务器的反向代理来实现，或者通过应用框架自带的路由来解决。当前而言，路由分发式的架构是采用得最多、最容易的“微前端”方案。只是将不同的前端应用拼凑到一起，让它们看起来像一个完整的整体。这种应用缺少了对应用状态的处理，对用户的体验不太友好。</p><h3 id="前端微服务化"><a href="#前端微服务化" class="headerlink" title="前端微服务化"></a>前端微服务化</h3><p>前端微服务化是微服务架构在前端的实施，每个前端应用都是完全独立（技术栈、部署、构建独立）、自主运行的，最后通过模块化的方式组合出完整的前端应用。</p><h3 id="组合式集成：微应用化"><a href="#组合式集成：微应用化" class="headerlink" title="组合式集成：微应用化"></a>组合式集成：微应用化</h3><p>微应用化是指，在开发时应用都是以单一、微小应用的形式存在的，而在运行时，则通过构建系统合并这些应用，并组合成一个新的应用。<br>纯前端改造，体验良好，可无感知切换，子应用相互隔离。<br>需要设计和开发，有父子应用处于同一页面运行，需要解决子应用的样式冲突、变量对象污染，通信机制等技术点</p><h3 id="微件化"><a href="#微件化" class="headerlink" title="微件化"></a>微件化</h3><p>微件化是指每个业务团队编写自己的业务代码，并将编译好的代码部署到指定的服务器上。在运行时，我们只需要加载相应的业务模块即可。</p><h3 id="前端容器：iframe"><a href="#前端容器：iframe" class="headerlink" title="前端容器：iframe"></a>前端容器：iframe</h3><p>iframe 可以创建一个全新的独立的宿主环境，类似于沙箱隔离，这意味着我们的前端应用之间可以相互独立运行，仅需要做好应用之间的管理、通信即可。<br>实现简单，子应用之间自带沙箱，天然隔离，互不影响<br>iframe的样式现实、兼容性等都具有局限性。</p><h3 id="结合Web-Components构建"><a href="#结合Web-Components构建" class="headerlink" title="结合Web Components构建"></a>结合Web Components构建</h3><p>Web Components 是一套不同的技术，允许开发者创建可重用的定制元素（它们的功能封装在代码之外）并且在Web应用中使用它们.<br>Web Components技术，离项目应用还有些距离。<br>每个子应用都拥有独立的script和css，也可独立部署。<br>对历史系统改造成本高，子应用通信较为复杂。</p><p>以上6中方案各有优缺点，根据业务等实际情况进行选择。另外，为确保前端体验，不论使用上述那种方案都要完成对应的基座架构框架的搭建。<br>基座就是用于集成各种业务系统前端的框架，可以包括登录、退出</p><h2 id="微前端的业务划分方式"><a href="#微前端的业务划分方式" class="headerlink" title="微前端的业务划分方式"></a>微前端的业务划分方式</h2><p>常见的几种划分微前端的方式：</p><p>  按照业务拆分<br>  按照权限拆分<br>  按照变更的频率拆分<br>  按照组织结构拆分<br>  跟随后端微服务拆分 </p><p>还要根据业务需求选择以上划分方式。</p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;本文概述了微前端，以及如何将遗留用户界面分解为微前端架构。&lt;/p&gt;
+&lt;h2 id=&quot;什么是微前端？&quot;&gt;&lt;a href=&quot;#什么是微前端？&quot; class=&quot;headerlink&quot; title=&quot;什么是微前端？&quot;&gt;&lt;/a&gt;什么是微前端？&lt;/h2&gt;&lt;p&gt;微前端是一种架构方法，它将微服务的概念扩展到 Web 应用程序的前端。在微前端体系结构中，复杂的 Web 应用程序被分解为更小的、可独立部署且可维护的单元，称为微前端。每个微前端负责用户界面的特定部分及其相关功能。&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="系统架构" scheme="https://groupfusion.github.io/tags/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/"/>
     
   </entry>
   
@@ -256,6 +256,25 @@
   </entry>
   
   <entry>
+    <title>reids 数据类型学习笔记</title>
+    <link href="https://groupfusion.github.io/2022/11/14/dev/reids%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>https://groupfusion.github.io/2022/11/14/dev/reids%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
+    <published>2022-11-14T07:41:20.000Z</published>
+    <updated>2023-12-15T12:39:46.451Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="reids-数据类型学习笔记"><a href="#reids-数据类型学习笔记" class="headerlink" title="reids 数据类型学习笔记"></a>reids 数据类型学习笔记</h1><h2 id="redis-基本数据类型"><a href="#redis-基本数据类型" class="headerlink" title="redis 基本数据类型"></a>redis 基本数据类型</h2><p><img src="/images/redis/a7c36999e90a41038134360ace7da42a.png#pic_center" alt="在这里插入图片描述"></p><span id="more"></span><h3 id="字符串string类型"><a href="#字符串string类型" class="headerlink" title="字符串string类型"></a>字符串string类型</h3><p><strong>常用指令：</strong> set、mset、setnx、get、mget、del、expire。<br><strong>原子加减：</strong> incr、decr、incrby、decrby、</p><p><strong>使用场景：</strong></p><ul><li>单值缓存</li><li>对象缓存</li><li>分布式锁</li><li>计数器</li><li>分布式系统序列号</li></ul><h3 id="哈希hash类型"><a href="#哈希hash类型" class="headerlink" title="哈希hash类型"></a>哈希hash类型</h3><p><strong>常用指令：</strong>hset、hsetnx、hmset、hget、hmget、hdel、hlen、hgetall、hincrby<br><strong>使用场景：</strong></p><ul><li>对象缓存</li><li>购物车（添加商品、增加数量、商品总数、删除商品、获取购物车商品）</li></ul><h3 id="列表list类型"><a href="#列表list类型" class="headerlink" title="列表list类型"></a>列表list类型</h3><p><strong>常用指令：</strong>lpush、rpush、lpop、rpop、lrange、blpop、brpop。<br><strong>使用场景：</strong></p><ul><li>可实现常用分布式数据结构，stack(栈)、Queue（队列）、Blocking MQ（阻塞队列）</li><li>微博、微信消息流，时间线功能。</li></ul><p>注：读扩散、写扩散，千万、亿万粉丝大V发消息，如何推给粉丝？<br>小V写扩散、对用户进行标签，将消息写到活跃用户收件箱</p><h3 id="集合set类型"><a href="#集合set类型" class="headerlink" title="集合set类型"></a>集合set类型</h3><p><strong>常用指令：</strong> sadd、srem、smembers、scard、sismember、srandmember、spop<br><strong>运算操作：</strong> sinter、sinterstore、sunion、sunionstore、sdiff、sdiffstore<br><strong>使用场景：</strong></p><ul><li>抽奖、点赞、收藏、标签</li><li>集合交集、并集、差集</li></ul><h3 id="有序集合ZSet类型"><a href="#有序集合ZSet类型" class="headerlink" title="有序集合ZSet类型"></a>有序集合ZSet类型</h3><p><strong>常用指令：</strong> zadd zrem zscore zincrby zcard、zrange zrevrange、<br><strong>运算操作：</strong>zunionstore、zinterstore<br><strong>使用场景：</strong></p><h2 id="redis底层数据结构"><a href="#redis底层数据结构" class="headerlink" title="redis底层数据结构"></a>redis底层数据结构</h2><ul><li>数组: 根据序号随机查找很快，但是插入与删除很慢，需要挪动很多元素链表:插入与删除很快，只需要修改相邻元素指针，但是查找很慢，需要从第一个元素逐个遍历查找</li></ul><p>有序数组支持折半查找，链表不支持折半查找<br>有序数组的折半查找操作速度很快，但是插入、删除操作很慢</p><ul><li>跳表: 将有序链表改造为支持“折半查找”算法，可以进行快速的插入、删除、查找操作</li></ul><p>跳表与压缩列表优缺点，如何选择。</p><h2 id="Redis经典问题"><a href="#Redis经典问题" class="headerlink" title="Redis经典问题"></a>Redis经典问题</h2><h2 id="3-3-缓存穿透（缓存，数据库都没有数据）"><a href="#3-3-缓存穿透（缓存，数据库都没有数据）" class="headerlink" title="3.3 缓存穿透（缓存，数据库都没有数据）"></a>3.3 缓存穿透（缓存，数据库都没有数据）</h2><p>描述：是指查询一个根本不存在的数据(key)，缓存层和存储层都不会命中。通常出于容错的考虑，如果从存储层查不到数据则不写入缓存层.<br>导致这个请求每次都会请求到数据库，失去了缓存保护后端存储的意义造成缓存穿透的基本原因有两个:<br>第一，自身业务代码或者数据出现问题<br>第二，一些恶意攻击、爬虫等造成大量空命中。<br>3、 突发性热点缓存，<br>解决方案：<br>1、将空数据也设置为缓存，并设置过期时间（几分钟）。<br>2、布隆过滤器。</p><h2 id="3-4-缓存雪崩"><a href="#3-4-缓存雪崩" class="headerlink" title="3.4 缓存雪崩"></a>3.4 缓存雪崩</h2><p>描述：缓存失效（缓存层宕机）后，导致大量请求都会打到存储层，存储层的调用量暴增，造成存储层也会级联宕机的情况。</p><p>解决方案：<br>1、保证缓存层服务的高可用性。<br>2、以来隔离组件为后端限流熔断降级，核心业务访问达数据库，非核心业务返回预定义的信息。<br>3、提前演练。在项目上线前，演练缓存层宕机后，应用及后端的负载情况以及可能出现的问题，在此基础上指定一些预案。</p><h2 id="3-5-缓存击穿"><a href="#3-5-缓存击穿" class="headerlink" title="3.5 缓存击穿"></a>3.5 缓存击穿</h2><p>描述：缓存击穿是指当大量缓存在同一时间失效可能导致大量请求，同时穿透缓存直接访问到数据库。造成数据库压力瞬间骤增，大量请求阻塞，甚至挂掉。</p><p>解决方案：<br>1、针对这些缓存设置不同的过期时间（差异化设置过期时间），如：在24小时基础上增加一个随机数（增加几分钟）。<br>2、使用分布式锁，保证同一时刻只能有一个查询请求重新加载热点数据到缓存中，这样，其他的线程只需等待该线程运行完毕，即可重新从Redis中获取数据。</p>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;reids-数据类型学习笔记&quot;&gt;&lt;a href=&quot;#reids-数据类型学习笔记&quot; class=&quot;headerlink&quot; title=&quot;reids 数据类型学习笔记&quot;&gt;&lt;/a&gt;reids 数据类型学习笔记&lt;/h1&gt;&lt;h2 id=&quot;redis-基本数据类型&quot;&gt;&lt;a href=&quot;#redis-基本数据类型&quot; class=&quot;headerlink&quot; title=&quot;redis 基本数据类型&quot;&gt;&lt;/a&gt;redis 基本数据类型&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;/images/redis/a7c36999e90a41038134360ace7da42a.png#pic_center&quot; alt=&quot;在这里插入图片描述&quot;&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="Redis" scheme="https://groupfusion.github.io/tags/Redis/"/>
+    
+  </entry>
+  
+  <entry>
     <title>reids 持久化学习笔记</title>
     <link href="https://groupfusion.github.io/2022/11/14/dev/Redis%E6%8C%81%E4%B9%85%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <id>https://groupfusion.github.io/2022/11/14/dev/Redis%E6%8C%81%E4%B9%85%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
@@ -269,25 +288,6 @@
 &lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;#save 60 1000 /关闭RDB只需要将所有的save保存策略注释掉即可&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 
 &lt;p&gt;还可以手动执行命令生成RDB快照，进入redis客户端执行命令&lt;strong&gt;save&lt;/strong&gt;或&lt;strong&gt;bgsave&lt;/strong&gt;可以生成dump.rdb文件，每次命令执行都会将所有redis内存快照到一个新的rdb文件里，并覆盖原有rdb快照文件。&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="Redis" scheme="https://groupfusion.github.io/tags/Redis/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>reids 数据类型学习笔记</title>
-    <link href="https://groupfusion.github.io/2022/11/14/dev/reids%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    <id>https://groupfusion.github.io/2022/11/14/dev/reids%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
-    <published>2022-11-14T07:41:20.000Z</published>
-    <updated>2023-12-15T12:39:46.451Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="reids-数据类型学习笔记"><a href="#reids-数据类型学习笔记" class="headerlink" title="reids 数据类型学习笔记"></a>reids 数据类型学习笔记</h1><h2 id="redis-基本数据类型"><a href="#redis-基本数据类型" class="headerlink" title="redis 基本数据类型"></a>redis 基本数据类型</h2><p><img src="/images/redis/a7c36999e90a41038134360ace7da42a.png#pic_center" alt="在这里插入图片描述"></p><span id="more"></span><h3 id="字符串string类型"><a href="#字符串string类型" class="headerlink" title="字符串string类型"></a>字符串string类型</h3><p><strong>常用指令：</strong> set、mset、setnx、get、mget、del、expire。<br><strong>原子加减：</strong> incr、decr、incrby、decrby、</p><p><strong>使用场景：</strong></p><ul><li>单值缓存</li><li>对象缓存</li><li>分布式锁</li><li>计数器</li><li>分布式系统序列号</li></ul><h3 id="哈希hash类型"><a href="#哈希hash类型" class="headerlink" title="哈希hash类型"></a>哈希hash类型</h3><p><strong>常用指令：</strong>hset、hsetnx、hmset、hget、hmget、hdel、hlen、hgetall、hincrby<br><strong>使用场景：</strong></p><ul><li>对象缓存</li><li>购物车（添加商品、增加数量、商品总数、删除商品、获取购物车商品）</li></ul><h3 id="列表list类型"><a href="#列表list类型" class="headerlink" title="列表list类型"></a>列表list类型</h3><p><strong>常用指令：</strong>lpush、rpush、lpop、rpop、lrange、blpop、brpop。<br><strong>使用场景：</strong></p><ul><li>可实现常用分布式数据结构，stack(栈)、Queue（队列）、Blocking MQ（阻塞队列）</li><li>微博、微信消息流，时间线功能。</li></ul><p>注：读扩散、写扩散，千万、亿万粉丝大V发消息，如何推给粉丝？<br>小V写扩散、对用户进行标签，将消息写到活跃用户收件箱</p><h3 id="集合set类型"><a href="#集合set类型" class="headerlink" title="集合set类型"></a>集合set类型</h3><p><strong>常用指令：</strong> sadd、srem、smembers、scard、sismember、srandmember、spop<br><strong>运算操作：</strong> sinter、sinterstore、sunion、sunionstore、sdiff、sdiffstore<br><strong>使用场景：</strong></p><ul><li>抽奖、点赞、收藏、标签</li><li>集合交集、并集、差集</li></ul><h3 id="有序集合ZSet类型"><a href="#有序集合ZSet类型" class="headerlink" title="有序集合ZSet类型"></a>有序集合ZSet类型</h3><p><strong>常用指令：</strong> zadd zrem zscore zincrby zcard、zrange zrevrange、<br><strong>运算操作：</strong>zunionstore、zinterstore<br><strong>使用场景：</strong></p><h2 id="redis底层数据结构"><a href="#redis底层数据结构" class="headerlink" title="redis底层数据结构"></a>redis底层数据结构</h2><ul><li>数组: 根据序号随机查找很快，但是插入与删除很慢，需要挪动很多元素链表:插入与删除很快，只需要修改相邻元素指针，但是查找很慢，需要从第一个元素逐个遍历查找</li></ul><p>有序数组支持折半查找，链表不支持折半查找<br>有序数组的折半查找操作速度很快，但是插入、删除操作很慢</p><ul><li>跳表: 将有序链表改造为支持“折半查找”算法，可以进行快速的插入、删除、查找操作</li></ul><p>跳表与压缩列表优缺点，如何选择。</p><h2 id="Redis经典问题"><a href="#Redis经典问题" class="headerlink" title="Redis经典问题"></a>Redis经典问题</h2><h2 id="3-3-缓存穿透（缓存，数据库都没有数据）"><a href="#3-3-缓存穿透（缓存，数据库都没有数据）" class="headerlink" title="3.3 缓存穿透（缓存，数据库都没有数据）"></a>3.3 缓存穿透（缓存，数据库都没有数据）</h2><p>描述：是指查询一个根本不存在的数据(key)，缓存层和存储层都不会命中。通常出于容错的考虑，如果从存储层查不到数据则不写入缓存层.<br>导致这个请求每次都会请求到数据库，失去了缓存保护后端存储的意义造成缓存穿透的基本原因有两个:<br>第一，自身业务代码或者数据出现问题<br>第二，一些恶意攻击、爬虫等造成大量空命中。<br>3、 突发性热点缓存，<br>解决方案：<br>1、将空数据也设置为缓存，并设置过期时间（几分钟）。<br>2、布隆过滤器。</p><h2 id="3-4-缓存雪崩"><a href="#3-4-缓存雪崩" class="headerlink" title="3.4 缓存雪崩"></a>3.4 缓存雪崩</h2><p>描述：缓存失效（缓存层宕机）后，导致大量请求都会打到存储层，存储层的调用量暴增，造成存储层也会级联宕机的情况。</p><p>解决方案：<br>1、保证缓存层服务的高可用性。<br>2、以来隔离组件为后端限流熔断降级，核心业务访问达数据库，非核心业务返回预定义的信息。<br>3、提前演练。在项目上线前，演练缓存层宕机后，应用及后端的负载情况以及可能出现的问题，在此基础上指定一些预案。</p><h2 id="3-5-缓存击穿"><a href="#3-5-缓存击穿" class="headerlink" title="3.5 缓存击穿"></a>3.5 缓存击穿</h2><p>描述：缓存击穿是指当大量缓存在同一时间失效可能导致大量请求，同时穿透缓存直接访问到数据库。造成数据库压力瞬间骤增，大量请求阻塞，甚至挂掉。</p><p>解决方案：<br>1、针对这些缓存设置不同的过期时间（差异化设置过期时间），如：在24小时基础上增加一个随机数（增加几分钟）。<br>2、使用分布式锁，保证同一时刻只能有一个查询请求重新加载热点数据到缓存中，这样，其他的线程只需等待该线程运行完毕，即可重新从Redis中获取数据。</p>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;reids-数据类型学习笔记&quot;&gt;&lt;a href=&quot;#reids-数据类型学习笔记&quot; class=&quot;headerlink&quot; title=&quot;reids 数据类型学习笔记&quot;&gt;&lt;/a&gt;reids 数据类型学习笔记&lt;/h1&gt;&lt;h2 id=&quot;redis-基本数据类型&quot;&gt;&lt;a href=&quot;#redis-基本数据类型&quot; class=&quot;headerlink&quot; title=&quot;redis 基本数据类型&quot;&gt;&lt;/a&gt;redis 基本数据类型&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;/images/redis/a7c36999e90a41038134360ace7da42a.png#pic_center&quot; alt=&quot;在这里插入图片描述&quot;&gt;&lt;/p&gt;</summary>
     
     
     
