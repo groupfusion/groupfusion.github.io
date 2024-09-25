@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  <meta name="description" content="一个程序员的学习、工作日志">
+  
+  <title>
+    IDEA 插件开发实战教程(一) 入门 |
+    
+    码农军哥
+  </title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<script src="/js/pace.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="码农军哥" type="application/atom+xml">
+</head>
+
+<body>
+  <main class="content">
+    <section class="outer">
+  <article id="post-dev/IDEA 插件开发实战教程(一) 入门" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+
+<h1 class="article-title" itemprop="name">
+  IDEA 插件开发实战教程(一) 入门
+</h1>
+
+
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2024/09/10/dev/IDEA%20%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E6%95%99%E7%A8%8B(%E4%B8%80)%20%E5%85%A5%E9%97%A8/" class="article-date">
+  <time datetime="2024-09-10T12:41:20.000Z" itemprop="datePublished">2024-09-10</time>
+</a>
+      
+    </div>
+    
+
+    
+    
+<div class="tocbot"></div>
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+      <p>在众多的 JAVA 开发集成开发环境（IDE）中，IntelliJ IDEA 无疑是备受推崇的佼佼者，其本身所具备的功能堪称强大且全面。然而，不得不承认的是，由于每位开发者的需求都具有独特性，如同世界上没有两片完全相同的树叶一样，IDEA 即便功能再强大，也难以满足所有人的个性化需求。</p>
+<p>在这种情况下，IDEA 所提供的插件功能就成为了开发者们的得力助手。它就像是一个功能丰富的百宝箱，开发者们可以根据自己的特定需求，从中挑选合适的插件来满足自己的开发要求。如果在这个丰富的插件库中，依然找不到能够满足自身特殊需求的插件，那该怎么办呢？别担心，我们完全可以凭借自己的能力和创造力，亲手打造一个专属的插件！</p>
+<span id="more"></span>
+<p>正所谓 “工欲善其事，必先利其器”，对于开发者而言，想要在开发过程中提高效率，IDEA 的插件功能无疑是一把锐利的武器。它能够帮助我们在面对各种复杂多样的开发需求时，更加从容不迫地应对，从而提高开发效率，提升开发体验，让我们在编程的世界中更加游刃有余。<br>我们将从最基础开始创建一个简单的插件。在开始前我们还要了解下面内容：</p>
+<ul>
+<li>在开始实际开发之前，请确保了解实现最佳<a target="_blank" rel="noopener" href="https://plugins.jetbrains.com/docs/intellij/plugin-user-experience.html">插件用户体验 （UX）</a> 的所有要求。</li>
+<li>确定插件需求：明确你要开发的插件功能，例如代码自动生成、语法检查、特定文件格式支持等。</li>
+</ul>
+<h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>实现在源码中添加作者信息</p>
+<h2 id="一、开发环境搭建"><a href="#一、开发环境搭建" class="headerlink" title="一、开发环境搭建"></a>一、开发环境搭建</h2><p>确保你已经安装了以下软件：</p>
+<ol>
+<li>安装IntelliJ IDEA （确保你安装了最新版本的 IntelliJ IDEA，社区版或旗舰版均可用于插件开发）</li>
+<li>安装JDK （IDEA 插件开发需要 JDK，确保安装了合适版本的 JDK 并配置好环境变量。）<h2 id="二、创建插件项目"><a href="#二、创建插件项目" class="headerlink" title="二、创建插件项目"></a>二、创建插件项目</h2><img src="https://p3-juejin-sign.byteimg.com/tos-cn-i-k3u1fbpfcp/799dac4fe9ca489593d9d867ddf3beae~tplv-k3u1fbpfcp-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6:q75.awebp?rk3s=bb34011d&x-expires=1727325152&x-signature=CRTnO7tyJV+b5fir2MhPSiKML/s=" alt="image.png"></li>
+<li>打开 IntelliJ IDEA，选择 “File”-&gt;“New”-&gt;“Project”。</li>
+<li>在 “New Project” 窗口中，在选择 “IDE Plugin”。</li>
+<li>输入项目名称和位置，点击 “Create”。</li>
+<li>根据需要配置项目设置，如插件名称、版本号等，然后点击 “Finish”。</li>
+</ol>
+<p><em>注：IntelliJ 默认推荐使用 Gradle 来管理整个插件工程。</em></p>
+<h2 id="三、项目结构解析"><a href="#三、项目结构解析" class="headerlink" title="三、项目结构解析"></a>三、项目结构解析</h2><p>创建完成后，你将看到以下项目结构：</p>
+<ul>
+<li>src/main/java：包含插件的主要 Java 代码。<ul>
+<li>PluginDescriptor.java：用于描述插件的基本信息，如插件名称、版本、作者等。</li>
+<li>其他自定义的 Java 类文件，用于实现插件的具体功能。</li>
+</ul>
+</li>
+<li>src/main/resources：存放插件相关的资源文件，如图标等。<ul>
+<li>plugin.xml：插件的核心配置文件，定义了插件的名称、描述、版本、扩展点等信息。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://p3-juejin-sign.byteimg.com/tos-cn-i-k3u1fbpfcp/2ebd4961d3ea4fe09a9af28d61295261~tplv-k3u1fbpfcp-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6:q75.awebp?rk3s=bb34011d&x-expires=1727325152&x-signature=/GZT5mqRY0xPbK5Q9oRCGcYxAf0=" alt="image.png"><br><em>注： idea默认使用kotlin，使用java语言需要自行修改。</em></p>
+<h2 id="四、实现插件功能"><a href="#四、实现插件功能" class="headerlink" title="四、实现插件功能"></a>四、实现插件功能</h2><p>这里我们使用Plugin DevKit创建一个Action，如下图：<br><img src="https://p3-juejin-sign.byteimg.com/tos-cn-i-k3u1fbpfcp/5371cdd22f384556bb633eeba2f9f4a3~tplv-k3u1fbpfcp-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6:q75.awebp?rk3s=bb34011d&x-expires=1727325152&x-signature=wU2BJc2UUtC91LUJ1btm41j2Cnw=" alt="image.png"></p>
+<p><img src="https://p3-juejin-sign.byteimg.com/tos-cn-i-k3u1fbpfcp/d412df4e56a54f4ea02fdecbb59fe3db~tplv-k3u1fbpfcp-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6:q75.awebp?rk3s=bb34011d&x-expires=1727325152&x-signature=IT2W50mug1jv0pXziei8jAS+qn8=" alt="image.png"><br>在上图中Add to Group部分我们选择“EditorPopupMenu(Editor Popup Menu); Keyboard Shortcuts 快捷键可根据需要设置，这里我就不设置了。<br>然后点击ok。在src/main/java目录下就创建一个新的 Java 类（AddAuthorInfoAction），让它继承自AnAction类。<br>IDEA 提供了许多扩展点，我们可以通过实现这些扩展点来扩展 IDEA 的功能。例如，实现<code>AnAction</code>扩展点可以创建一个新的菜单项动作。<br>我们需要实现actionPerformed 扩展接口</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">```java</span><br><span class="line">import com.intellij.openapi.actionSystem.AnAction;</span><br><span class="line">import com.intellij.openapi.actionSystem.AnActionEvent;</span><br><span class="line">import com.intellij.openapi.editor.Editor;</span><br><span class="line">import com.intellij.openapi.project.Project;</span><br><span class="line"></span><br><span class="line">public class AddAuthorInfoAction extends AnAction &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void actionPerformed(AnActionEvent e) &#123;</span><br><span class="line">        // 在这里插入相应逻辑 </span><br><span class="line">        // 获取当前项目和编辑器实例</span><br><span class="line">        Project project = e.getProject();</span><br><span class="line">        Editor editor = e.getData(CommonDataKeys.EDITOR);</span><br><span class="line">        if (project!= null &amp;&amp; editor!= null) &#123;</span><br><span class="line">            // 在此处添加自动添加作者信息注释的代码逻辑</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在actionPerformed方法中实现添加作者信息注释的功能。我们可以通过editor对象获取当前打开文件的内容，并在文件开头添加作者信息注释。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">actionPerformed</span><span class="params">(AnActionEvent e)</span> </span>&#123;</span><br><span class="line">    Project project = e.getProject();</span><br><span class="line">    Editor editor = e.getData(CommonDataKeys.EDITOR);</span><br><span class="line">    <span class="keyword">if</span> (project!= <span class="keyword">null</span> &amp;&amp; editor!= <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="comment">// 获取当前文件路径</span></span><br><span class="line">        String filePath = project.getBasePath() + <span class="string">&quot;/&quot;</span> + editor.getDocument().getFileName();</span><br><span class="line">        <span class="comment">// 添加作者信息注释</span></span><br><span class="line">        String authorInfo = <span class="string">&quot;// Author: Your Name\n&quot;</span>;</span><br><span class="line">       <span class="comment">//Intellij Platform不允许在主线程中进行实时的文件写入，而需要通过一个异步任务来进行。</span></span><br><span class="line">        WriteCommandAction.runWriteCommandAction(project, <span class="keyword">new</span> Runnable() &#123;  </span><br><span class="line">            <span class="meta">@Override</span>  </span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">            editor.getDocument().insertString(<span class="number">0</span>, authorInfo);  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接下来，我们看下plugin.xml文件，Plugin DevKit会在plugin.xml中配置插件的扩展点和动作。找到<actions>标签，可以看到添加的以下内容：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">action</span> <span class="attr">id</span>=<span class="string">&quot;AddAuthorInfoAction&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.github.myfirstplugin.AddAuthorInfoAction&quot;</span> <span class="attr">text</span>=<span class="string">&quot;Add Author Info&quot;</span>  </span></span><br><span class="line"><span class="tag"><span class="attr">description</span>=<span class="string">&quot;Add Author Info&quot;</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">add-to-group</span> <span class="attr">group-id</span>=<span class="string">&quot;EditorPopupMenu&quot;</span> <span class="attr">anchor</span>=<span class="string">&quot;first&quot;</span>/&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">action</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这段配置定义了一个名为 “Add Author Info” 的菜单项，当用户在编辑器中右键点击时，会在弹出菜单的顶部显示该菜单项。</p>
+<p><img src="https://p3-juejin-sign.byteimg.com/tos-cn-i-k3u1fbpfcp/3bb25a7ffd3f4da3b2b3b7cdf40f3419~tplv-k3u1fbpfcp-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6:q75.awebp?rk3s=bb34011d&x-expires=1727325152&x-signature=mpR58Y179DKnyf2UkUJ49POG3pY=" alt="image.png"></p>
+<h2 id="五、调试插件"><a href="#五、调试插件" class="headerlink" title="五、调试插件"></a>五、调试插件</h2><p><img src="https://p3-juejin-sign.byteimg.com/tos-cn-i-k3u1fbpfcp/4f40b693cf7f487ba873465c65e2ba74~tplv-k3u1fbpfcp-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6:q75.awebp?rk3s=bb34011d&x-expires=1727325152&x-signature=3tHf6wPmetYs58OY8NyVX3E1+pk=" alt="image.png"></p>
+<ol>
+<li>在toolsbar中，点击左上角的 “V” 按钮，选择 “Run Plugin”。</li>
+<li>点击 “Debug” 按钮启动调试模式。</li>
+<li>在新打开的IDEA 中打开一个 Java 源码项目，右键点击编辑器区域，你应该能够看到 “Add Author Info” 菜单项。点击该菜单项，插件将在代码文件开头添加作者信息注释，同时你可以在调试工具窗口中查看插件的运行状态和调试信息。<h2 id="六、打包和安装插件"><a href="#六、打包和安装插件" class="headerlink" title="六、打包和安装插件"></a>六、打包和安装插件</h2></li>
+<li>打包插件：点击 “gradle”-&gt;“Tasks”-&gt;“build” -&gt; “jar”。这将在项目的build/libs目录下生成一个.jar格式的插件包。<br> <img src="https://p3-juejin-sign.byteimg.com/tos-cn-i-k3u1fbpfcp/99faed91299d4e80aa031d3c66a476b8~tplv-k3u1fbpfcp-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6:q75.awebp?rk3s=bb34011d&x-expires=1727325152&x-signature=pL9U+GJMlZzRVAifpXqHCf/9wug=" alt="image.png"></li>
+<li>安装插件：<ul>
+<li>方法一（本地安装）：在 IntelliJ IDEA 中，点击 “File” -&gt; “Settings” -&gt; “Plugins”。在插件设置页面中，点击右上角的齿轮图标，选择 “Install Plugin from Disk”，然后选择你刚刚生成的插件包进行安装。安装完成后，重启 IDEA 使插件生效。</li>
+<li>方法二（上传到插件仓库）：如果你希望将插件分享给其他用户，可以将插件上传到 JetBrains 的插件仓库。具体步骤可以参考 <a target="_blank" rel="noopener" href="https://plugins.jetbrains.com/docs/intellij/publishing-plugin.html">JetBrains 的官方文档</a>。</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://groupfusion.github.io/2024/09/10/dev/IDEA%20%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E6%95%99%E7%A8%8B(%E4%B8%80)%20%E5%85%A5%E9%97%A8/" data-id="cm1hgp3az00051kuze9pbh7mo" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDEA-plugin/" rel="tag">IDEA plugin</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+  
+<nav class="article-nav">
+  
+  <a href="/2024/09/11/dev/IDEA%20%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E6%95%99%E7%A8%8B(%E4%BA%8C)%20plugin/" class="article-nav-link">
+    <strong class="article-nav-caption">前一篇</strong>
+    <div class="article-nav-title">
+      
+      IDEA 插件开发实战教程(二) plugin
+      
+    </div>
+  </a>
+  
+  
+  <a href="/2024/05/22/readbook/free-programming-books/" class="article-nav-link">
+    <strong class="article-nav-caption">后一篇</strong>
+    <div class="article-nav-title">程序员的免费电子书库</div>
+  </a>
+  
+</nav>
+
+  
+
+  
+  
+  
+  
+
+</article>
+</section>
+    <footer class="footer">
+  <div class="outer">
+    <div class="float-right">
+      <ul class="list-inline">
+  
+  <li><i class="fe fe-smile-alt"></i> <span id="busuanzi_value_site_uv"></span></li>
+  
+  <li><i class="fe fe-bookmark"></i> <span id="busuanzi_value_page_pv"></span></li>
+  
+</ul>
+    </div>
+    <ul class="list-inline">
+      <li>码农军哥 &copy; 2024</li>
+      
+        <li></li>
+      
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>theme  <a target="_blank" rel="noopener" href="https://github.com/zhwangart/hexo-theme-ocean">Ocean</a></li>
+    </ul>
+  </div>
+</footer>
+  </main>
+  <aside class="sidebar">
+    <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/jerry.svg" alt="码农军哥"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/gallery">相册</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/favorites">收藏</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      <div class="totop" id="totop">
+  <i class="fe fe-rocket"></i>
+</div>
+    </li>
+    <li class="nav-item">
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="fe fe-feed"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+  </aside>
+  
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/copybtn.js"></script>
+
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+  });
+</script>
+
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+
+</html>

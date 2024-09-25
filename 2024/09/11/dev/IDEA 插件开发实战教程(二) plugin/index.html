@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  <meta name="description" content="一个程序员的学习、工作日志">
+  
+  <title>
+    IDEA 插件开发实战教程(二) plugin |
+    
+    码农军哥
+  </title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<script src="/js/pace.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="码农军哥" type="application/atom+xml">
+</head>
+
+<body>
+  <main class="content">
+    <section class="outer">
+  <article id="post-dev/IDEA 插件开发实战教程(二) plugin" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+
+<h1 class="article-title" itemprop="name">
+  IDEA 插件开发实战教程(二) plugin
+</h1>
+
+
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2024/09/11/dev/IDEA%20%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E6%95%99%E7%A8%8B(%E4%BA%8C)%20plugin/" class="article-date">
+  <time datetime="2024-09-11T12:41:20.000Z" itemprop="datePublished">2024-09-11</time>
+</a>
+      
+    </div>
+    
+
+    
+    
+<div class="tocbot"></div>
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+      <p>在 IntelliJ IDEA 插件开发中，<code>plugin.xml</code>文件是一个非常重要的配置文件。它用于定义插件的各种属性、扩展点以及与 IDE 的集成方式。以下是对<code>plugin.xml</code>文件的详细介绍：</p>
+<span id="more"></span>
+<h2 id="一、文件结构"><a href="#一、文件结构" class="headerlink" title="一、文件结构"></a>一、文件结构</h2><p><code>plugin.xml</code>文件通常包含以下几个主要部分：</p>
+<ol>
+<li> <code>&lt;idea-plugin&gt;</code>根元素：这是整个配置文件的根标签，所有的插件配置都在这个标签内进行。</li>
+<li> <code>&lt;id&gt;</code>：插件的唯一标识符。这个标识符在整个插件生态系统中应该是唯一的，通常采用反向域名的命名方式，例如<code>com.example.myplugin</code>。</li>
+<li> <code>&lt;name&gt;</code>：插件的名称，将在 IDE 的插件列表中显示。</li>
+<li> <code>&lt;version&gt;</code>：插件的版本号。遵循语义化版本规范，以便用户和 IDE 能够了解插件的更新情况。</li>
+<li> <code>&lt;description&gt;</code>：插件的描述信息，用于向用户介绍插件的功能。</li>
+<li> <code>&lt;depends&gt;</code>：如果你的插件依赖于其他插件，可以在这里指定依赖的插件 ID。</li>
+<li> <code>&lt;change-notes&gt;</code>：插件的更新说明，当用户安装或更新插件时可以看到这些信息。</li>
+<li> <code>&lt;idea-version since-build=&quot;...&quot; until-build=&quot;...&quot; /&gt;</code>：指定插件支持的 IntelliJ IDEA 版本范围。</li>
+<li> <code>&lt;extensions defaultExtensionNs=&quot;...&quot;&gt;</code>：用于定义插件的扩展点。在这里可以声明插件实现的各种接口和抽象类，以扩展 IDE 的功能。</li>
+<li> <code>&lt;actions&gt;</code>：定义插件在 IDE 中添加的菜单动作、工具栏按钮等。</li>
+</ol>
+<h2 id="二、扩展点示例"><a href="#二、扩展点示例" class="headerlink" title="二、扩展点示例"></a>二、扩展点示例</h2><p>以下是一个简单的扩展点示例，用于在 IDE 的右键菜单中添加一个新的菜单项：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">actions</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">action</span> <span class="attr">id</span>=<span class="string">&quot;MyPluginAction&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.example.myplugin.MyAction&quot;</span> <span class="attr">text</span>=<span class="string">&quot;My Plugin Action&quot;</span> <span class="attr">description</span>=<span class="string">&quot;This is an action added by my plugin.&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">add-to-group</span> <span class="attr">group-id</span>=<span class="string">&quot;EditorPopupMenu&quot;</span> <span class="attr">anchor</span>=<span class="string">&quot;first&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">action</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">actions</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>在这个例子中，<code>&lt;action&gt;</code>标签定义了一个新的菜单项，<code>id</code>属性是菜单项的唯一标识符，<code>class</code>属性指定了实现该菜单项动作的类，<code>text</code>属性是菜单项显示的文本，<code>description</code>属性是菜单项的描述信息。<code>&lt;add-to-group&gt;</code>标签指定了将菜单项添加到哪个菜单组中，这里是编辑器的右键菜单（<code>EditorPopupMenu</code>），并且将其放置在菜单组的顶部（<code>anchor=&quot;first&quot;</code>）。</p>
+<h2 id="三、插件配置注意事项"><a href="#三、插件配置注意事项" class="headerlink" title="三、插件配置注意事项"></a>三、插件配置注意事项</h2><ol>
+<li> 插件 ID 的唯一性：确保插件的 ID 在整个插件生态系统中是唯一的，以避免与其他插件冲突。</li>
+<li> 版本管理：合理管理插件的版本号，以便用户能够了解插件的更新情况。在更新插件时，确保更新说明清晰地描述了新功能和修复的问题。</li>
+<li> IDE 版本兼容性：在<code>&lt;idea-version&gt;</code>标签中准确指定插件支持的 IntelliJ IDEA 版本范围，以确保插件能够在正确的 IDE 版本上运行。</li>
+<li> 扩展点的正确使用：仔细阅读 IntelliJ IDEA 的官方文档，了解各种扩展点的用途和使用方法。确保正确实现扩展点，以避免出现错误或不稳定的行为。</li>
+<li> 资源管理：如果插件需要使用资源文件（如图标、配置文件等），可以在<code>plugin.xml</code>文件中或通过代码指定资源文件的路径。确保资源文件在插件打包和安装过程中能够正确加载。</li>
+</ol>
+<h2 id="四、plugin-xml示例"><a href="#四、plugin-xml示例" class="headerlink" title="四、plugin.xml示例"></a>四、plugin.xml示例</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html --&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">idea-plugin</span>&gt;</span>  </span><br><span class="line">    <span class="comment">&lt;!-- 插件的唯一标识符。不得与现有插件的 ID 冲突。请确保选择稳定的 ID，因为该值在公开发布后无法更改。 --&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>com.github.myFirstPlugin<span class="tag">&lt;/<span class="name">id</span>&gt;</span>  </span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 插件显示名称,以 Title Case 书写。</span></span><br><span class="line"><span class="comment">    Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name --&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>MyFirstPlugin<span class="tag">&lt;/<span class="name">name</span>&gt;</span>  </span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- Plugins 页面上显示的 组织名称，网址，邮箱。 --&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">vendor</span> <span class="attr">email</span>=<span class="string">&quot;support@yourcompany.com&quot;</span> <span class="attr">url</span>=<span class="string">&quot;https://www.yourcompany.com&quot;</span>&gt;</span>YourCompany<span class="tag">&lt;/<span class="name">vendor</span>&gt;</span>  </span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- Plugin Page 和 IDE Plugin Manager 上显示插件的描述。 </span></span><br><span class="line"><span class="comment">    允许使用简单的 HTML 元素，如文本格式、段落、列表等，并且必须添加到 &lt;！[CDATA[ ]]&gt; 标签内。</span></span><br><span class="line"><span class="comment">    Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description --&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">description</span>&gt;</span>&lt;![CDATA[  </span><br><span class="line">    Enter short description for your plugin here.&lt;br&gt;  </span><br><span class="line">    &lt;em&gt;most HTML tags may be used&lt;/em&gt;  </span><br><span class="line">    ]]&gt;<span class="tag">&lt;/<span class="name">description</span>&gt;</span>  </span><br><span class="line">    <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">       最新插件版本提供的新功能、错误修复和更改的简短摘要。更改说明显示在 JetBrains Marketplace 插件页面和 Plugins settings 对话框中。</span></span><br><span class="line"><span class="comment">       允许使用简单的 HTML 元素，如文本格式、段落、列表等，并且必须添加到 &lt;！[CDATA[ ]]&gt; 标签内。 </span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">change-notes</span>&gt;</span>  </span><br><span class="line">        &lt;![CDATA[  </span><br><span class="line">        &lt;ul&gt;  </span><br><span class="line">        &lt;li&gt;&lt;b&gt;0.0.1&lt;/b&gt;版本描述。&lt;/li&gt;  </span><br><span class="line">        &lt;/ul&gt;</span><br><span class="line">        ]]&gt;  </span><br><span class="line">    <span class="tag">&lt;/<span class="name">change-notes</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 产品和插件兼容性要求。指定对基于 IntelliJ Platform 的产品的其他插件或模块的依赖项。可以包含多个&lt;depends&gt;元素。</span></span><br><span class="line"><span class="comment">    Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html --&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">depends</span>&gt;</span>com.intellij.modules.platform<span class="tag">&lt;/<span class="name">depends</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 插件定义的扩展点。</span></span><br><span class="line"><span class="comment">    Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html --&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">extensions</span> <span class="attr">defaultExtensionNs</span>=<span class="string">&quot;com.intellij&quot;</span>&gt;</span>  </span><br><span class="line">      <span class="comment">&lt;!--具有默认命名空间的 extensions 声明--&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">applicationService</span> <span class="attr">serviceImplementation</span>=<span class="string">&quot;com.example.Service&quot;</span>/&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;/<span class="name">extensions</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--Action 是 IDEA 中对事件响应的处理器。插件实现的单个操作条目&lt;actions&gt;。单个&lt;actions&gt;元素可以包含多个&lt;action&gt;元素。</span></span><br><span class="line"><span class="comment">    Read more:[IntelliJ Platform Plugin Template | IntelliJ Platform Plugin SDK (jetbrains.com)](https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html#idea-plugin__actions)--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">actions</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!----&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">id</span>=<span class="string">&quot;AddAuthorInfoAction&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.github.myfirstplugin.AddAuthorInfoAction&quot;</span> <span class="attr">text</span>=<span class="string">&quot;Add Author Info&quot;</span> </span></span><br><span class="line"><span class="tag">        <span class="attr">description</span>=<span class="string">&quot;Add Author Info&quot;</span>&gt;</span>  </span><br><span class="line">            <span class="comment">&lt;!--指定应将操作添加到现有组。可以将单个操作添加到多个组。--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">add-to-group</span> <span class="attr">group-id</span>=<span class="string">&quot;EditorPopupMenu&quot;</span> <span class="attr">anchor</span>=<span class="string">&quot;first&quot;</span>/&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;/<span class="name">action</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;/<span class="name">actions</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">idea-plugin</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>总之，<code>plugin.xml</code>文件是 IntelliJ IDEA 插件开发中的关键配置文件。通过正确配置这个文件，你可以定义插件的属性、扩展点和与 IDE 的集成方式，从而实现强大的定制化功能。在开发插件时，仔细阅读官方文档并参考现有的插件示例，以确保正确配置<code>plugin.xml</code>文件并实现插件的功能。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://groupfusion.github.io/2024/09/11/dev/IDEA%20%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E6%95%99%E7%A8%8B(%E4%BA%8C)%20plugin/" data-id="cm1hgp3ax00031kuzaqc86wyi" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDEA-plugin/" rel="tag">IDEA plugin</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+  
+<nav class="article-nav">
+  
+  <a href="/2024/09/12/dev/IDEA%20%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E6%95%99%E7%A8%8B(%E4%B8%89)%20add%20to%20Group/" class="article-nav-link">
+    <strong class="article-nav-caption">前一篇</strong>
+    <div class="article-nav-title">
+      
+      IDEA 插件开发实战教程(三) add to Group
+      
+    </div>
+  </a>
+  
+  
+  <a href="/2024/09/10/dev/IDEA%20%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E6%95%99%E7%A8%8B(%E4%B8%80)%20%E5%85%A5%E9%97%A8/" class="article-nav-link">
+    <strong class="article-nav-caption">后一篇</strong>
+    <div class="article-nav-title">IDEA 插件开发实战教程(一) 入门</div>
+  </a>
+  
+</nav>
+
+  
+
+  
+  
+  
+  
+
+</article>
+</section>
+    <footer class="footer">
+  <div class="outer">
+    <div class="float-right">
+      <ul class="list-inline">
+  
+  <li><i class="fe fe-smile-alt"></i> <span id="busuanzi_value_site_uv"></span></li>
+  
+  <li><i class="fe fe-bookmark"></i> <span id="busuanzi_value_page_pv"></span></li>
+  
+</ul>
+    </div>
+    <ul class="list-inline">
+      <li>码农军哥 &copy; 2024</li>
+      
+        <li></li>
+      
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>theme  <a target="_blank" rel="noopener" href="https://github.com/zhwangart/hexo-theme-ocean">Ocean</a></li>
+    </ul>
+  </div>
+</footer>
+  </main>
+  <aside class="sidebar">
+    <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/jerry.svg" alt="码农军哥"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/gallery">相册</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/favorites">收藏</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      <div class="totop" id="totop">
+  <i class="fe fe-rocket"></i>
+</div>
+    </li>
+    <li class="nav-item">
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="fe fe-feed"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+  </aside>
+  
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/copybtn.js"></script>
+
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+  });
+</script>
+
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+
+</html>

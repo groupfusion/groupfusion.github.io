@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  <meta name="description" content="一个程序员的学习、工作日志">
+  
+  <title>
+    IDEA 插件开发实战教程(三) add to Group |
+    
+    码农军哥
+  </title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<script src="/js/pace.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="码农军哥" type="application/atom+xml">
+</head>
+
+<body>
+  <main class="content">
+    <section class="outer">
+  <article id="post-dev/IDEA 插件开发实战教程(三) add to Group" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+
+<h1 class="article-title" itemprop="name">
+  IDEA 插件开发实战教程(三) add to Group
+</h1>
+
+
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2024/09/12/dev/IDEA%20%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E6%95%99%E7%A8%8B(%E4%B8%89)%20add%20to%20Group/" class="article-date">
+  <time datetime="2024-09-12T12:41:20.000Z" itemprop="datePublished">2024-09-12</time>
+</a>
+      
+    </div>
+    
+
+    
+    
+<div class="tocbot"></div>
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+      <p><img src="https://p26-juejin-sign.byteimg.com/tos-cn-i-k3u1fbpfcp/b44deb0d843440358ed72fa0e7522af9~tplv-k3u1fbpfcp-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6:q75.awebp?rk3s=bb34011d&x-expires=1727325152&x-signature=jrSRZp/694u1XKTpXGjHWMlg2wg=" alt="image.png"></p>
+<p>在 IntelliJ IDEA 插件开发中，<code>&lt;add-to-group&gt;</code>标签用于将插件定义的动作添加到特定的菜单组中。</p>
+<span id="more"></span>
+<p>以下是关于<code>&lt;add-to-group&gt;</code>的详细介绍：</p>
+<h2 id="一、语法结构"><a href="#一、语法结构" class="headerlink" title="一、语法结构**"></a>一、语法结构**</h2><p><code>&lt;add-to-group group-id=&quot;GROUP_ID&quot; anchor=&quot;POSITION&quot; /&gt;</code></p>
+<p>其中：</p>
+<ul>
+<li>  <code>group-id</code>：指定要添加动作的菜单组的唯一标识符。不同的菜单组对应着不同的位置和功能。例如，<code>EditorPopupMenu</code>表示编辑器的右键菜单，<code>MainMenu</code>表示主菜单栏等。</li>
+<li>  <code>anchor</code>：指定动作在菜单组中的位置。可以是<code>first</code>（顶部）、<code>last</code>（底部）或特定动作的标识符，以将新动作插入到指定动作的前面或后面。</li>
+</ul>
+<h2 id="二、常见的菜单组"><a href="#二、常见的菜单组" class="headerlink" title="二、常见的菜单组**"></a>二、常见的菜单组**</h2><ol>
+<li> <code>MainMenu</code>：主菜单栏本身。可以在其中的子菜单如<code>File</code>、<code>Edit</code>、<code>View</code>等中添加动作。</li>
+<li> <code>FileMenu</code>：文件菜单，通常包含与文件操作相关的命令，如新建、打开、保存等。</li>
+<li> <code>EditMenu</code>：编辑菜单，包含复制、粘贴、撤销等编辑操作相关的命令。</li>
+<li> <code>ViewMenu</code>：视图菜单，用于控制 IDE 的界面显示和布局。</li>
+<li> <code>NavigateMenu</code>：导航菜单，提供快速导航到代码中的不同位置的选项。</li>
+<li> <code>CodeMenu</code>：代码菜单，包含与代码生成、重构等相关的操作。</li>
+<li> <code>RefactorMenu</code>：重构菜单，专门用于各种代码重构操作。</li>
+<li> <code>BuildMenu</code>：构建菜单，涉及项目的构建和编译相关操作。</li>
+<li> <code>RunMenu</code>：运行菜单，用于运行和调试项目。</li>
+<li> <code>ToolsMenu</code>：工具菜单，可添加与各种工具相关的操作。</li>
+<li> <code>VcsMenu</code>：版本控制系统菜单，用于与版本控制相关的操作。</li>
+<li><code>EditorPopupMenu</code>：编辑器的右键弹出菜单。</li>
+<li> <code>ProjectViewPopupMenu</code>：项目视图中的右键弹出菜单。</li>
+<li> <code>ToolWindowPopupMenu</code>：工具窗口的右键弹出菜单。</li>
+<li> <code>Toolbar</code>：工具栏，可以添加工具栏按钮。 </li>
+</ol>
+<p>以上这些只是一些常见的菜单组，IntelliJ IDEA 的菜单结构可能会随着版本的更新而有所变化，同时还可能有一些特定于插件或特定功能的菜单组。在开发插件时，可以根据插件的功能需求选择合适的菜单组来添加动作。</p>
+<p><strong>三、示例用法</strong></p>
+<p>以下是一个在插件的<code>plugin.xml</code>文件中使用<code>&lt;add-to-group&gt;</code>的示例：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">actions</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">action</span> <span class="attr">id</span>=<span class="string">&quot;MyPluginAction&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.example.myplugin.MyAction&quot;</span> <span class="attr">text</span>=<span class="string">&quot;My Plugin Action&quot;</span> <span class="attr">description</span>=<span class="string">&quot;This is an action added by my plugin.&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">add-to-group</span> <span class="attr">group-id</span>=<span class="string">&quot;EditorPopupMenu&quot;</span> <span class="attr">anchor</span>=<span class="string">&quot;first&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">action</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">actions</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>在这个例子中，定义了一个名为 “My Plugin Action” 的动作，并将其添加到编辑器的右键菜单顶部（<code>anchor=&quot;first&quot;</code>）。</p>
+<h2 id="四、注意事项"><a href="#四、注意事项" class="headerlink" title="四、注意事项"></a>四、注意事项</h2><ol>
+<li> 确保指定的<code>group-id</code>是正确的菜单组标识符，否则动作可能不会出现在预期的位置。</li>
+<li> 选择合适的<code>anchor</code>值，以确保动作在菜单组中的位置符合用户的使用习惯和预期。</li>
+<li> 在添加动作到菜单组时，要考虑动作的功能和用途，避免将不相关的动作添加到不合适的菜单组中，以免给用户带来困惑。</li>
+</ol>
+<p>通过合理使用<code>&lt;add-to-group&gt;</code>标签，你可以将插件定义的动作放置在 IDE 的合适位置，方便用户访问和使用插件的功能。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://groupfusion.github.io/2024/09/12/dev/IDEA%20%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E6%95%99%E7%A8%8B(%E4%B8%89)%20add%20to%20Group/" data-id="cm1hgp3ao00001kuz5rt05jsz" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDEA-plugin/" rel="tag">IDEA plugin</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+  
+<nav class="article-nav">
+  
+  <a href="/2024/09/13/dev/IDEA%20%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E6%95%99%E7%A8%8B%20(%E5%9B%9B)%20%E5%8F%AF%E5%BC%80%E5%8F%91%E5%93%AA%E4%BA%9B%E6%8F%92%E4%BB%B6/" class="article-nav-link">
+    <strong class="article-nav-caption">前一篇</strong>
+    <div class="article-nav-title">
+      
+      IDEA 插件开发实战教程 | (四) 我们可以开发哪些插件
+      
+    </div>
+  </a>
+  
+  
+  <a href="/2024/09/11/dev/IDEA%20%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E6%95%99%E7%A8%8B(%E4%BA%8C)%20plugin/" class="article-nav-link">
+    <strong class="article-nav-caption">后一篇</strong>
+    <div class="article-nav-title">IDEA 插件开发实战教程(二) plugin</div>
+  </a>
+  
+</nav>
+
+  
+
+  
+  
+  
+  
+
+</article>
+</section>
+    <footer class="footer">
+  <div class="outer">
+    <div class="float-right">
+      <ul class="list-inline">
+  
+  <li><i class="fe fe-smile-alt"></i> <span id="busuanzi_value_site_uv"></span></li>
+  
+  <li><i class="fe fe-bookmark"></i> <span id="busuanzi_value_page_pv"></span></li>
+  
+</ul>
+    </div>
+    <ul class="list-inline">
+      <li>码农军哥 &copy; 2024</li>
+      
+        <li></li>
+      
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>theme  <a target="_blank" rel="noopener" href="https://github.com/zhwangart/hexo-theme-ocean">Ocean</a></li>
+    </ul>
+  </div>
+</footer>
+  </main>
+  <aside class="sidebar">
+    <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/jerry.svg" alt="码农军哥"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/gallery">相册</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/favorites">收藏</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      <div class="totop" id="totop">
+  <i class="fe fe-rocket"></i>
+</div>
+    </li>
+    <li class="nav-item">
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="fe fe-feed"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+  </aside>
+  
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/copybtn.js"></script>
+
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+  });
+</script>
+
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+
+</html>

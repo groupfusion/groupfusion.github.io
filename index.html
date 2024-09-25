@@ -463,6 +463,315 @@
 
 </article>
     
+    <article id="post-dev/IDEA插件开发实战教程 (五) 通知、消息、国际化" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/09/14/dev/IDEA%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E6%95%99%E7%A8%8B%20(%E4%BA%94)%20%E9%80%9A%E7%9F%A5%E3%80%81%E6%B6%88%E6%81%AF%E3%80%81%E5%9B%BD%E9%99%85%E5%8C%96/">IDEA插件开发实战教程 |(五) 通知和消息框显示以及国际化</a>
+</h2>
+
+
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2024/09/14/dev/IDEA%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E6%95%99%E7%A8%8B%20(%E4%BA%94)%20%E9%80%9A%E7%9F%A5%E3%80%81%E6%B6%88%E6%81%AF%E3%80%81%E5%9B%BD%E9%99%85%E5%8C%96/" class="article-date">
+  <time datetime="2024-09-14T12:41:20.000Z" itemprop="datePublished">2024-09-14</time>
+</a>
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        
+      
+      
+        <h2 id="通知"><a href="#通知" class="headerlink" title="通知"></a>通知</h2><p>右键选中word并弹出选中消息通知。</p>
+<h3 id="创建一个action。"><a href="#创建一个action。" class="headerlink" title="创建一个action。"></a>创建一个action。</h3><p>我们通过devKit创建一个action。</p>
+<h3 id="使用通知接口弹出内容"><a href="#使用通知接口弹出内容" class="headerlink" title="使用通知接口弹出内容"></a>使用通知接口弹出内容</h3><p>首先我们要先在Plugin.xml中注册一个通知Group</p>
+        
+          <p>
+            <a class="article-more-link" href="/2024/09/14/dev/IDEA%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E6%95%99%E7%A8%8B%20(%E4%BA%94)%20%E9%80%9A%E7%9F%A5%E3%80%81%E6%B6%88%E6%81%AF%E3%80%81%E5%9B%BD%E9%99%85%E5%8C%96/">
+              阅读全文
+            </a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://groupfusion.github.io/2024/09/14/dev/IDEA%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E6%95%99%E7%A8%8B%20(%E4%BA%94)%20%E9%80%9A%E7%9F%A5%E3%80%81%E6%B6%88%E6%81%AF%E3%80%81%E5%9B%BD%E9%99%85%E5%8C%96/" data-id="cm1hgp3ar00011kuzbhh3bq6x" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDEA-plugin/" rel="tag">IDEA plugin</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+    
+    <article id="post-dev/IDEA 插件开发实战教程 (四) 可开发哪些插件" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/09/13/dev/IDEA%20%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E6%95%99%E7%A8%8B%20(%E5%9B%9B)%20%E5%8F%AF%E5%BC%80%E5%8F%91%E5%93%AA%E4%BA%9B%E6%8F%92%E4%BB%B6/">IDEA 插件开发实战教程 | (四) 我们可以开发哪些插件</a>
+</h2>
+
+
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2024/09/13/dev/IDEA%20%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E6%95%99%E7%A8%8B%20(%E5%9B%9B)%20%E5%8F%AF%E5%BC%80%E5%8F%91%E5%93%AA%E4%BA%9B%E6%8F%92%E4%BB%B6/" class="article-date">
+  <time datetime="2024-09-13T12:41:20.000Z" itemprop="datePublished">2024-09-13</time>
+</a>
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        
+      
+      
+        <p>IntelliJ IDEA 是一款功能强大的集成开发环境，通过插件开发可以进一步扩展其功能。我们在开发插件时要从自身需求出发，结合日常工作痛点。</p>
+        
+          <p>
+            <a class="article-more-link" href="/2024/09/13/dev/IDEA%20%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E6%95%99%E7%A8%8B%20(%E5%9B%9B)%20%E5%8F%AF%E5%BC%80%E5%8F%91%E5%93%AA%E4%BA%9B%E6%8F%92%E4%BB%B6/">
+              阅读全文
+            </a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://groupfusion.github.io/2024/09/13/dev/IDEA%20%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E6%95%99%E7%A8%8B%20(%E5%9B%9B)%20%E5%8F%AF%E5%BC%80%E5%8F%91%E5%93%AA%E4%BA%9B%E6%8F%92%E4%BB%B6/" data-id="cm1hgp3ay00041kuzhszwb17v" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDEA-plugin/" rel="tag">IDEA plugin</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+    
+    <article id="post-dev/IDEA 插件开发实战教程(三) add to Group" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/09/12/dev/IDEA%20%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E6%95%99%E7%A8%8B(%E4%B8%89)%20add%20to%20Group/">IDEA 插件开发实战教程(三) add to Group</a>
+</h2>
+
+
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2024/09/12/dev/IDEA%20%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E6%95%99%E7%A8%8B(%E4%B8%89)%20add%20to%20Group/" class="article-date">
+  <time datetime="2024-09-12T12:41:20.000Z" itemprop="datePublished">2024-09-12</time>
+</a>
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        
+      
+      
+        <p><img src="https://p26-juejin-sign.byteimg.com/tos-cn-i-k3u1fbpfcp/b44deb0d843440358ed72fa0e7522af9~tplv-k3u1fbpfcp-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6:q75.awebp?rk3s=bb34011d&x-expires=1727325152&x-signature=jrSRZp/694u1XKTpXGjHWMlg2wg=" alt="image.png"></p>
+<p>在 IntelliJ IDEA 插件开发中，<code>&lt;add-to-group&gt;</code>标签用于将插件定义的动作添加到特定的菜单组中。</p>
+        
+          <p>
+            <a class="article-more-link" href="/2024/09/12/dev/IDEA%20%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E6%95%99%E7%A8%8B(%E4%B8%89)%20add%20to%20Group/">
+              阅读全文
+            </a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://groupfusion.github.io/2024/09/12/dev/IDEA%20%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E6%95%99%E7%A8%8B(%E4%B8%89)%20add%20to%20Group/" data-id="cm1hgp3ao00001kuz5rt05jsz" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDEA-plugin/" rel="tag">IDEA plugin</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+    
+    <article id="post-dev/IDEA 插件开发实战教程(二) plugin" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/09/11/dev/IDEA%20%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E6%95%99%E7%A8%8B(%E4%BA%8C)%20plugin/">IDEA 插件开发实战教程(二) plugin</a>
+</h2>
+
+
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2024/09/11/dev/IDEA%20%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E6%95%99%E7%A8%8B(%E4%BA%8C)%20plugin/" class="article-date">
+  <time datetime="2024-09-11T12:41:20.000Z" itemprop="datePublished">2024-09-11</time>
+</a>
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        
+      
+      
+        <p>在 IntelliJ IDEA 插件开发中，<code>plugin.xml</code>文件是一个非常重要的配置文件。它用于定义插件的各种属性、扩展点以及与 IDE 的集成方式。以下是对<code>plugin.xml</code>文件的详细介绍：</p>
+        
+          <p>
+            <a class="article-more-link" href="/2024/09/11/dev/IDEA%20%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E6%95%99%E7%A8%8B(%E4%BA%8C)%20plugin/">
+              阅读全文
+            </a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://groupfusion.github.io/2024/09/11/dev/IDEA%20%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E6%95%99%E7%A8%8B(%E4%BA%8C)%20plugin/" data-id="cm1hgp3ax00031kuzaqc86wyi" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDEA-plugin/" rel="tag">IDEA plugin</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+    
+    <article id="post-dev/IDEA 插件开发实战教程(一) 入门" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/09/10/dev/IDEA%20%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E6%95%99%E7%A8%8B(%E4%B8%80)%20%E5%85%A5%E9%97%A8/">IDEA 插件开发实战教程(一) 入门</a>
+</h2>
+
+
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2024/09/10/dev/IDEA%20%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E6%95%99%E7%A8%8B(%E4%B8%80)%20%E5%85%A5%E9%97%A8/" class="article-date">
+  <time datetime="2024-09-10T12:41:20.000Z" itemprop="datePublished">2024-09-10</time>
+</a>
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        
+      
+      
+        <p>在众多的 JAVA 开发集成开发环境（IDE）中，IntelliJ IDEA 无疑是备受推崇的佼佼者，其本身所具备的功能堪称强大且全面。然而，不得不承认的是，由于每位开发者的需求都具有独特性，如同世界上没有两片完全相同的树叶一样，IDEA 即便功能再强大，也难以满足所有人的个性化需求。</p>
+<p>在这种情况下，IDEA 所提供的插件功能就成为了开发者们的得力助手。它就像是一个功能丰富的百宝箱，开发者们可以根据自己的特定需求，从中挑选合适的插件来满足自己的开发要求。如果在这个丰富的插件库中，依然找不到能够满足自身特殊需求的插件，那该怎么办呢？别担心，我们完全可以凭借自己的能力和创造力，亲手打造一个专属的插件！</p>
+        
+          <p>
+            <a class="article-more-link" href="/2024/09/10/dev/IDEA%20%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E6%95%99%E7%A8%8B(%E4%B8%80)%20%E5%85%A5%E9%97%A8/">
+              阅读全文
+            </a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://groupfusion.github.io/2024/09/10/dev/IDEA%20%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E6%95%99%E7%A8%8B(%E4%B8%80)%20%E5%85%A5%E9%97%A8/" data-id="cm1hgp3az00051kuze9pbh7mo" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDEA-plugin/" rel="tag">IDEA plugin</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+    
     <article id="post-readbook/free-programming-books" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -605,323 +914,6 @@
       </a>
       
 <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E4%B9%A6/" rel="tag">计算机图书</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-    
-    <article id="post-dev/Redis错误-不知道这样的主机" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-
-<h2 itemprop="name">
-  <a class="article-title" href="/2024/01/10/dev/Redis%E9%94%99%E8%AF%AF-%E4%B8%8D%E7%9F%A5%E9%81%93%E8%BF%99%E6%A0%B7%E7%9A%84%E4%B8%BB%E6%9C%BA/">Redis错误：Could not create server TCP listening socket * :6379： 不知道这样的主机。</a>
-</h2>
-
-
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2024/01/10/dev/Redis%E9%94%99%E8%AF%AF-%E4%B8%8D%E7%9F%A5%E9%81%93%E8%BF%99%E6%A0%B7%E7%9A%84%E4%B8%BB%E6%9C%BA/" class="article-date">
-  <time datetime="2024-01-10T07:41:20.000Z" itemprop="datePublished">2024-01-10</time>
-</a>
-      
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-        
-      
-      
-        <h1 id="Redis错误：Could-not-create-server-TCP-listening-socket-6379-不知道这样的主机。"><a href="#Redis错误：Could-not-create-server-TCP-listening-socket-6379-不知道这样的主机。" class="headerlink" title="Redis错误：Could not create server TCP listening socket * :6379: 不知道这样的主机。"></a>Redis错误：Could not create server TCP listening socket * :6379: 不知道这样的主机。</h1><h2 id="报错："><a href="#报错：" class="headerlink" title="报错："></a>报错：</h2><p>redis服务在window下启动时，报错：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">D:\server\Redis&gt;redis-server redis.windows.conf</span><br><span class="line">[30268] 10 Jan 10:24:57.196 <span class="comment"># oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo</span></span><br><span class="line">[30268] 10 Jan 10:24:57.197 <span class="comment"># Redis version=5.0.14, bits=64, commit=a7c01ef4, modified=0, pid=30268, just started</span></span><br><span class="line">[30268] 10 Jan 10:24:57.197 <span class="comment"># Configuration loaded</span></span><br><span class="line">[30268] 10 Jan 10:24:57.200 <span class="comment"># Could not create server TCP listening socket *:6379: 不知道这样的主机。</span></span><br></pre></td></tr></table></figure>
-        
-          <p>
-            <a class="article-more-link" href="/2024/01/10/dev/Redis%E9%94%99%E8%AF%AF-%E4%B8%8D%E7%9F%A5%E9%81%93%E8%BF%99%E6%A0%B7%E7%9A%84%E4%B8%BB%E6%9C%BA/">
-              阅读全文
-            </a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://groupfusion.github.io/2024/01/10/dev/Redis%E9%94%99%E8%AF%AF-%E4%B8%8D%E7%9F%A5%E9%81%93%E8%BF%99%E6%A0%B7%E7%9A%84%E4%B8%BB%E6%9C%BA/" data-id="clufjsd2k0008q8uzca9cdxlb" class="article-share-link">
-        分享
-      </a>
-      
-<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-    
-    <article id="post-dev/redis_bind设置" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-
-<h2 itemprop="name">
-  <a class="article-title" href="/2024/01/10/dev/redis_bind%E8%AE%BE%E7%BD%AE/">Redis bind ip 连接认证及bind的注意事项</a>
-</h2>
-
-
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2024/01/10/dev/redis_bind%E8%AE%BE%E7%BD%AE/" class="article-date">
-  <time datetime="2024-01-10T02:41:20.000Z" itemprop="datePublished">2024-01-10</time>
-</a>
-      
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-        
-      
-      
-        <h2 id="开启保护模式-默认开启"><a href="#开启保护模式-默认开启" class="headerlink" title="开启保护模式(默认开启)"></a>开启保护模式(默认开启)</h2><p>设置 protected-mode 为 yes</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"># Protected mode is a layer of security protection, in order to avoid that</span><br><span class="line"># Redis instances left open on the internet are accessed and exploited.</span><br><span class="line"># 保护模式是一层安全保护，以避免在互联网上打开的Redis实例会被访问和利用。</span><br><span class="line"># </span><br><span class="line"># When protected mode is on and if:</span><br><span class="line"># 当保护模式打开时，如果：</span><br><span class="line"># </span><br><span class="line"># 1) The server is not binding explicitly to a set of addresses using the</span><br><span class="line">#    &quot;bind&quot; directive.</span><br><span class="line">#    服务器未使用“bind”指令显式绑定到一组地址。</span><br><span class="line"># 2) No password is configured.</span><br><span class="line">#    未配置密码。</span><br><span class="line"># </span><br><span class="line"># The server only accepts connections from clients connecting from the</span><br><span class="line"># IPv4 and IPv6 loopback addresses 127.0.0.1 and ::1, and from Unix domain</span><br><span class="line"># sockets.</span><br><span class="line"># 服务器只接受来自从IPv4 和 IPv6 环回地址 127.0.0.1 和::1，以及来自 Unix 域sockets客户端的连接。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-        
-          <p>
-            <a class="article-more-link" href="/2024/01/10/dev/redis_bind%E8%AE%BE%E7%BD%AE/">
-              阅读全文
-            </a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://groupfusion.github.io/2024/01/10/dev/redis_bind%E8%AE%BE%E7%BD%AE/" data-id="clufjsd2r000rq8uz94z3agsj" class="article-share-link">
-        分享
-      </a>
-      
-<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-    
-    <article id="post-devlang/vue/vue3+element-plus国际化" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-
-<h2 itemprop="name">
-  <a class="article-title" href="/2024/01/09/devlang/vue/vue3+element-plus%E5%9B%BD%E9%99%85%E5%8C%96/">Vue3 + element-plus + I18n 国际化</a>
-</h2>
-
-
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2024/01/09/devlang/vue/vue3+element-plus%E5%9B%BD%E9%99%85%E5%8C%96/" class="article-date">
-  <time datetime="2024-01-09T11:47:57.000Z" itemprop="datePublished">2024-01-09</time>
-</a>
-      
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-        
-      
-      
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文记录项目中集成i18n实现国际化，特在此记录，便于日后浏览。</p>
-<h2 id="组件库国际化方案"><a href="#组件库国际化方案" class="headerlink" title="组件库国际化方案"></a>组件库国际化方案</h2><ul>
-<li>vue3</li>
-<li>ElementPlus</li>
-<li>vue-i18n</li>
-</ul>
-<h2 id="一、安装"><a href="#一、安装" class="headerlink" title="一、安装"></a>一、安装</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i vue-i18n</span><br></pre></td></tr></table></figure>
-        
-          <p>
-            <a class="article-more-link" href="/2024/01/09/devlang/vue/vue3+element-plus%E5%9B%BD%E9%99%85%E5%8C%96/">
-              阅读全文
-            </a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://groupfusion.github.io/2024/01/09/devlang/vue/vue3+element-plus%E5%9B%BD%E9%99%85%E5%8C%96/" data-id="clufjsd3e003nq8uz5c1phupy" class="article-share-link">
-        分享
-      </a>
-      
-<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue3/" rel="tag">Vue3</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-    
-    <article id="post-dev/如何做技术规划" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-
-<h2 itemprop="name">
-  <a class="article-title" href="/2024/01/05/dev/%E5%A6%82%E4%BD%95%E5%81%9A%E6%8A%80%E6%9C%AF%E8%A7%84%E5%88%92/">如何做技术规划</a>
-</h2>
-
-
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2024/01/05/dev/%E5%A6%82%E4%BD%95%E5%81%9A%E6%8A%80%E6%9C%AF%E8%A7%84%E5%88%92/" class="article-date">
-  <time datetime="2024-01-05T07:41:20.000Z" itemprop="datePublished">2024-01-05</time>
-</a>
-      
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-        
-      
-      
-        <h2 id="如何做技术规划"><a href="#如何做技术规划" class="headerlink" title="如何做技术规划?"></a>如何做技术规划?</h2><p>整理自<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1bG411r7G3">如何做技术规划?</a></p>
-<h3 id="为什么要做技术规划"><a href="#为什么要做技术规划" class="headerlink" title="为什么要做技术规划?"></a>为什么要做技术规划?</h3><p>资源是有限的，一个技术团队不可能同时做好所有事，必须面对选择，作为tech leader，为团队选择最有价值的工作才能使得整体收益最大化，无论团队还是个人都<strong>不能仅靠case/问题驱动去解决问题</strong>，这样做只会让团队或者自己辛苦一年而无产出，浪费业务资源，结果跑偏，影响业务发展。</p>
-<p>对个人来说，这也是一个极其重要的能力，<strong>新手能把事情做对，高手要去做对的事情,而技术规划能力则是其中最重要的分水岭</strong>。</p>
-<p>对于团队来说，tech eader 需要尽可能的打造一个技术上领先的团队去应对业务的发展，<strong>使得技术本身作为业务的核心竞争力</strong>,在稳定性/送代效率与质量/安全性/架构先进性上等等技术方面超越业界水平。</p>
-        
-          <p>
-            <a class="article-more-link" href="/2024/01/05/dev/%E5%A6%82%E4%BD%95%E5%81%9A%E6%8A%80%E6%9C%AF%E8%A7%84%E5%88%92/">
-              阅读全文
-            </a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://groupfusion.github.io/2024/01/05/dev/%E5%A6%82%E4%BD%95%E5%81%9A%E6%8A%80%E6%9C%AF%E8%A7%84%E5%88%92/" data-id="clufjsd2s000tq8uz5vbi1isv" class="article-share-link">
-        分享
-      </a>
-      
-<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF%E8%A7%84%E5%88%92/" rel="tag">技术规划</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-    
-    <article id="post-system&amp;design/微前端架构" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-
-<h2 itemprop="name">
-  <a class="article-title" href="/2024/01/05/system&design/%E5%BE%AE%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84/">微前端架构</a>
-</h2>
-
-
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2024/01/05/system&design/%E5%BE%AE%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84/" class="article-date">
-  <time datetime="2024-01-05T07:41:20.000Z" itemprop="datePublished">2024-01-05</time>
-</a>
-      
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-        
-      
-      
-        <p>本文概述了微前端，以及如何将遗留用户界面分解为微前端架构。</p>
-<h2 id="什么是微前端？"><a href="#什么是微前端？" class="headerlink" title="什么是微前端？"></a>什么是微前端？</h2><p>微前端是一种架构方法，它将微服务的概念扩展到 Web 应用程序的前端。在微前端体系结构中，复杂的 Web 应用程序被分解为更小的、可独立部署且可维护的单元，称为微前端。每个微前端负责用户界面的特定部分及其相关功能。</p>
-        
-          <p>
-            <a class="article-more-link" href="/2024/01/05/system&design/%E5%BE%AE%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84/">
-              阅读全文
-            </a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://groupfusion.github.io/2024/01/05/system&design/%E5%BE%AE%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84/" data-id="clufjsd2z001qq8uz6ul5ea73" class="article-share-link">
-        分享
-      </a>
-      
-<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/" rel="tag">系统架构</a></li></ul>
 
     </footer>
 
